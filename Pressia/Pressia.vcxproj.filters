@@ -24,12 +24,18 @@
     <ClInclude Include="src\Pressia.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\Pressia\EntryPoing.h">
+    <ClInclude Include="src\Pressia\EntryPoint.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Pressia\Log.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Pressia\Application.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Pressia\Log.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

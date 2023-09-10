@@ -1,0 +1,3 @@
+[submodule "Pressia/vendor/spdlog"]
+	path = Pressia/vendor/spdlog
+	url = https://github.com/gabime/spdlog

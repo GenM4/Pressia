@@ -11,12 +11,14 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\Pressia\Log.h" />
     <ClInclude Include="src\Pressia.h" />
     <ClInclude Include="src\Pressia\Application.h" />
     <ClInclude Include="src\Pressia\Core.h" />
-    <ClInclude Include="src\Pressia\EntryPoing.h" />
+    <ClInclude Include="src\Pressia\EntryPoint.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\Pressia\Log.cpp" />
     <ClCompile Include="src\Pressia\Application.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
@@ -62,11 +64,15 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>PS_PLATFORM_WINDOWS; PS_BUILD_DLL; _DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>$(SolutionDir)\Pressia\vendor\spdlog\include</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
+    <PostBuildEvent>
+      <Command>copy /Y "$(TargetPath)" "$(SolutionDir)bin\$(Configuration)-$(Platform)\Sandbox"</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
