@@ -1,24 +1,24 @@
 #pragma once
-#include <memory>
 
 #include "Core.h"
 #include "spdlog/spdlog.h"
+#include "spdlog/fmt/ostr.h"
 
 namespace Pressia {
-class PRESSIA_API Log {
-public:
-  static void Init();
+	class PRESSIA_API Log {
+	public:
+		static void Init();
 
-  inline static std::shared_ptr<spdlog::logger> &GetCoreLogger() {
-    return s_CoreLogger;
-  }
-  inline static std::shared_ptr<spdlog::logger> &GetClientLogger() {
-    return s_ClientLogger;
-  }
+		inline static std::shared_ptr<spdlog::logger>& GetCoreLogger() {
+			return s_CoreLogger;
+		}
+		inline static std::shared_ptr<spdlog::logger>& GetClientLogger() {
+			return s_ClientLogger;
+		}
 
-  static std::shared_ptr<spdlog::logger> s_CoreLogger;
-  static std::shared_ptr<spdlog::logger> s_ClientLogger;
-};
+		static std::shared_ptr<spdlog::logger> s_CoreLogger;
+		static std::shared_ptr<spdlog::logger> s_ClientLogger;
+	};
 } // namespace Pressia
 
 // Core Log Macros

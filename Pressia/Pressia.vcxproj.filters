@@ -4,6 +4,9 @@
     <Filter Include="Pressia">
       <UniqueIdentifier>{FC624323-6842-C2BE-715A-4D95DDB82820}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Pressia\Events">
+      <UniqueIdentifier>{605BA409-4C29-980F-35BD-0836212A7474}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Pressia.h" />
@@ -16,9 +19,22 @@
     <ClInclude Include="src\Pressia\EntryPoint.h">
       <Filter>Pressia</Filter>
     </ClInclude>
+    <ClInclude Include="src\Pressia\Events\ApplicationEvent.h">
+      <Filter>Pressia\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Pressia\Events\Event.h">
+      <Filter>Pressia\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Pressia\Events\KeyEvent.h">
+      <Filter>Pressia\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Pressia\Events\MouseEvent.h">
+      <Filter>Pressia\Events</Filter>
+    </ClInclude>
     <ClInclude Include="src\Pressia\Log.h">
       <Filter>Pressia</Filter>
     </ClInclude>
+    <ClInclude Include="src\pspch.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Pressia\Application.cpp">
@@ -27,5 +43,6 @@
     <ClCompile Include="src\Pressia\Log.cpp">
       <Filter>Pressia</Filter>
     </ClCompile>
+    <ClCompile Include="src\pspch.cpp" />
   </ItemGroup>
 </Project>

@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Core.h"
+#include "Events/Event.h"
 
 namespace Pressia {
 
@@ -14,5 +15,4 @@ namespace Pressia {
 
 	// Defined by client
 	Application* CreateApplication();
-}
-
+} // namespace Pressia

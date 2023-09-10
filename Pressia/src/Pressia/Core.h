@@ -9,3 +9,5 @@
 #else
 #error Only Windows support for now!
 #endif // PS_PLATFORM_WINDOWS
+
+#define BIT(x) (1 << x)
