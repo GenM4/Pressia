@@ -9,6 +9,12 @@ workspace "Pressia"
 
 outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 
+-- Include Directories
+IncludeDir = {}
+IncludeDir["GLFW"] = "Pressia/vendor/GLFW/include"
+
+include "Pressia/vendor/GLFW"
+
 project "Pressia"
 	location "Pressia"
 	kind "SharedLib"
@@ -27,12 +33,19 @@ project "Pressia"
 
 	includedirs {
 		"%{prj.name}/src",
-		"%{prj.name}/vendor/spdlog/include"
+		"%{prj.name}/vendor/spdlog/include",
+
+		"%{IncludeDir.GLFW}"
+	}
+
+	links {
+		"GLFW",
+		"opengl32.lib",
+		"dwmapi.lib"
 	}
 
 	filter "system:windows"
 		cppdialect "C++17"
-		staticruntime "On"
 		systemversion "latest"
 
 		defines {
@@ -45,22 +58,32 @@ project "Pressia"
 		}
 
 	filter "configurations:Debug"
-		defines "PS_DEBUG"
+		defines {
+			"PS_DEBUG",
+			"PS_ENABLE_ASSERTS"
+		}
 		symbols "On"
+		staticruntime "off"
+		runtime "Debug"
 
 	filter "configurations:Release"
 		defines "PS_RELEASE"
 		symbols "On"
+		staticruntime "off"
+		runtime "Release"
 
 	filter "configurations:Dist"
 		defines "PS_DIST"
 		symbols "On"
+		staticruntime "off"
+		runtime "Release"
 
 
 project "Sandbox"
 	location "Sandbox"
 	kind "ConsoleApp"
 	language "C++"
+	staticruntime "On"
 	
 	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
 	objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
@@ -81,7 +104,6 @@ project "Sandbox"
 
 	filter "system:windows"
 		cppdialect "C++17"
-		staticruntime "On"
 		systemversion "latest"
 
 		defines {
@@ -89,13 +111,18 @@ project "Sandbox"
 		}
 
 	filter "configurations:Debug"
-		defines "PS_DEBUG"
 		symbols "On"
+		staticruntime "off"
+		runtime "Debug"
 
 	filter "configurations:Release"
 		defines "PS_RELEASE"
 		symbols "On"
+		staticruntime "off"
+		runtime "Release"
 
 	filter "configurations:Dist"
 		defines "PS_DIST"
 		symbols "On"
+		staticruntime "off"
+		runtime "Release"

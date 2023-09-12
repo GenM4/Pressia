@@ -7,6 +7,9 @@
     <Filter Include="Pressia\Events">
       <UniqueIdentifier>{605BA409-4C29-980F-35BD-0836212A7474}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Pressia\Platform">
+      <UniqueIdentifier>{D0BA4620-BCB3-6572-E5E5-4AF7D13D457E}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Pressia.h" />
@@ -34,6 +37,12 @@
     <ClInclude Include="src\Pressia\Log.h">
       <Filter>Pressia</Filter>
     </ClInclude>
+    <ClInclude Include="src\Pressia\Platform\WindowsWindow.h">
+      <Filter>Pressia\Platform</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Pressia\Window.h">
+      <Filter>Pressia</Filter>
+    </ClInclude>
     <ClInclude Include="src\pspch.h" />
   </ItemGroup>
   <ItemGroup>
@@ -42,6 +51,9 @@
     </ClCompile>
     <ClCompile Include="src\Pressia\Log.cpp">
       <Filter>Pressia</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Pressia\Platform\WindowsWindow.cpp">
+      <Filter>Pressia\Platform</Filter>
     </ClCompile>
     <ClCompile Include="src\pspch.cpp" />
   </ItemGroup>
