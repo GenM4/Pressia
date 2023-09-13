@@ -62,7 +62,7 @@ namespace Pressia {
 		}
 
 	protected:
-		bool m_handled = false;
+		bool m_Handled = false;
 	};
 
 	class EventDispatcher {
