@@ -44,6 +44,8 @@
       <Filter>Pressia</Filter>
     </ClInclude>
     <ClInclude Include="src\pspch.h" />
+    <ClInclude Include="src\Pressia\Layer.h" />
+    <ClInclude Include="src\Pressia\LayerStack.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Pressia\Application.cpp">
@@ -56,5 +58,7 @@
       <Filter>Pressia\Platform</Filter>
     </ClCompile>
     <ClCompile Include="src\pspch.cpp" />
+    <ClCompile Include="src\Pressia\Layer.cpp" />
+    <ClCompile Include="src\Pressia\LayerStack.cpp" />
   </ItemGroup>
 </Project>

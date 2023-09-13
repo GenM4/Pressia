@@ -144,6 +144,8 @@
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="src\Pressia\Layer.h" />
+    <ClInclude Include="src\Pressia\LayerStack.h" />
     <ClInclude Include="src\Pressia.h" />
     <ClInclude Include="src\Pressia\Application.h" />
     <ClInclude Include="src\Pressia\Core.h" />
@@ -158,6 +160,8 @@
     <ClInclude Include="src\pspch.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\Pressia\Layer.cpp" />
+    <ClCompile Include="src\Pressia\LayerStack.cpp" />
     <ClCompile Include="src\Pressia\Application.cpp" />
     <ClCompile Include="src\Pressia\Log.cpp" />
     <ClCompile Include="src\Pressia\Platform\WindowsWindow.cpp" />
