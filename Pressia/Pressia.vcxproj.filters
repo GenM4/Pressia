@@ -7,8 +7,14 @@
     <Filter Include="Pressia\Events">
       <UniqueIdentifier>{605BA409-4C29-980F-35BD-0836212A7474}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Pressia\ImGui">
+      <UniqueIdentifier>{2625214E-92E5-9C84-5B20-E601C79FE160}</UniqueIdentifier>
+    </Filter>
     <Filter Include="Pressia\Platform">
       <UniqueIdentifier>{D0BA4620-BCB3-6572-E5E5-4AF7D13D457E}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Pressia\Platform\OpenGL">
+      <UniqueIdentifier>{041A0B02-7051-5399-795B-B7BCE5117A92}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -34,8 +40,20 @@
     <ClInclude Include="src\Pressia\Events\MouseEvent.h">
       <Filter>Pressia\Events</Filter>
     </ClInclude>
+    <ClInclude Include="src\Pressia\ImGui\ImGuiLayer.h">
+      <Filter>Pressia\ImGui</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Pressia\Layer.h">
+      <Filter>Pressia</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Pressia\LayerStack.h">
+      <Filter>Pressia</Filter>
+    </ClInclude>
     <ClInclude Include="src\Pressia\Log.h">
       <Filter>Pressia</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Pressia\Platform\OpenGL\ImGuiOpenGLRenderer.h">
+      <Filter>Pressia\Platform\OpenGL</Filter>
     </ClInclude>
     <ClInclude Include="src\Pressia\Platform\WindowsWindow.h">
       <Filter>Pressia\Platform</Filter>
@@ -44,21 +62,29 @@
       <Filter>Pressia</Filter>
     </ClInclude>
     <ClInclude Include="src\pspch.h" />
-    <ClInclude Include="src\Pressia\Layer.h" />
-    <ClInclude Include="src\Pressia\LayerStack.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Pressia\Application.cpp">
       <Filter>Pressia</Filter>
     </ClCompile>
+    <ClCompile Include="src\Pressia\ImGui\ImGuiLayer.cpp">
+      <Filter>Pressia\ImGui</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Pressia\Layer.cpp">
+      <Filter>Pressia</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Pressia\LayerStack.cpp">
+      <Filter>Pressia</Filter>
+    </ClCompile>
     <ClCompile Include="src\Pressia\Log.cpp">
       <Filter>Pressia</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Pressia\Platform\OpenGL\ImGuiOpenGLRenderer.cpp">
+      <Filter>Pressia\Platform\OpenGL</Filter>
     </ClCompile>
     <ClCompile Include="src\Pressia\Platform\WindowsWindow.cpp">
       <Filter>Pressia\Platform</Filter>
     </ClCompile>
     <ClCompile Include="src\pspch.cpp" />
-    <ClCompile Include="src\Pressia\Layer.cpp" />
-    <ClCompile Include="src\Pressia\LayerStack.cpp" />
   </ItemGroup>
 </Project>

@@ -79,8 +79,8 @@
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pspch.h</PrecompiledHeaderFile>
       <WarningLevel>Level3</WarningLevel>
-      <PreprocessorDefinitions>PS_PLATFORM_WINDOWS;PS_BUILD_DLL;PS_DEBUG;PS_ENABLE_ASSERTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>src;vendor\spdlog\include;vendor\GLFW\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>PS_PLATFORM_WINDOWS;PS_BUILD_DLL;GLFW_INCLUDE_NONE;PS_DEBUG;PS_ENABLE_ASSERTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>src;vendor\spdlog\include;vendor\GLFW\include;vendor\GLAD\include;vendor\imgui;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <Optimization>Disabled</Optimization>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
@@ -102,8 +102,8 @@
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pspch.h</PrecompiledHeaderFile>
       <WarningLevel>Level3</WarningLevel>
-      <PreprocessorDefinitions>PS_PLATFORM_WINDOWS;PS_BUILD_DLL;PS_RELEASE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>src;vendor\spdlog\include;vendor\GLFW\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>PS_PLATFORM_WINDOWS;PS_BUILD_DLL;GLFW_INCLUDE_NONE;PS_RELEASE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>src;vendor\spdlog\include;vendor\GLFW\include;vendor\GLAD\include;vendor\imgui;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <Optimization>Disabled</Optimization>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
@@ -125,8 +125,8 @@
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pspch.h</PrecompiledHeaderFile>
       <WarningLevel>Level3</WarningLevel>
-      <PreprocessorDefinitions>PS_PLATFORM_WINDOWS;PS_BUILD_DLL;PS_DIST;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>src;vendor\spdlog\include;vendor\GLFW\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>PS_PLATFORM_WINDOWS;PS_BUILD_DLL;GLFW_INCLUDE_NONE;PS_DIST;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>src;vendor\spdlog\include;vendor\GLFW\include;vendor\GLAD\include;vendor\imgui;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <Optimization>Disabled</Optimization>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
@@ -144,8 +144,6 @@
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="src\Pressia\Layer.h" />
-    <ClInclude Include="src\Pressia\LayerStack.h" />
     <ClInclude Include="src\Pressia.h" />
     <ClInclude Include="src\Pressia\Application.h" />
     <ClInclude Include="src\Pressia\Core.h" />
@@ -154,16 +152,22 @@
     <ClInclude Include="src\Pressia\Events\Event.h" />
     <ClInclude Include="src\Pressia\Events\KeyEvent.h" />
     <ClInclude Include="src\Pressia\Events\MouseEvent.h" />
+    <ClInclude Include="src\Pressia\ImGui\ImGuiLayer.h" />
+    <ClInclude Include="src\Pressia\Layer.h" />
+    <ClInclude Include="src\Pressia\LayerStack.h" />
     <ClInclude Include="src\Pressia\Log.h" />
+    <ClInclude Include="src\Pressia\Platform\OpenGL\ImGuiOpenGLRenderer.h" />
     <ClInclude Include="src\Pressia\Platform\WindowsWindow.h" />
     <ClInclude Include="src\Pressia\Window.h" />
     <ClInclude Include="src\pspch.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\Pressia\Application.cpp" />
+    <ClCompile Include="src\Pressia\ImGui\ImGuiLayer.cpp" />
     <ClCompile Include="src\Pressia\Layer.cpp" />
     <ClCompile Include="src\Pressia\LayerStack.cpp" />
-    <ClCompile Include="src\Pressia\Application.cpp" />
     <ClCompile Include="src\Pressia\Log.cpp" />
+    <ClCompile Include="src\Pressia\Platform\OpenGL\ImGuiOpenGLRenderer.cpp" />
     <ClCompile Include="src\Pressia\Platform\WindowsWindow.cpp" />
     <ClCompile Include="src\pspch.cpp">
       <PrecompiledHeader>Create</PrecompiledHeader>
@@ -172,6 +176,12 @@
   <ItemGroup>
     <ProjectReference Include="vendor\GLFW\GLFW.vcxproj">
       <Project>{154B857C-0182-860D-AA6E-6C109684020F}</Project>
+    </ProjectReference>
+    <ProjectReference Include="vendor\GLAD\GLAD.vcxproj">
+      <Project>{5D4A857C-4981-860D-F26D-6C10DE83020F}</Project>
+    </ProjectReference>
+    <ProjectReference Include="vendor\imgui\ImGui.vcxproj">
+      <Project>{C0FF640D-2C14-8DBE-F595-301E616989EF}</Project>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

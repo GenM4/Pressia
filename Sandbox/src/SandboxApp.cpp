@@ -18,6 +18,7 @@ class Sandbox : public Pressia::Application {
 public:
 	Sandbox() {
 		PushLayer(new ExampleLayer());
+		PushOverlay(new Pressia::ImGuiLayer());
 	}
 
 	~Sandbox() {

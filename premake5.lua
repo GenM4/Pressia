@@ -12,8 +12,12 @@ outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 -- Include Directories
 IncludeDir = {}
 IncludeDir["GLFW"] = "Pressia/vendor/GLFW/include"
+IncludeDir["GLAD"] = "Pressia/vendor/GLAD/include"
+IncludeDir["imgui"] = "Pressia/vendor/imgui"
 
 include "Pressia/vendor/GLFW"
+include "Pressia/vendor/GLAD"
+include "Pressia/vendor/imgui"
 
 project "Pressia"
 	location "Pressia"
@@ -35,11 +39,15 @@ project "Pressia"
 		"%{prj.name}/src",
 		"%{prj.name}/vendor/spdlog/include",
 
-		"%{IncludeDir.GLFW}"
+		"%{IncludeDir.GLFW}",
+		"%{IncludeDir.GLAD}",
+		"%{IncludeDir.imgui}"
 	}
 
 	links {
 		"GLFW",
+		"GLAD",
+		"ImGui",
 		"opengl32.lib",
 		"dwmapi.lib"
 	}
@@ -50,7 +58,8 @@ project "Pressia"
 
 		defines {
 			"PS_PLATFORM_WINDOWS",
-			"PS_BUILD_DLL"
+			"PS_BUILD_DLL",
+			"GLFW_INCLUDE_NONE"
 		}
 
 		postbuildcommands {
