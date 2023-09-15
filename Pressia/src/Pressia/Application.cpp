@@ -3,6 +3,8 @@
 
 #include "Pressia/Log.h"
 
+#include <glad/glad.h>
+
 namespace Pressia {
 
 #define BIND_EVENT_FN(x) std::bind(&Application::x, this, std::placeholders::_1)
@@ -47,6 +49,9 @@ namespace Pressia {
 	void Application::Run() {
 
 		while (m_Running) {
+			glClearColor(0, 0, 0, 1);
+			glClear(GL_COLOR_BUFFER_BIT);
+
 			for (Layer* layer : m_LayerStack)
 				layer->OnUpdate();
 

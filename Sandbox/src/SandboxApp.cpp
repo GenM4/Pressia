@@ -6,7 +6,7 @@ public:
 	}
 
 	void OnUpdate() override {
-		PS_INFO("ExampleLayer::Update");
+		//PS_INFO("ExampleLayer::Update");
 	}
 
 	void OnEvent(Pressia::Event& event) override {
