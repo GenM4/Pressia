@@ -16,6 +16,9 @@
     <Filter Include="Pressia\Platform\OpenGL">
       <UniqueIdentifier>{041A0B02-7051-5399-795B-B7BCE5117A92}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Pressia\Platform\Windows">
+      <UniqueIdentifier>{0A358A9B-F659-D91B-1FA5-BEAB0B29D839}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Pressia.h" />
@@ -43,6 +46,12 @@
     <ClInclude Include="src\Pressia\ImGui\ImGuiLayer.h">
       <Filter>Pressia\ImGui</Filter>
     </ClInclude>
+    <ClInclude Include="src\Pressia\Input.h">
+      <Filter>Pressia</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Pressia\KeyCodes.h">
+      <Filter>Pressia</Filter>
+    </ClInclude>
     <ClInclude Include="src\Pressia\Layer.h">
       <Filter>Pressia</Filter>
     </ClInclude>
@@ -52,18 +61,22 @@
     <ClInclude Include="src\Pressia\Log.h">
       <Filter>Pressia</Filter>
     </ClInclude>
+    <ClInclude Include="src\Pressia\MouseButtonCodes.h">
+      <Filter>Pressia</Filter>
+    </ClInclude>
     <ClInclude Include="src\Pressia\Platform\OpenGL\ImGuiOpenGLRenderer.h">
       <Filter>Pressia\Platform\OpenGL</Filter>
     </ClInclude>
+    <ClInclude Include="src\Pressia\Platform\Windows\WindowsInput.h">
+      <Filter>Pressia\Platform\Windows</Filter>
+    </ClInclude>
     <ClInclude Include="src\Pressia\Platform\Windows\WindowsWindow.h">
-      <Filter>Pressia\Platform</Filter>
+      <Filter>Pressia\Platform\Windows</Filter>
     </ClInclude>
     <ClInclude Include="src\Pressia\Window.h">
       <Filter>Pressia</Filter>
     </ClInclude>
     <ClInclude Include="src\pspch.h" />
-    <ClInclude Include="src\Pressia\Input.h" />
-    <ClInclude Include="src\Pressia\Platform\Windows\WindowsInput.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Pressia\Application.cpp">
@@ -84,10 +97,12 @@
     <ClCompile Include="src\Pressia\Platform\OpenGL\ImGuiOpenGLRenderer.cpp">
       <Filter>Pressia\Platform\OpenGL</Filter>
     </ClCompile>
+    <ClCompile Include="src\Pressia\Platform\Windows\WindowsInput.cpp">
+      <Filter>Pressia\Platform\Windows</Filter>
+    </ClCompile>
     <ClCompile Include="src\Pressia\Platform\Windows\WindowsWindow.cpp">
-      <Filter>Pressia\Platform</Filter>
+      <Filter>Pressia\Platform\Windows</Filter>
     </ClCompile>
     <ClCompile Include="src\pspch.cpp" />
-    <ClCompile Include="src\Pressia\Platform\Windows\WindowsInput.cpp" />
   </ItemGroup>
 </Project>

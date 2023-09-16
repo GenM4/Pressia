@@ -10,7 +10,10 @@ public:
 	}
 
 	void OnEvent(Pressia::Event& event) override {
-		PS_TRACE("{0}", event);
+		// PS_TRACE("{0}", event);
+
+		if (Pressia::Input::IsKeyPressed(PS_KEY_T))
+			PS_INFO("T KEY PRESSED");
 	}
 };
 
