@@ -7,3 +7,6 @@
 [submodule "vendor/imgui"]
 	path = Pressia/vendor/imgui
 	url = https://github.com/GenM4/imgui
+[submodule "Pressia/vendor/glm"]
+	path = Pressia/vendor/glm
+	url = https://github.com/g-truc/glm

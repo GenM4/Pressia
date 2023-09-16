@@ -1,108 +1,129 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Pressia">
-      <UniqueIdentifier>{FC624323-6842-C2BE-715A-4D95DDB82820}</UniqueIdentifier>
+    <Filter Include="src">
+      <UniqueIdentifier>{2DAB880B-99B4-887C-2230-9F7C8E38947C}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Pressia\Events">
-      <UniqueIdentifier>{605BA409-4C29-980F-35BD-0836212A7474}</UniqueIdentifier>
+    <Filter Include="src\Pressia">
+      <UniqueIdentifier>{13637D2C-7F18-F621-080D-F0F874C1EC25}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Pressia\ImGui">
-      <UniqueIdentifier>{2625214E-92E5-9C84-5B20-E601C79FE160}</UniqueIdentifier>
+    <Filter Include="src\Pressia\Events">
+      <UniqueIdentifier>{977B8867-835F-49BD-ECBF-4310D8C2333F}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Pressia\Platform">
-      <UniqueIdentifier>{D0BA4620-BCB3-6572-E5E5-4AF7D13D457E}</UniqueIdentifier>
+    <Filter Include="src\Pressia\ImGui">
+      <UniqueIdentifier>{7D9A56C5-E9B0-545B-3228-E07C9E7D25E3}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Pressia\Platform\OpenGL">
-      <UniqueIdentifier>{041A0B02-7051-5399-795B-B7BCE5117A92}</UniqueIdentifier>
+    <Filter Include="src\Pressia\Platform">
+      <UniqueIdentifier>{C7C4B387-B353-3D51-5C72-514C48E04DF7}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Pressia\Platform\Windows">
-      <UniqueIdentifier>{0A358A9B-F659-D91B-1FA5-BEAB0B29D839}</UniqueIdentifier>
+    <Filter Include="src\Pressia\Platform\OpenGL">
+      <UniqueIdentifier>{1B68D870-8775-0657-105C-02427C68D20D}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Pressia\Platform\Windows">
+      <UniqueIdentifier>{014601E4-ED00-F18F-96B8-69DA82523B20}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="vendor">
+      <UniqueIdentifier>{B3738122-9F15-ACF8-88D0-BF4C74113349}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="vendor\glm">
+      <UniqueIdentifier>{829FC5A8-6E57-07F6-D75E-E051C335A2E6}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\Pressia.h" />
+    <ClInclude Include="src\Pressia.h">
+      <Filter>src</Filter>
+    </ClInclude>
     <ClInclude Include="src\Pressia\Application.h">
-      <Filter>Pressia</Filter>
+      <Filter>src\Pressia</Filter>
     </ClInclude>
     <ClInclude Include="src\Pressia\Core.h">
-      <Filter>Pressia</Filter>
+      <Filter>src\Pressia</Filter>
     </ClInclude>
     <ClInclude Include="src\Pressia\EntryPoint.h">
-      <Filter>Pressia</Filter>
+      <Filter>src\Pressia</Filter>
     </ClInclude>
     <ClInclude Include="src\Pressia\Events\ApplicationEvent.h">
-      <Filter>Pressia\Events</Filter>
+      <Filter>src\Pressia\Events</Filter>
     </ClInclude>
     <ClInclude Include="src\Pressia\Events\Event.h">
-      <Filter>Pressia\Events</Filter>
+      <Filter>src\Pressia\Events</Filter>
     </ClInclude>
     <ClInclude Include="src\Pressia\Events\KeyEvent.h">
-      <Filter>Pressia\Events</Filter>
+      <Filter>src\Pressia\Events</Filter>
     </ClInclude>
     <ClInclude Include="src\Pressia\Events\MouseEvent.h">
-      <Filter>Pressia\Events</Filter>
+      <Filter>src\Pressia\Events</Filter>
     </ClInclude>
     <ClInclude Include="src\Pressia\ImGui\ImGuiLayer.h">
-      <Filter>Pressia\ImGui</Filter>
+      <Filter>src\Pressia\ImGui</Filter>
     </ClInclude>
     <ClInclude Include="src\Pressia\Input.h">
-      <Filter>Pressia</Filter>
+      <Filter>src\Pressia</Filter>
     </ClInclude>
     <ClInclude Include="src\Pressia\KeyCodes.h">
-      <Filter>Pressia</Filter>
+      <Filter>src\Pressia</Filter>
     </ClInclude>
     <ClInclude Include="src\Pressia\Layer.h">
-      <Filter>Pressia</Filter>
+      <Filter>src\Pressia</Filter>
     </ClInclude>
     <ClInclude Include="src\Pressia\LayerStack.h">
-      <Filter>Pressia</Filter>
+      <Filter>src\Pressia</Filter>
     </ClInclude>
     <ClInclude Include="src\Pressia\Log.h">
-      <Filter>Pressia</Filter>
+      <Filter>src\Pressia</Filter>
     </ClInclude>
     <ClInclude Include="src\Pressia\MouseButtonCodes.h">
-      <Filter>Pressia</Filter>
+      <Filter>src\Pressia</Filter>
     </ClInclude>
     <ClInclude Include="src\Pressia\Platform\OpenGL\ImGuiOpenGLRenderer.h">
-      <Filter>Pressia\Platform\OpenGL</Filter>
+      <Filter>src\Pressia\Platform\OpenGL</Filter>
     </ClInclude>
     <ClInclude Include="src\Pressia\Platform\Windows\WindowsInput.h">
-      <Filter>Pressia\Platform\Windows</Filter>
+      <Filter>src\Pressia\Platform\Windows</Filter>
     </ClInclude>
     <ClInclude Include="src\Pressia\Platform\Windows\WindowsWindow.h">
-      <Filter>Pressia\Platform\Windows</Filter>
+      <Filter>src\Pressia\Platform\Windows</Filter>
     </ClInclude>
     <ClInclude Include="src\Pressia\Window.h">
-      <Filter>Pressia</Filter>
+      <Filter>src\Pressia</Filter>
     </ClInclude>
-    <ClInclude Include="src\pspch.h" />
+    <ClInclude Include="src\pspch.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="vendor\glm\glm.hpp">
+      <Filter>vendor\glm</Filter>
+    </ClInclude>
+    <ClInclude Include="vendor\glm\glm.inl">
+      <Filter>vendor\glm</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Pressia\Application.cpp">
-      <Filter>Pressia</Filter>
+      <Filter>src\Pressia</Filter>
     </ClCompile>
     <ClCompile Include="src\Pressia\ImGui\ImGuiLayer.cpp">
-      <Filter>Pressia\ImGui</Filter>
+      <Filter>src\Pressia\ImGui</Filter>
     </ClCompile>
     <ClCompile Include="src\Pressia\Layer.cpp">
-      <Filter>Pressia</Filter>
+      <Filter>src\Pressia</Filter>
     </ClCompile>
     <ClCompile Include="src\Pressia\LayerStack.cpp">
-      <Filter>Pressia</Filter>
+      <Filter>src\Pressia</Filter>
     </ClCompile>
     <ClCompile Include="src\Pressia\Log.cpp">
-      <Filter>Pressia</Filter>
+      <Filter>src\Pressia</Filter>
     </ClCompile>
     <ClCompile Include="src\Pressia\Platform\OpenGL\ImGuiOpenGLRenderer.cpp">
-      <Filter>Pressia\Platform\OpenGL</Filter>
+      <Filter>src\Pressia\Platform\OpenGL</Filter>
     </ClCompile>
     <ClCompile Include="src\Pressia\Platform\Windows\WindowsInput.cpp">
-      <Filter>Pressia\Platform\Windows</Filter>
+      <Filter>src\Pressia\Platform\Windows</Filter>
     </ClCompile>
     <ClCompile Include="src\Pressia\Platform\Windows\WindowsWindow.cpp">
-      <Filter>Pressia\Platform\Windows</Filter>
+      <Filter>src\Pressia\Platform\Windows</Filter>
     </ClCompile>
-    <ClCompile Include="src\pspch.cpp" />
+    <ClCompile Include="src\pspch.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

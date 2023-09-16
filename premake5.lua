@@ -15,7 +15,7 @@ workspace "Pressia"
 	IncludeDir["GLFW"] = "Pressia/vendor/GLFW/include"
 	IncludeDir["GLAD"] = "Pressia/vendor/GLAD/include"
 	IncludeDir["imgui"] = "Pressia/vendor/imgui"
-
+	IncludeDir["glm"] = "Pressia/vendor/glm"
 
 	group "Dependencies"
 		include "Pressia/vendor/GLFW"
@@ -39,6 +39,8 @@ project "Pressia"
 	files {
 		"%{prj.name}/src/**.h",
 		"%{prj.name}/src/**.cpp",
+		"%{prj.name}/vendor/glm/glm.hpp",
+		"%{prj.name}/vendor/glm/glm.inl"
 	}
 
 	includedirs {
@@ -47,7 +49,8 @@ project "Pressia"
 
 		"%{IncludeDir.GLFW}",
 		"%{IncludeDir.GLAD}",
-		"%{IncludeDir.imgui}"
+		"%{IncludeDir.imgui}",
+		"%{IncludeDir.glm}"
 	}
 
 	links {
@@ -110,7 +113,8 @@ project "Sandbox"
 
 	includedirs {
 		"Pressia/vendor/spdlog/include",
-		"Pressia/src"
+		"Pressia/src",
+		"%{IncludeDir.glm}"
 	}
 
 	links {
