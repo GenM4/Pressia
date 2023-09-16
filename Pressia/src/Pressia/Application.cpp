@@ -2,6 +2,7 @@
 #include "Application.h"
 
 #include "Pressia/Log.h"
+#include "Input.h"
 
 #include <glad/glad.h>
 
@@ -51,6 +52,9 @@ namespace Pressia {
 		while (m_Running) {
 			glClearColor(0, 0, 0, 1);
 			glClear(GL_COLOR_BUFFER_BIT);
+
+			auto [x, y] = Input::GetMousePos();
+			PS_CORE_TRACE("{0}, {1}", x, y);
 
 			for (Layer* layer : m_LayerStack)
 				layer->OnUpdate();

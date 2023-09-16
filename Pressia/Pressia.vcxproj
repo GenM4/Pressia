@@ -153,11 +153,13 @@
     <ClInclude Include="src\Pressia\Events\KeyEvent.h" />
     <ClInclude Include="src\Pressia\Events\MouseEvent.h" />
     <ClInclude Include="src\Pressia\ImGui\ImGuiLayer.h" />
+    <ClInclude Include="src\Pressia\Input.h" />
     <ClInclude Include="src\Pressia\Layer.h" />
     <ClInclude Include="src\Pressia\LayerStack.h" />
     <ClInclude Include="src\Pressia\Log.h" />
     <ClInclude Include="src\Pressia\Platform\OpenGL\ImGuiOpenGLRenderer.h" />
-    <ClInclude Include="src\Pressia\Platform\WindowsWindow.h" />
+    <ClInclude Include="src\Pressia\Platform\Windows\WindowsInput.h" />
+    <ClInclude Include="src\Pressia\Platform\Windows\WindowsWindow.h" />
     <ClInclude Include="src\Pressia\Window.h" />
     <ClInclude Include="src\pspch.h" />
   </ItemGroup>
@@ -168,7 +170,8 @@
     <ClCompile Include="src\Pressia\LayerStack.cpp" />
     <ClCompile Include="src\Pressia\Log.cpp" />
     <ClCompile Include="src\Pressia\Platform\OpenGL\ImGuiOpenGLRenderer.cpp" />
-    <ClCompile Include="src\Pressia\Platform\WindowsWindow.cpp" />
+    <ClCompile Include="src\Pressia\Platform\Windows\WindowsInput.cpp" />
+    <ClCompile Include="src\Pressia\Platform\Windows\WindowsWindow.cpp" />
     <ClCompile Include="src\pspch.cpp">
       <PrecompiledHeader>Create</PrecompiledHeader>
     </ClCompile>

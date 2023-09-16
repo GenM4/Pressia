@@ -55,13 +55,15 @@
     <ClInclude Include="src\Pressia\Platform\OpenGL\ImGuiOpenGLRenderer.h">
       <Filter>Pressia\Platform\OpenGL</Filter>
     </ClInclude>
-    <ClInclude Include="src\Pressia\Platform\WindowsWindow.h">
+    <ClInclude Include="src\Pressia\Platform\Windows\WindowsWindow.h">
       <Filter>Pressia\Platform</Filter>
     </ClInclude>
     <ClInclude Include="src\Pressia\Window.h">
       <Filter>Pressia</Filter>
     </ClInclude>
     <ClInclude Include="src\pspch.h" />
+    <ClInclude Include="src\Pressia\Input.h" />
+    <ClInclude Include="src\Pressia\Platform\Windows\WindowsInput.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Pressia\Application.cpp">
@@ -82,9 +84,10 @@
     <ClCompile Include="src\Pressia\Platform\OpenGL\ImGuiOpenGLRenderer.cpp">
       <Filter>Pressia\Platform\OpenGL</Filter>
     </ClCompile>
-    <ClCompile Include="src\Pressia\Platform\WindowsWindow.cpp">
+    <ClCompile Include="src\Pressia\Platform\Windows\WindowsWindow.cpp">
       <Filter>Pressia\Platform</Filter>
     </ClCompile>
     <ClCompile Include="src\pspch.cpp" />
+    <ClCompile Include="src\Pressia\Platform\Windows\WindowsInput.cpp" />
   </ItemGroup>
 </Project>
