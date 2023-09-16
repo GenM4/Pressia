@@ -1,2 +1,2 @@
 # Pressia
-Sound system simulations, pressia waves included.
+An engine for my applications
