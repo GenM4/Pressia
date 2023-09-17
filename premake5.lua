@@ -114,6 +114,7 @@ project "Sandbox"
 	includedirs {
 		"Pressia/vendor/spdlog/include",
 		"Pressia/src",
+		"Pressia/vendor",
 		"%{IncludeDir.glm}"
 	}
 

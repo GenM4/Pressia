@@ -8,8 +8,6 @@ int main(int argc, char** argv) {
 
 	Pressia::Log::Init();
 	PS_CORE_WARN("Initialized Logger!");
-	int a = 5;
-	PS_INFO("Hello! Var={0}", a);
 
 	auto app = Pressia::CreateApplication();
 	app->Run();

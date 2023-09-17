@@ -159,7 +159,6 @@
     <ClInclude Include="src\Pressia\LayerStack.h" />
     <ClInclude Include="src\Pressia\Log.h" />
     <ClInclude Include="src\Pressia\MouseButtonCodes.h" />
-    <ClInclude Include="src\Pressia\Platform\OpenGL\ImGuiOpenGLRenderer.h" />
     <ClInclude Include="src\Pressia\Platform\Windows\WindowsInput.h" />
     <ClInclude Include="src\Pressia\Platform\Windows\WindowsWindow.h" />
     <ClInclude Include="src\Pressia\Window.h" />
@@ -169,11 +168,11 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Pressia\Application.cpp" />
+    <ClCompile Include="src\Pressia\ImGui\ImGuiBuild.cpp" />
     <ClCompile Include="src\Pressia\ImGui\ImGuiLayer.cpp" />
     <ClCompile Include="src\Pressia\Layer.cpp" />
     <ClCompile Include="src\Pressia\LayerStack.cpp" />
     <ClCompile Include="src\Pressia\Log.cpp" />
-    <ClCompile Include="src\Pressia\Platform\OpenGL\ImGuiOpenGLRenderer.cpp" />
     <ClCompile Include="src\Pressia\Platform\Windows\WindowsInput.cpp" />
     <ClCompile Include="src\Pressia\Platform\Windows\WindowsWindow.cpp" />
     <ClCompile Include="src\pspch.cpp">

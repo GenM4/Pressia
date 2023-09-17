@@ -7,6 +7,8 @@
 #include "Pressia/Events/Event.h"
 #include "Pressia/Events/ApplicationEvent.h"
 
+#include "Pressia/ImGui/ImGuiLayer.h"
+
 namespace Pressia {
 
 	class PRESSIA_API Application {
@@ -27,6 +29,7 @@ namespace Pressia {
 		bool OnWindowClose(WindowCloseEvent& e);
 
 		std::unique_ptr<Window> m_Window;
+		ImGuiLayer* m_ImGuiLayer;
 		bool m_Running = true;
 		LayerStack m_LayerStack;
 
