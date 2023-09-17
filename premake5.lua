@@ -27,8 +27,10 @@ workspace "Pressia"
 
 project "Pressia"
 	location "Pressia"
-	kind "SharedLib"
+	kind "StaticLib"
 	language "C++"
+	cppdialect "C++17"
+	staticruntime "On"
 
 	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
 	objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
@@ -62,7 +64,6 @@ project "Pressia"
 	}
 
 	filter "system:windows"
-		cppdialect "C++17"
 		systemversion "latest"
 
 		defines {
@@ -71,36 +72,32 @@ project "Pressia"
 			"GLFW_INCLUDE_NONE"
 		}
 
-		postbuildcommands {
-			("{COPY} %{cfg.buildtarget.relpath} ../bin/" .. outputdir .. "/Sandbox")
-		}
-
 	filter "configurations:Debug"
 		defines {
 			"PS_DEBUG",
 			"PS_ENABLE_ASSERTS"
 		}
 		symbols "On"
-		staticruntime "off"
 		runtime "Debug"
 
 	filter "configurations:Release"
 		defines "PS_RELEASE"
 		symbols "On"
-		staticruntime "off"
 		runtime "Release"
+		optimize "On"
 
 	filter "configurations:Dist"
 		defines "PS_DIST"
 		symbols "On"
-		staticruntime "off"
 		runtime "Release"
+		optimize "On"
 
 
 project "Sandbox"
 	location "Sandbox"
 	kind "ConsoleApp"
 	language "C++"
+	cppdialect "C++17"
 	staticruntime "On"
 	
 	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
@@ -123,7 +120,6 @@ project "Sandbox"
 	}
 
 	filter "system:windows"
-		cppdialect "C++17"
 		systemversion "latest"
 
 		defines {
@@ -131,18 +127,16 @@ project "Sandbox"
 		}
 
 	filter "configurations:Debug"
+		defines "PS_DEBUG"
 		symbols "On"
-		staticruntime "off"
 		runtime "Debug"
 
 	filter "configurations:Release"
 		defines "PS_RELEASE"
 		symbols "On"
-		staticruntime "off"
 		runtime "Release"
 
 	filter "configurations:Dist"
 		defines "PS_DIST"
 		symbols "On"
-		staticruntime "off"
 		runtime "Release"

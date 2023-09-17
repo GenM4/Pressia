@@ -1,11 +1,15 @@
 #pragma once
 
 #ifdef PS_PLATFORM_WINDOWS
+#if PS_DYNAMIC_LINK
 #ifdef PS_BUILD_DLL
 #define PRESSIA_API __declspec(dllexport)
 #else
 #define PRESSIA_API __declspec(dllimport)
 #endif // PS_BUILD_DLL
+#else
+#define PRESSIA_API
+#endif
 #else
 #error Only Windows support for now!
 #endif // PS_PLATFORM_WINDOWS

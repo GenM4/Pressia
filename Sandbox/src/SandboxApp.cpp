@@ -11,7 +11,7 @@ public:
 		//PS_INFO("ExampleLayer::Update");
 	}
 
-	virtual void OnImGUiRender() {
+	virtual void OnImGuiRender() override {
 		ImGui::Begin("Test");
 		ImGui::Text("YO");
 		ImGui::End();
