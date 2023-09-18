@@ -9,6 +9,9 @@
 
 #include "Pressia/ImGui/ImGuiLayer.h"
 
+#include "Pressia/Renderer/Shader.h"
+#include "Pressia/Renderer/Buffer.h"
+
 namespace Pressia {
 
 	class PRESSIA_API Application {
@@ -33,6 +36,10 @@ namespace Pressia {
 		bool m_Running = true;
 		LayerStack m_LayerStack;
 
+		unsigned int m_VertexArray;
+		std::unique_ptr<Shader> m_Shader;
+		std::unique_ptr<VertexBuffer> m_VertexBuffer;
+		std::unique_ptr<IndexBuffer> m_IndexBuffer;
 		static Application* s_Instance;
 	};
 

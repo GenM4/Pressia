@@ -16,8 +16,14 @@
     <Filter Include="src\Pressia\Platform">
       <UniqueIdentifier>{C7C4B387-B353-3D51-5C72-514C48E04DF7}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\Pressia\Platform\OpenGL">
+      <UniqueIdentifier>{1B68D870-8775-0657-105C-02427C68D20D}</UniqueIdentifier>
+    </Filter>
     <Filter Include="src\Pressia\Platform\Windows">
       <UniqueIdentifier>{014601E4-ED00-F18F-96B8-69DA82523B20}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Pressia\Renderer">
+      <UniqueIdentifier>{19CC9062-055B-1A2C-AE79-2E279AE72AD2}</UniqueIdentifier>
     </Filter>
     <Filter Include="vendor">
       <UniqueIdentifier>{B3738122-9F15-ACF8-88D0-BF4C74113349}</UniqueIdentifier>
@@ -72,11 +78,17 @@
     <ClInclude Include="src\Pressia\MouseButtonCodes.h">
       <Filter>src\Pressia</Filter>
     </ClInclude>
+    <ClInclude Include="src\Pressia\Platform\OpenGL\OpenGLContext.h">
+      <Filter>src\Pressia\Platform\OpenGL</Filter>
+    </ClInclude>
     <ClInclude Include="src\Pressia\Platform\Windows\WindowsInput.h">
       <Filter>src\Pressia\Platform\Windows</Filter>
     </ClInclude>
     <ClInclude Include="src\Pressia\Platform\Windows\WindowsWindow.h">
       <Filter>src\Pressia\Platform\Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Pressia\Renderer\GraphicsContext.h">
+      <Filter>src\Pressia\Renderer</Filter>
     </ClInclude>
     <ClInclude Include="src\Pressia\Window.h">
       <Filter>src\Pressia</Filter>
@@ -109,6 +121,9 @@
     </ClCompile>
     <ClCompile Include="src\Pressia\Log.cpp">
       <Filter>src\Pressia</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Pressia\Platform\OpenGL\OpenGLContext.cpp">
+      <Filter>src\Pressia\Platform\OpenGL</Filter>
     </ClCompile>
     <ClCompile Include="src\Pressia\Platform\Windows\WindowsInput.cpp">
       <Filter>src\Pressia\Platform\Windows</Filter>

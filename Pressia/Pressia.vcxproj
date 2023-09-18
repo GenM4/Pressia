@@ -147,6 +147,9 @@
     </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="src\Pressia\Platform\OpenGL\OpenGLShader.h" />
+    <ClInclude Include="src\Pressia\Renderer\Renderer.h" />
+    <ClInclude Include="src\Pressia\Platform\OpenGL\OpenGLBuffer.h" />
     <ClInclude Include="src\Pressia.h" />
     <ClInclude Include="src\Pressia\Application.h" />
     <ClInclude Include="src\Pressia\Core.h" />
@@ -162,22 +165,32 @@
     <ClInclude Include="src\Pressia\LayerStack.h" />
     <ClInclude Include="src\Pressia\Log.h" />
     <ClInclude Include="src\Pressia\MouseButtonCodes.h" />
+    <ClInclude Include="src\Pressia\Platform\OpenGL\OpenGLContext.h" />
     <ClInclude Include="src\Pressia\Platform\Windows\WindowsInput.h" />
     <ClInclude Include="src\Pressia\Platform\Windows\WindowsWindow.h" />
+    <ClInclude Include="src\Pressia\Renderer\Buffer.h" />
+    <ClInclude Include="src\Pressia\Renderer\GraphicsContext.h" />
+    <ClInclude Include="src\Pressia\Renderer\Shader.h" />
     <ClInclude Include="src\Pressia\Window.h" />
     <ClInclude Include="src\pspch.h" />
     <ClInclude Include="vendor\glm\glm.hpp" />
     <ClInclude Include="vendor\glm\glm.inl" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\Pressia\Platform\OpenGL\OpenGLShader.cpp" />
+    <ClCompile Include="src\Pressia\Renderer\Renderer.cpp" />
+    <ClCompile Include="src\Pressia\Platform\OpenGL\OpenGLBuffer.cpp" />
     <ClCompile Include="src\Pressia\Application.cpp" />
     <ClCompile Include="src\Pressia\ImGui\ImGuiBuild.cpp" />
     <ClCompile Include="src\Pressia\ImGui\ImGuiLayer.cpp" />
     <ClCompile Include="src\Pressia\Layer.cpp" />
     <ClCompile Include="src\Pressia\LayerStack.cpp" />
     <ClCompile Include="src\Pressia\Log.cpp" />
+    <ClCompile Include="src\Pressia\Platform\OpenGL\OpenGLContext.cpp" />
     <ClCompile Include="src\Pressia\Platform\Windows\WindowsInput.cpp" />
     <ClCompile Include="src\Pressia\Platform\Windows\WindowsWindow.cpp" />
+    <ClCompile Include="src\Pressia\Renderer\Buffer.cpp" />
+    <ClCompile Include="src\Pressia\Renderer\Shader.cpp" />
     <ClCompile Include="src\pspch.cpp">
       <PrecompiledHeader>Create</PrecompiledHeader>
     </ClCompile>
