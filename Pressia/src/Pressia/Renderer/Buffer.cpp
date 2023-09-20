@@ -2,16 +2,16 @@
 #include "Buffer.h"
 
 #include "Renderer.h"
-#include "Pressia/Platform/OpenGL/OpenGLBuffer.h"
+#include "Platform/OpenGL/OpenGLBuffer.h"
 
 namespace Pressia {
 
 	VertexBuffer* VertexBuffer::Create(float* vertices, uint32_t size) {
 		switch (Renderer::GetAPI()) {
-			case RendererAPI::None:
+			case RendererAPI::API::None:
 				PS_CORE_ASSERT(false, "Renderer API::None is not currently supported");
 				return nullptr;
-			case RendererAPI::OpenGL:
+			case RendererAPI::API::OpenGL:
 				return new OpenGLVertexBuffer(vertices, size);
 		}
 
@@ -21,10 +21,10 @@ namespace Pressia {
 
 	IndexBuffer* IndexBuffer::Create(uint32_t* indices, uint32_t size) {
 		switch (Renderer::GetAPI()) {
-			case RendererAPI::None:
+			case RendererAPI::API::None:
 				PS_CORE_ASSERT(false, "Renderer API::None is not currently supported");
 				return nullptr;
-			case RendererAPI::OpenGL:
+			case RendererAPI::API::OpenGL:
 				return new OpenGLIndexBuffer(indices, size);
 		}
 
