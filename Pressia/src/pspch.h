@@ -13,6 +13,7 @@
 #include <unordered_set>
 
 #include "Pressia/Log.h"
+#include "Pressia/KeyCodes.h"
 
 #ifdef PS_PLATFORM_WINDOWS
 #include <Windows.h>

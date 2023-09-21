@@ -10,6 +10,8 @@ namespace Pressia {
 
 		virtual void Bind() override;
 		virtual void Unbind() override;
+
+		virtual void UploadUniformMat4(const std::string& name, const glm::mat4& matrix) override;
 	private:
 		uint32_t m_RendererID;
 	};

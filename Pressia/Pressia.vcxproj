@@ -147,6 +147,7 @@
     </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="src\Pressia\Renderer\OrthographicCamera.h" />
     <ClInclude Include="src\Platform\OpenGL\OpenGLRendererAPI.h" />
     <ClInclude Include="src\Pressia\Renderer\RenderCommand.h" />
     <ClInclude Include="src\Pressia\Renderer\RendererAPI.h" />
@@ -182,6 +183,7 @@
     <ClInclude Include="vendor\glm\glm.inl" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\Pressia\Renderer\OrthographicCamera.cpp" />
     <ClCompile Include="src\Platform\OpenGL\OpenGLRendererAPI.cpp" />
     <ClCompile Include="src\Pressia\Renderer\RenderCommand.cpp" />
     <ClCompile Include="src\Pressia\Renderer\RendererAPI.cpp" />

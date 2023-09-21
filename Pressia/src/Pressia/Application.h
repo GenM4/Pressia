@@ -12,6 +12,7 @@
 #include "Pressia/Renderer/Buffer.h"
 #include "Pressia/Renderer/Shader.h"
 #include "Pressia/Renderer/VertexArray.h"
+#include "Pressia/Renderer/OrthographicCamera.h"
 
 namespace Pressia {
 
@@ -41,6 +42,8 @@ namespace Pressia {
 		std::shared_ptr<Shader> m_Shader2;
 		std::shared_ptr<VertexArray> m_VertexArray;
 		std::shared_ptr<VertexArray> m_SquareVA;
+
+		OrthographicCamera m_Camera;
 
 		static Application* s_Instance;
 	};
