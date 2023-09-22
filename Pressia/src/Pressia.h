@@ -10,6 +10,17 @@
 #include "Pressia/MouseButtonCodes.h"
 
 #include "Pressia/ImGui/ImGuiLayer.h"
+
+// ------------ Renderer ------------
+#include "Pressia/Renderer/Renderer.h"
+#include "Pressia/Renderer/RenderCommand.h"
+
+#include "Pressia/Renderer/Shader.h"
+#include "Pressia/Renderer/Buffer.h"
+#include "Pressia/Renderer/VertexArray.h"
+
+#include "Pressia/Renderer/OrthographicCamera.h"
+
 // ------------ Entry Point ------------
 #include "Pressia/EntryPoint.h"
 // -------------------------------------
