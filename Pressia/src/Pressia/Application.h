@@ -7,6 +7,8 @@
 #include "Pressia/Events/Event.h"
 #include "Pressia/Events/ApplicationEvent.h"
 
+#include "Pressia/Core/TimeStep.h"
+
 #include "Pressia/ImGui/ImGuiLayer.h"
 
 #include "Pressia/Renderer/Buffer.h"
@@ -33,11 +35,12 @@ namespace Pressia {
 	private:
 		bool OnWindowClose(WindowCloseEvent& e);
 
+	private:
 		std::unique_ptr<Window> m_Window;
 		ImGuiLayer* m_ImGuiLayer;
 		bool m_Running = true;
 		LayerStack m_LayerStack;
-
+		float m_LastFrameTime;
 		static Application* s_Instance;
 	};
 

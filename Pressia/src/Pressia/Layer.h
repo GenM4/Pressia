@@ -2,6 +2,7 @@
 
 #include "Pressia/Core.h"
 #include "Pressia/Events/Event.h"
+#include "Pressia/Core/TimeStep.h"
 
 namespace Pressia {
 	class PRESSIA_API Layer {
@@ -11,7 +12,7 @@ namespace Pressia {
 
 		virtual void OnAttach() {}
 		virtual void OnDetach() {}
-		virtual void OnUpdate() {}
+		virtual void OnUpdate(Timestep ts) {}
 		virtual void OnImGuiRender() {}
 		virtual void OnEvent(Event& event) {}
 

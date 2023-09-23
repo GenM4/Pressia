@@ -5,6 +5,8 @@
 #include "Pressia/Layer.h"
 #include "Pressia/Log.h"
 
+#include "Pressia/Core/TimeStep.h"
+
 #include "Pressia/Input.h"
 #include "Pressia/KeyCodes.h"
 #include "Pressia/MouseButtonCodes.h"
