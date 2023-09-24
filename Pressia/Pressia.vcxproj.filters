@@ -4,23 +4,26 @@
     <Filter Include="src">
       <UniqueIdentifier>{2DAB880B-99B4-887C-2230-9F7C8E38947C}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\Platform">
+      <UniqueIdentifier>{21CA02E5-0D2D-9289-B6B2-CA3FA2F45D0C}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Platform\OpenGL">
+      <UniqueIdentifier>{35A49437-A105-7245-2A73-B8F796D3A804}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Platform\Windows">
+      <UniqueIdentifier>{5B054582-4794-CE4B-F0B2-E246DC20DFF1}</UniqueIdentifier>
+    </Filter>
     <Filter Include="src\Pressia">
       <UniqueIdentifier>{13637D2C-7F18-F621-080D-F0F874C1EC25}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Pressia\Core">
+      <UniqueIdentifier>{4B6B1EA1-3764-3DF3-6096-22784CEE1CFF}</UniqueIdentifier>
     </Filter>
     <Filter Include="src\Pressia\Events">
       <UniqueIdentifier>{977B8867-835F-49BD-ECBF-4310D8C2333F}</UniqueIdentifier>
     </Filter>
     <Filter Include="src\Pressia\ImGui">
       <UniqueIdentifier>{7D9A56C5-E9B0-545B-3228-E07C9E7D25E3}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="src\Pressia\Platform">
-      <UniqueIdentifier>{C7C4B387-B353-3D51-5C72-514C48E04DF7}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="src\Pressia\Platform\OpenGL">
-      <UniqueIdentifier>{1B68D870-8775-0657-105C-02427C68D20D}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="src\Pressia\Platform\Windows">
-      <UniqueIdentifier>{014601E4-ED00-F18F-96B8-69DA82523B20}</UniqueIdentifier>
     </Filter>
     <Filter Include="src\Pressia\Renderer">
       <UniqueIdentifier>{19CC9062-055B-1A2C-AE79-2E279AE72AD2}</UniqueIdentifier>
@@ -31,8 +34,35 @@
     <Filter Include="vendor\glm">
       <UniqueIdentifier>{829FC5A8-6E57-07F6-D75E-E051C335A2E6}</UniqueIdentifier>
     </Filter>
+    <Filter Include="vendor\stb_image">
+      <UniqueIdentifier>{0DA0BA59-F998-D9AB-22CB-BE300E23B9B7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\Platform\OpenGL\OpenGLBuffer.h">
+      <Filter>src\Platform\OpenGL</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Platform\OpenGL\OpenGLContext.h">
+      <Filter>src\Platform\OpenGL</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Platform\OpenGL\OpenGLRendererAPI.h">
+      <Filter>src\Platform\OpenGL</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Platform\OpenGL\OpenGLShader.h">
+      <Filter>src\Platform\OpenGL</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Platform\OpenGL\OpenGLTexture.h">
+      <Filter>src\Platform\OpenGL</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Platform\OpenGL\OpenGLVertexArray.h">
+      <Filter>src\Platform\OpenGL</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Platform\Windows\WindowsInput.h">
+      <Filter>src\Platform\Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Platform\Windows\WindowsWindow.h">
+      <Filter>src\Platform\Windows</Filter>
+    </ClInclude>
     <ClInclude Include="src\Pressia.h">
       <Filter>src</Filter>
     </ClInclude>
@@ -41,6 +71,9 @@
     </ClInclude>
     <ClInclude Include="src\Pressia\Core.h">
       <Filter>src\Pressia</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Pressia\Core\TimeStep.h">
+      <Filter>src\Pressia\Core</Filter>
     </ClInclude>
     <ClInclude Include="src\Pressia\EntryPoint.h">
       <Filter>src\Pressia</Filter>
@@ -78,16 +111,31 @@
     <ClInclude Include="src\Pressia\MouseButtonCodes.h">
       <Filter>src\Pressia</Filter>
     </ClInclude>
-    <ClInclude Include="src\Platform\OpenGL\OpenGLContext.h">
-      <Filter>src\Pressia\Platform\OpenGL</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Platform\Windows\WindowsInput.h">
-      <Filter>src\Pressia\Platform\Windows</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Platform\Windows\WindowsWindow.h">
-      <Filter>src\Pressia\Platform\Windows</Filter>
+    <ClInclude Include="src\Pressia\Renderer\Buffer.h">
+      <Filter>src\Pressia\Renderer</Filter>
     </ClInclude>
     <ClInclude Include="src\Pressia\Renderer\GraphicsContext.h">
+      <Filter>src\Pressia\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Pressia\Renderer\OrthographicCamera.h">
+      <Filter>src\Pressia\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Pressia\Renderer\RenderCommand.h">
+      <Filter>src\Pressia\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Pressia\Renderer\Renderer.h">
+      <Filter>src\Pressia\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Pressia\Renderer\RendererAPI.h">
+      <Filter>src\Pressia\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Pressia\Renderer\Shader.h">
+      <Filter>src\Pressia\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Pressia\Renderer\Texture.h">
+      <Filter>src\Pressia\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Pressia\Renderer\VertexArray.h">
       <Filter>src\Pressia\Renderer</Filter>
     </ClInclude>
     <ClInclude Include="src\Pressia\Window.h">
@@ -102,20 +150,35 @@
     <ClInclude Include="vendor\glm\glm.inl">
       <Filter>vendor\glm</Filter>
     </ClInclude>
-    <ClInclude Include="src\Platform\OpenGL\OpenGLShader.h" />
-    <ClInclude Include="src\Pressia\Renderer\Renderer.h" />
-    <ClInclude Include="src\Platform\OpenGL\OpenGLBuffer.h" />
-    <ClInclude Include="src\Pressia\Renderer\Buffer.h" />
-    <ClInclude Include="src\Pressia\Renderer\Shader.h" />
-    <ClInclude Include="src\Pressia\Renderer\VertexArray.h" />
-    <ClInclude Include="src\Platform\OpenGL\OpenGLVertexArray.h" />
-    <ClInclude Include="src\Pressia\Renderer\RendererAPI.h" />
-    <ClInclude Include="src\Pressia\Renderer\RenderCommand.h" />
-    <ClInclude Include="src\Platform\OpenGL\OpenGLRendererAPI.h" />
-    <ClInclude Include="src\Pressia\Renderer\OrthographicCamera.h" />
-    <ClInclude Include="src\Pressia\Core\TimeStep.h" />
+    <ClInclude Include="vendor\stb_image\stb_image.h">
+      <Filter>vendor\stb_image</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\Platform\OpenGL\OpenGLBuffer.cpp">
+      <Filter>src\Platform\OpenGL</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Platform\OpenGL\OpenGLContext.cpp">
+      <Filter>src\Platform\OpenGL</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Platform\OpenGL\OpenGLRendererAPI.cpp">
+      <Filter>src\Platform\OpenGL</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Platform\OpenGL\OpenGLShader.cpp">
+      <Filter>src\Platform\OpenGL</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Platform\OpenGL\OpenGLTexture.cpp">
+      <Filter>src\Platform\OpenGL</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Platform\OpenGL\OpenGLVertexArray.cpp">
+      <Filter>src\Platform\OpenGL</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Platform\Windows\WindowsInput.cpp">
+      <Filter>src\Platform\Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Platform\Windows\WindowsWindow.cpp">
+      <Filter>src\Platform\Windows</Filter>
+    </ClCompile>
     <ClCompile Include="src\Pressia\Application.cpp">
       <Filter>src\Pressia</Filter>
     </ClCompile>
@@ -134,28 +197,35 @@
     <ClCompile Include="src\Pressia\Log.cpp">
       <Filter>src\Pressia</Filter>
     </ClCompile>
-    <ClCompile Include="src\Platform\OpenGL\OpenGLContext.cpp">
-      <Filter>src\Pressia\Platform\OpenGL</Filter>
+    <ClCompile Include="src\Pressia\Renderer\Buffer.cpp">
+      <Filter>src\Pressia\Renderer</Filter>
     </ClCompile>
-    <ClCompile Include="src\Platform\Windows\WindowsInput.cpp">
-      <Filter>src\Pressia\Platform\Windows</Filter>
+    <ClCompile Include="src\Pressia\Renderer\OrthographicCamera.cpp">
+      <Filter>src\Pressia\Renderer</Filter>
     </ClCompile>
-    <ClCompile Include="src\Platform\Windows\WindowsWindow.cpp">
-      <Filter>src\Pressia\Platform\Windows</Filter>
+    <ClCompile Include="src\Pressia\Renderer\RenderCommand.cpp">
+      <Filter>src\Pressia\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Pressia\Renderer\Renderer.cpp">
+      <Filter>src\Pressia\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Pressia\Renderer\RendererAPI.cpp">
+      <Filter>src\Pressia\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Pressia\Renderer\Shader.cpp">
+      <Filter>src\Pressia\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Pressia\Renderer\Texture.cpp">
+      <Filter>src\Pressia\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Pressia\Renderer\VertexArray.cpp">
+      <Filter>src\Pressia\Renderer</Filter>
     </ClCompile>
     <ClCompile Include="src\pspch.cpp">
       <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="src\Platform\OpenGL\OpenGLShader.cpp" />
-    <ClCompile Include="src\Pressia\Renderer\Renderer.cpp" />
-    <ClCompile Include="src\Platform\OpenGL\OpenGLBuffer.cpp" />
-    <ClCompile Include="src\Pressia\Renderer\Buffer.cpp" />
-    <ClCompile Include="src\Pressia\Renderer\Shader.cpp" />
-    <ClCompile Include="src\Pressia\Renderer\VertexArray.cpp" />
-    <ClCompile Include="src\Platform\OpenGL\OpenGLVertexArray.cpp" />
-    <ClCompile Include="src\Pressia\Renderer\RendererAPI.cpp" />
-    <ClCompile Include="src\Pressia\Renderer\RenderCommand.cpp" />
-    <ClCompile Include="src\Platform\OpenGL\OpenGLRendererAPI.cpp" />
-    <ClCompile Include="src\Pressia\Renderer\OrthographicCamera.cpp" />
+    <ClCompile Include="vendor\stb_image\stb_image.cpp">
+      <Filter>vendor\stb_image</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

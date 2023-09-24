@@ -12,6 +12,8 @@
 #include <unordered_map>
 #include <unordered_set>
 
+#include <glm/glm.hpp>
+
 #include "Pressia/Log.h"
 #include "Pressia/KeyCodes.h"
 

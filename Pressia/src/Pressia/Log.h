@@ -9,10 +9,10 @@ namespace Pressia {
 	public:
 		static void Init();
 
-		inline static std::shared_ptr<spdlog::logger>& GetCoreLogger() {
+		inline static Ref<spdlog::logger>& GetCoreLogger() {
 			return s_CoreLogger;
 		}
-		inline static std::shared_ptr<spdlog::logger>& GetClientLogger() {
+		inline static Ref<spdlog::logger>& GetClientLogger() {
 			return s_ClientLogger;
 		}
 
