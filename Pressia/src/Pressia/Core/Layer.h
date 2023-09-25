@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Pressia/Core.h"
+#include "Pressia/Core/Core.h"
 #include "Pressia/Events/Event.h"
 #include "Pressia/Core/TimeStep.h"
 

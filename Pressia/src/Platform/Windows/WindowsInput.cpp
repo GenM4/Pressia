@@ -1,6 +1,6 @@
 #include "pspch.h"
 #include "WindowsInput.h"
-#include "Pressia/Application.h"
+#include "Pressia/Core/Application.h"
 
 #include <GLFW/glfw3.h>
 
@@ -13,28 +13,28 @@ namespace Pressia {
 		auto state = glfwGetKey(window, keycode);
 		return state == GLFW_PRESS || state == GLFW_REPEAT;
 	}
-	std::pair<float, float> WindowsInput::GetMousePosImpl()
-	{
+
+	std::pair<float, float> WindowsInput::GetMousePosImpl() {
 		auto window = static_cast<GLFWwindow*>(Application::Get().GetWindow().GetNativeWindow());
 		double xpos, ypos;
 		glfwGetCursorPos(window, &xpos, &ypos);
 
 		return { (float)xpos, (float)ypos };
 	}
-	bool WindowsInput::IsMouseButtonPressedImpl(int button)
-	{
+
+	bool WindowsInput::IsMouseButtonPressedImpl(int button) {
 		auto window = static_cast<GLFWwindow*>(Application::Get().GetWindow().GetNativeWindow());
 		auto state = glfwGetMouseButton(window, button);
 
 		return state == GLFW_PRESS;
 	}
-	float WindowsInput::GetMouseXImpl()
-	{
+
+	float WindowsInput::GetMouseXImpl() {
 		auto [x, y] = GetMousePosImpl();
 		return x;
 	}
-	float WindowsInput::GetMouseYImpl()
-	{
+
+	float WindowsInput::GetMouseYImpl() {
 		auto [x, y] = GetMousePosImpl();
 		return y;
 	}

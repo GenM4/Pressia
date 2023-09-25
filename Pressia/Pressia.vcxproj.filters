@@ -66,17 +66,38 @@
     <ClInclude Include="src\Pressia.h">
       <Filter>src</Filter>
     </ClInclude>
-    <ClInclude Include="src\Pressia\Application.h">
-      <Filter>src\Pressia</Filter>
+    <ClInclude Include="src\Pressia\Core\Application.h">
+      <Filter>src\Pressia\Core</Filter>
     </ClInclude>
-    <ClInclude Include="src\Pressia\Core.h">
-      <Filter>src\Pressia</Filter>
+    <ClInclude Include="src\Pressia\Core\Core.h">
+      <Filter>src\Pressia\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Pressia\Core\EntryPoint.h">
+      <Filter>src\Pressia\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Pressia\Core\Input.h">
+      <Filter>src\Pressia\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Pressia\Core\KeyCodes.h">
+      <Filter>src\Pressia\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Pressia\Core\Layer.h">
+      <Filter>src\Pressia\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Pressia\Core\LayerStack.h">
+      <Filter>src\Pressia\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Pressia\Core\Log.h">
+      <Filter>src\Pressia\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Pressia\Core\MouseButtonCodes.h">
+      <Filter>src\Pressia\Core</Filter>
     </ClInclude>
     <ClInclude Include="src\Pressia\Core\TimeStep.h">
       <Filter>src\Pressia\Core</Filter>
     </ClInclude>
-    <ClInclude Include="src\Pressia\EntryPoint.h">
-      <Filter>src\Pressia</Filter>
+    <ClInclude Include="src\Pressia\Core\Window.h">
+      <Filter>src\Pressia\Core</Filter>
     </ClInclude>
     <ClInclude Include="src\Pressia\Events\ApplicationEvent.h">
       <Filter>src\Pressia\Events</Filter>
@@ -93,22 +114,7 @@
     <ClInclude Include="src\Pressia\ImGui\ImGuiLayer.h">
       <Filter>src\Pressia\ImGui</Filter>
     </ClInclude>
-    <ClInclude Include="src\Pressia\Input.h">
-      <Filter>src\Pressia</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Pressia\KeyCodes.h">
-      <Filter>src\Pressia</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Pressia\Layer.h">
-      <Filter>src\Pressia</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Pressia\LayerStack.h">
-      <Filter>src\Pressia</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Pressia\Log.h">
-      <Filter>src\Pressia</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Pressia\MouseButtonCodes.h">
+    <ClInclude Include="src\Pressia\OrthographicCameraController.h">
       <Filter>src\Pressia</Filter>
     </ClInclude>
     <ClInclude Include="src\Pressia\Renderer\Buffer.h">
@@ -137,9 +143,6 @@
     </ClInclude>
     <ClInclude Include="src\Pressia\Renderer\VertexArray.h">
       <Filter>src\Pressia\Renderer</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Pressia\Window.h">
-      <Filter>src\Pressia</Filter>
     </ClInclude>
     <ClInclude Include="src\pspch.h">
       <Filter>src</Filter>
@@ -179,8 +182,17 @@
     <ClCompile Include="src\Platform\Windows\WindowsWindow.cpp">
       <Filter>src\Platform\Windows</Filter>
     </ClCompile>
-    <ClCompile Include="src\Pressia\Application.cpp">
-      <Filter>src\Pressia</Filter>
+    <ClCompile Include="src\Pressia\Core\Application.cpp">
+      <Filter>src\Pressia\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Pressia\Core\Layer.cpp">
+      <Filter>src\Pressia\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Pressia\Core\LayerStack.cpp">
+      <Filter>src\Pressia\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Pressia\Core\Log.cpp">
+      <Filter>src\Pressia\Core</Filter>
     </ClCompile>
     <ClCompile Include="src\Pressia\ImGui\ImGuiBuild.cpp">
       <Filter>src\Pressia\ImGui</Filter>
@@ -188,13 +200,7 @@
     <ClCompile Include="src\Pressia\ImGui\ImGuiLayer.cpp">
       <Filter>src\Pressia\ImGui</Filter>
     </ClCompile>
-    <ClCompile Include="src\Pressia\Layer.cpp">
-      <Filter>src\Pressia</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Pressia\LayerStack.cpp">
-      <Filter>src\Pressia</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Pressia\Log.cpp">
+    <ClCompile Include="src\Pressia\OrthographicCameraController.cpp">
       <Filter>src\Pressia</Filter>
     </ClCompile>
     <ClCompile Include="src\Pressia\Renderer\Buffer.cpp">

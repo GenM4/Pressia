@@ -1,15 +1,16 @@
 #pragma once
 
 // For Pressia application use
-#include "Pressia/Application.h"
-#include "Pressia/Layer.h"
-#include "Pressia/Log.h"
+#include "Pressia/Core/Application.h"
+#include "Pressia/Core/Layer.h"
+#include "Pressia/Core/Log.h"
 
 #include "Pressia/Core/TimeStep.h"
 
-#include "Pressia/Input.h"
-#include "Pressia/KeyCodes.h"
-#include "Pressia/MouseButtonCodes.h"
+#include "Pressia/Core/Input.h"
+#include "Pressia/Core/KeyCodes.h"
+#include "Pressia/Core/MouseButtonCodes.h"
+#include "Pressia/OrthographicCameraController.h"
 
 #include "Pressia/ImGui/ImGuiLayer.h"
 
@@ -25,5 +26,5 @@
 #include "Pressia/Renderer/OrthographicCamera.h"
 
 // ------------ Entry Point ------------
-#include "Pressia/EntryPoint.h"
+#include "Pressia/Core/EntryPoint.h"
 // -------------------------------------

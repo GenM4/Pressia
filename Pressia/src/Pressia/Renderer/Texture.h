@@ -1,7 +1,7 @@
 #pragma once
 
 #include <string>
-#include "Pressia/Core.h"
+#include "Pressia/Core/Core.h"
 
 namespace Pressia {
 

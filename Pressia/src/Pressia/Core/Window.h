@@ -2,7 +2,7 @@
 
 #include "pspch.h"
 
-#include "Pressia/Core.h"
+#include "Pressia/Core/Core.h"
 #include "Pressia/Events/Event.h"
 
 namespace Pressia {

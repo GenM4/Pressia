@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Pressia/Window.h"
+#include "Pressia/Core/Window.h"
 #include "Pressia/Renderer/GraphicsContext.h"
 
 #include <GLFW/glfw3.h>

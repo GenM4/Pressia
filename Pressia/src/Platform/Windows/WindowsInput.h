@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Pressia/Input.h"
+#include "Pressia/Core/Input.h"
 
 namespace Pressia {
 

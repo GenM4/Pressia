@@ -10,7 +10,7 @@ namespace Pressia {
 		operator float() const { return m_Time; }
 
 		float GetSeconds() const { return m_Time; }
-		float GetMilliseconds() const { return m_Time * 1000.0; }
+		float GetMilliseconds() const { return m_Time * (float)1000.0; }
 
 	private:
 		float m_Time;

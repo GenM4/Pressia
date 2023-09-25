@@ -8,14 +8,15 @@
 
 #include <string>
 #include <sstream>
+#include <array>
 #include <vector>
 #include <unordered_map>
 #include <unordered_set>
 
 #include <glm/glm.hpp>
 
-#include "Pressia/Log.h"
-#include "Pressia/KeyCodes.h"
+#include "Pressia/Core/Log.h"
+#include "Pressia/Core/KeyCodes.h"
 
 #ifdef PS_PLATFORM_WINDOWS
 #include <Windows.h>

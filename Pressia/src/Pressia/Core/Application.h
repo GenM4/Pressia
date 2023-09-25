@@ -3,7 +3,7 @@
 #include "Core.h"
 
 #include "Window.h"
-#include "Pressia/LayerStack.h"
+#include "Pressia/Core/LayerStack.h"
 #include "Pressia/Events/Event.h"
 #include "Pressia/Events/ApplicationEvent.h"
 
@@ -34,11 +34,13 @@ namespace Pressia {
 		inline Window& GetWindow() { return *m_Window; }
 	private:
 		bool OnWindowClose(WindowCloseEvent& e);
+		bool OnWindowResize(WindowResizeEvent& e);
 
 	private:
 		std::unique_ptr<Window> m_Window;
 		ImGuiLayer* m_ImGuiLayer;
 		bool m_Running = true;
+		bool m_Minimized = false;
 		LayerStack m_LayerStack;
 		float m_LastFrameTime;
 		static Application* s_Instance;
