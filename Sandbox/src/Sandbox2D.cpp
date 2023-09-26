@@ -1,7 +1,5 @@
 #include "Sandbox2D.h"
 
-#include "Platform/OpenGL/OpenGLShader.h"
-
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
 #include <imgui/imgui.h>
@@ -10,24 +8,7 @@ Sandbox2D::Sandbox2D() : Layer("Sandbox2D"), m_CameraController(1920.0f / 1080.0
 }
 
 void Sandbox2D::OnAttach() {
-	m_SquareVA = Pressia::VertexArray::Create();
 
-	float squareVertices[3 * 4] = {
-		-0.5f, -0.5f, 0.0f,
-		 0.5f, -0.5f, 0.0f,
-		 0.5f,  0.5f, 0.0f,
-		-0.5f,  0.5f, 0.0f
-	};
-
-	auto squareVB = Pressia::VertexBuffer::Create(squareVertices, sizeof(squareVertices));
-	squareVB->SetLayout({ { Pressia::ShaderDataType::Float3, "a_Position" } });
-	m_SquareVA->AddVertexBuffer(squareVB);
-
-	uint32_t squareIndices[6] = { 0, 1 ,2, 2, 3, 0 };
-	auto squareIB = Pressia::IndexBuffer::Create(squareIndices, sizeof(squareIndices) / sizeof(uint32_t));
-	m_SquareVA->SetIndexBuffer(squareIB);
-
-	m_Shader = Pressia::Shader::Create("Assets/Shaders/FlatColorShader.glsl");
 }
 
 void Sandbox2D::OnDetach() {
@@ -43,14 +24,15 @@ void Sandbox2D::OnUpdate(Pressia::Timestep ts) {
 	Pressia::RenderCommand::Clear();
 
 
-	Pressia::Renderer::BeginScene(m_CameraController.GetCamera());
+	Pressia::Renderer2D::BeginScene(m_CameraController.GetCamera());
 
-	std::dynamic_pointer_cast<Pressia::OpenGLShader>(m_Shader)->Bind();
-	std::dynamic_pointer_cast<Pressia::OpenGLShader>(m_Shader)->UploadUniformFloat4("u_Color", m_SquareColor);
+	Pressia::Renderer2D::DrawQuad({ 0.0f,0.0f }, { 1.0f,1.0f }, m_SquareColor);
 
-	Pressia::Renderer::Submit(m_Shader, m_SquareVA, glm::scale(glm::mat4(1.0f), glm::vec3(0.75f)));
+	Pressia::Renderer2D::EndScene();
 
-	Pressia::Renderer::EndScene();
+	//              Will be fixed, add these to shader class at some point
+	//std::dynamic_pointer_cast<Pressia::OpenGLShader>(m_Shader)->Bind();
+	//std::dynamic_pointer_cast<Pressia::OpenGLShader>(m_Shader)->UploadUniformFloat4("u_Color", m_SquareColor);
 }
 
 void Sandbox2D::OnImGuiRender() {

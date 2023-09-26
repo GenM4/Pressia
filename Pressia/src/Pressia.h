@@ -16,6 +16,7 @@
 
 // ------------ Renderer ------------
 #include "Pressia/Renderer/Renderer.h"
+#include "Pressia/Renderer/Renderer2D.h"
 #include "Pressia/Renderer/RenderCommand.h"
 
 #include "Pressia/Renderer/Buffer.h"

@@ -1,6 +1,7 @@
 #include "pspch.h"
 #include "Renderer.h"
 
+#include "Pressia/Renderer/Renderer2D.h"
 #include "Platform/OpenGL/OpenGLShader.h"
 
 namespace Pressia {
@@ -9,6 +10,7 @@ namespace Pressia {
 
 	void Renderer::Init() {
 		RenderCommand::Init();
+		Renderer2D::Init();
 	}
 
 	void Renderer::OnWindowResize(uint32_t width, uint32_t height) {
