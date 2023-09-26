@@ -26,5 +26,5 @@
 #include "Pressia/Renderer/OrthographicCamera.h"
 
 // ------------ Entry Point ------------
-#include "Pressia/Core/EntryPoint.h"
+
 // -------------------------------------
