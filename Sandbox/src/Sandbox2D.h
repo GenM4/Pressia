@@ -20,7 +20,12 @@ private:
 	//Temp
 	Pressia::Ref<Pressia::VertexArray> m_SquareVA;
 	Pressia::Ref<Pressia::Shader> m_Shader;
+	Pressia::Ref<Pressia::Texture2D> m_Texture;
 
 	glm::vec4 m_SquareColor = { 0.2f, 0.3f, 0.8f, 1.0f };
+	glm::vec3 m_Quad1Pos = { 0.0f, 0.0f, 0.0f };
+	glm::vec3 m_Quad2Pos = { 0.0f, 0.0f, 0.0f };
+	float m_Quad1Angle = 0.0f;
+	float m_Quad2Angle = 0.0f;
 };
 
