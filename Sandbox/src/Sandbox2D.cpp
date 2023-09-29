@@ -26,7 +26,7 @@ void Sandbox2D::OnUpdate(Pressia::Timestep ts) {
 
 	Pressia::Renderer2D::BeginScene(m_CameraController.GetCamera());
 
-	Pressia::Renderer2D::DrawQuad(m_Quad1Pos, { 0.8f, 0.8f }, m_Quad1Angle, m_SquareColor);
+	Pressia::Renderer2D::DrawQuad({ m_Quad1Pos.x, m_Quad1Pos.y, -0.1f }, { 0.8f, 0.8f }, m_Quad1Angle, m_SquareColor);
 	Pressia::Renderer2D::DrawQuad(m_Quad2Pos, { 2.0f, 2.0f }, m_Quad2Angle, m_Texture);
 
 	Pressia::Renderer2D::EndScene();
