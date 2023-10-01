@@ -27,6 +27,8 @@ namespace Pressia {
 	}
 
 	void WindowsWindow::Init(const WindowProps& props) {
+		PS_PROFILE_FUNCTION();
+
 		m_Data.Title = props.Title;
 		m_Data.Width = props.Width;
 		m_Data.Height = props.Height;
@@ -130,14 +132,20 @@ namespace Pressia {
 	}
 
 	void WindowsWindow::Shutdown() {
+		PS_PROFILE_FUNCTION();
+
 		glfwDestroyWindow(m_Window);
 	}
 
 	void WindowsWindow::OnUpdate() {
+		PS_PROFILE_FUNCTION();
+
 		glfwPollEvents();
 		m_Context->SwapBuffers();
 	}
 	void WindowsWindow::SetVSync(bool enabled) {
+		PS_PROFILE_FUNCTION();
+
 		if (enabled)
 			glfwSwapInterval(1);
 		else

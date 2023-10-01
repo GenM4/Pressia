@@ -27,5 +27,6 @@ private:
 	glm::vec3 m_Quad2Pos = { 0.0f, 0.0f, 0.0f };
 	float m_Quad1Angle = 0.0f;
 	float m_Quad2Angle = 0.0f;
+	float m_TilingFactor = 1.0f;
 };
 

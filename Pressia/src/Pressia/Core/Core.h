@@ -1,4 +1,5 @@
 #pragma once
+#include "Pressia/Core/CoreConfig.h"
 
 #include <memory>
 

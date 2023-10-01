@@ -15,6 +15,8 @@ namespace Pressia {
 	Application* Application::s_Instance = nullptr;
 
 	Application::Application() {
+		PS_PROFILE_FUNCTION();
+
 		PS_CORE_ASSERT(!s_Instance, "Application already exists!");
 		s_Instance = this;
 
@@ -28,25 +30,29 @@ namespace Pressia {
 	}
 
 	Application::~Application() {
-
+		PS_PROFILE_FUNCTION();
 	}
 
 	void Application::PushLayer(Layer* layer) {
+		PS_PROFILE_FUNCTION();
+
 		m_LayerStack.PushLayer(layer);
 		layer->OnAttach();
 	}
 
 	void Application::PushOverlay(Layer* overlay) {
+		PS_PROFILE_FUNCTION();
+
 		m_LayerStack.PushLayer(overlay);
 		overlay->OnAttach();
 	}
 
 	void Application::OnEvent(Event& e) {
+		PS_PROFILE_FUNCTION();
+
 		EventDispatcher dispatcher(e);
 		dispatcher.Dispatch<WindowCloseEvent>(BIND_EVENT_FN(OnWindowClose));
 		dispatcher.Dispatch<WindowResizeEvent>(BIND_EVENT_FN(OnWindowResize));
-
-		//PS_CORE_TRACE("{0}", e);
 
 		for (auto it = m_LayerStack.end(); it != m_LayerStack.begin(); ) {
 			(*--it)->OnEvent(e);
@@ -56,23 +62,31 @@ namespace Pressia {
 	}
 
 	void Application::Run() {
+		PS_PROFILE_FUNCTION();
 
 		while (m_Running) {
+			PS_PROFILE_SCOPE("Application Run loop");
+
 			float time = glfwGetTime(); // will be Platform::GetTime()
 			Timestep timestep = time - m_LastFrameTime;
 			m_LastFrameTime = time;
 
 			if (!m_Minimized) {
-				for (Layer* layer : m_LayerStack)
-					layer->OnUpdate(timestep);
+				{
+					PS_PROFILE_SCOPE("LayerStack OnUpdate loop");
+
+					for (Layer* layer : m_LayerStack)
+						layer->OnUpdate(timestep);
+				}
+
+				m_ImGuiLayer->Begin();
+				{
+					PS_PROFILE_SCOPE("LayerStack OnImGuiRender loop");
+					for (Layer* layer : m_LayerStack)
+						layer->OnImGuiRender();
+				}
+				m_ImGuiLayer->End();
 			}
-
-			m_ImGuiLayer->Begin();
-
-			for (Layer* layer : m_LayerStack)
-				layer->OnImGuiRender();
-
-			m_ImGuiLayer->End();
 
 			m_Window->OnUpdate();
 		}
@@ -84,6 +98,8 @@ namespace Pressia {
 	}
 
 	bool Application::OnWindowResize(WindowResizeEvent& e) {
+		PS_PROFILE_FUNCTION();
+
 		if (e.GetWidth() == 0 || e.GetHeight() == 0) {
 			m_Minimized = true;
 			return false;
