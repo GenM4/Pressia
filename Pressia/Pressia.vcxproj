@@ -182,6 +182,7 @@
     <ClInclude Include="src\Pressia\Renderer\Renderer.h" />
     <ClInclude Include="src\Pressia\Renderer\Renderer2D.h" />
     <ClInclude Include="src\Pressia\Renderer\RendererAPI.h" />
+    <ClInclude Include="src\Pressia\Renderer\RendererConfig.h" />
     <ClInclude Include="src\Pressia\Renderer\Shader.h" />
     <ClInclude Include="src\Pressia\Renderer\Texture.h" />
     <ClInclude Include="src\Pressia\Renderer\VertexArray.h" />

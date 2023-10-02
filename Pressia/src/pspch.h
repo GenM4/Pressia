@@ -15,6 +15,7 @@
 
 #include <glm/glm.hpp>
 
+#include "Pressia/Core/CoreConfig.h"
 #include "Pressia/Core/Log.h"
 #include "Pressia/Core/KeyCodes.h"
 #include "Pressia/Debug/Instrumentor.h"

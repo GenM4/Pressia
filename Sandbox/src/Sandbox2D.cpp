@@ -36,8 +36,13 @@ void Sandbox2D::OnUpdate(Pressia::Timestep ts) {
 		PS_PROFILE_SCOPE("Rendering");
 		Pressia::Renderer2D::BeginScene(m_CameraController.GetCamera());
 
-		Pressia::Renderer2D::DrawQuad({ m_Quad1Pos.x, m_Quad1Pos.y, -0.1f }, { 0.8f, 0.8f }, m_Quad1Angle, m_SquareColor);
-		Pressia::Renderer2D::DrawQuad(m_Quad2Pos, { 2.0f, 2.0f }, m_Quad2Angle, m_Texture, m_TilingFactor, m_SquareColor);
+		//Pressia::Renderer2D::DrawQuad({ m_Quad1Pos.x, m_Quad1Pos.y, -0.1f }, { 0.8f, 0.8f }, m_Quad1Angle, m_SquareColor);
+		//Pressia::Renderer2D::DrawQuad(m_Quad2Pos, { 2.0f, 2.0f }, m_Quad2Angle, m_Texture, m_TilingFactor, m_SquareColor);
+
+		Pressia::Renderer2D::DrawQuad({ -5.0f, 0.0f, 0.0f }, { 2.0f, 2.0f }, { 0.8f, 0.3f, 0.8f, 1.0f });
+		Pressia::Renderer2D::DrawQuad({ 5.0f, 0.0f, 0.0f }, { 2.0f, 2.0f }, { 0.2f, 0.8f, 0.2f, 1.0f });
+		Pressia::Renderer2D::DrawQuad(m_Quad2Pos, { 2.0f, 2.0f }, m_Texture, m_TilingFactor, m_SquareColor);
+		Pressia::Renderer2D::DrawQuad({ 10.0f, 0.0f, 0.0f }, { 2.0f, 2.0f }, m_Texture);
 
 		Pressia::Renderer2D::EndScene();
 	}
