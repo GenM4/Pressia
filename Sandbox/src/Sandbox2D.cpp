@@ -57,11 +57,20 @@ void Sandbox2D::OnUpdate(Pressia::Timestep ts) {
 		Pressia::Renderer2D::EndScene();
 
 		Pressia::Renderer2D::BeginScene(m_CameraController.GetCamera());
+
+		for (float y = 0; y < m_StressTestBound; y += 1.0f) {
+			for (float x = 0; x < m_StressTestBound; x += 1.0f) {
+				Pressia::Renderer2D::DrawQuad({ x, y, 0.0f }, { 1.0f, 1.0f }, 0.0f, { x / m_StressTestBound, y / m_StressTestBound, 0.3f, 1.0f });
+			}
+		}
+
+		/*
 		for (float y = -20.0f; y < 20.0f; y += 1.0f) {
 			for (float x = -20.0f; x < 20.0f; x += 1.0f) {
 				Pressia::Renderer2D::DrawQuad({ x, y, 0.0f }, { 1.0f, 1.0f }, 0.0f, { x / 50.0f, y / 50.0f, 0.3f, 1.0f });
 			}
 		}
+		*/
 		Pressia::Renderer2D::EndScene();
 	}
 }
@@ -83,7 +92,7 @@ void Sandbox2D::OnImGuiRender() {
 	ImGui::SliderAngle("Quad 2 Angle", &m_Quad2Angle);
 	ImGui::SliderFloat2("Quad Scale", glm::value_ptr(m_QuadScale), 1.0f, 25.0f);
 	ImGui::SliderFloat("Texture Tiling", &m_TilingFactor, 1.0f, 20.0f);
-
+	ImGui::SliderFloat("Stress Test Bounds", &m_StressTestBound, 1.0f, 300.0f);
 	ImGui::End();
 
 	ImGui::Begin("Renderer Statistics");

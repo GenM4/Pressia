@@ -31,5 +31,6 @@ private:
 	float m_TilingFactor = 1.0f;
 	bool m_ResetRenderStats = false;
 	float m_TPF = 0.0f;
+	float m_StressTestBound = 1.0;
 };
 
