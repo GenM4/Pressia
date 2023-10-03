@@ -33,7 +33,7 @@ namespace Pressia {
 		struct WindowData {
 			std::string Title;
 			unsigned int Width, Height;
-			bool VSync;
+			bool VSync = true;
 
 			EventCallbackFn EventCallback;
 		};

@@ -199,6 +199,7 @@ class Sandbox : public Pressia::Application {
 public:
 	Sandbox() {
 		// PushLayer(new ExampleLayer());
+		Sandbox::GetWindow().SetVSync(true);
 		PushLayer(new Sandbox2D());
 	}
 

@@ -70,6 +70,7 @@ void Sandbox2D::OnImGuiRender() {
 	PS_PROFILE_FUNCTION();
 
 	ImGui::Begin("Frame Rate");
+	ImGui::Text("Frame Time: %5.3f ms", m_TPF * 1000.0f);
 	ImGui::Text("Frame Rate: %.0f", 1 / m_TPF);
 	ImGui::End();
 
