@@ -67,7 +67,7 @@ namespace Pressia {
 		while (m_Running) {
 			PS_PROFILE_SCOPE("Application Run loop");
 
-			float time = glfwGetTime(); // will be Platform::GetTime()
+			float time = (float)glfwGetTime(); // will be Platform::GetTime()
 			Timestep timestep = time - m_LastFrameTime;
 			m_LastFrameTime = time;
 

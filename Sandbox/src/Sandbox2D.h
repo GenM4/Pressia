@@ -27,6 +27,9 @@ private:
 	glm::vec3 m_Quad2Pos = { 0.0f, 0.0f, 0.0f };
 	float m_Quad1Angle = 0.0f;
 	float m_Quad2Angle = 0.0f;
+	glm::vec2 m_QuadScale = glm::vec2(1.0f);
 	float m_TilingFactor = 1.0f;
+	bool m_ResetRenderStats = false;
+	float m_TPF = 0.0f;
 };
 
