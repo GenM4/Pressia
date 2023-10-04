@@ -21,8 +21,20 @@ namespace Pressia {
 
 	class Texture2D : public Texture {
 	public:
+		const glm::vec2* GetTexCoords() const { return m_TexCoords; }
+
 		static Ref<Texture2D> Create(uint32_t width, uint32_t height);
 		static Ref<Texture2D> Create(const std::string& path);
+
+		static Ref<Texture2D> CreateSubTexture(const std::string& path, const glm::vec2& coords, const glm::vec2& cellSize, const glm::vec2& spriteCells = { 1.0f, 1.0f }, const glm::vec2& spacing = { 0.0f, 0.0f });	//Create Subtexture from uniform h/w sprite sheet
+
+	private:
+		glm::vec2 m_TexCoords[4] = {
+			{ 0.0f, 0.0f },
+			{ 1.0f, 0.0f },
+			{ 1.0f, 1.0f },
+			{ 0.0f, 1.0f }
+		};
 	};
 
 }

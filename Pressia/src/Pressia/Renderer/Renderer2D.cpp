@@ -153,45 +153,36 @@ namespace Pressia {
 		s_Data.TextureSlotIndex = 1;
 	}
 
-	void Renderer2D::DrawQuad(const glm::vec2& position, const glm::vec2& size, const glm::vec4& color) { 		// Draw quad with 2 coord position and flat color
+	void Renderer2D::DrawQuad(const glm::vec2& position, const glm::vec2& size, const glm::vec4& color) {	// Draw quad with 2 coord position and flat color
 		DrawQuad({ position.x, position.y, 0.0f }, size, color);
 	}
 
-	void Renderer2D::DrawQuad(const glm::vec3& position, const glm::vec2& size, const glm::vec4& color) {			// Draw quad with 3 coord position and flat color
+	void Renderer2D::DrawQuad(const glm::vec3& position, const glm::vec2& size, const glm::vec4& color) {	// Draw quad with 3 coord position and flat color
 		PS_PROFILE_RENDERER_FUNCTION();
 
-		if (s_Data.QuadIndexCount >= s_Data.MaxIndices) {
+		constexpr float textureIndex = 0.0f;	//White texture slot
+		constexpr size_t quadVertexCount = 4;
+		constexpr glm::vec2 textureCoords[] = {
+			{ 0.0f, 0.0f },
+			{ 1.0f, 0.0f },
+			{ 1.0f, 1.0f },
+			{ 0.0f, 1.0f }
+		};
+
+		if (s_Data.QuadIndexCount >= s_Data.MaxIndices) {	//Check if max number of quads have been constructed
 			FlushAndReset();
 		}
-
-		constexpr float textureIndex = 0.0f;	//White texture slot
 
 		glm::mat4 transform = glm::mat4(1.0f);
 		transform = glm::translate(transform, position) * glm::scale(transform, { size.x, size.y, 1.0f });
 
-		s_Data.QuadVertexBufferPtr->Position = transform * s_Data.QuadVertexPositions[0];
-		s_Data.QuadVertexBufferPtr->Color = color;
-		s_Data.QuadVertexBufferPtr->TexCoord = { 0.0f, 0.0f };
-		s_Data.QuadVertexBufferPtr->TexIndex = textureIndex;
-		s_Data.QuadVertexBufferPtr++;
-
-		s_Data.QuadVertexBufferPtr->Position = transform * s_Data.QuadVertexPositions[1];
-		s_Data.QuadVertexBufferPtr->Color = color;
-		s_Data.QuadVertexBufferPtr->TexCoord = { 1.0f, 0.0f };
-		s_Data.QuadVertexBufferPtr->TexIndex = textureIndex;
-		s_Data.QuadVertexBufferPtr++;
-
-		s_Data.QuadVertexBufferPtr->Position = transform * s_Data.QuadVertexPositions[2];
-		s_Data.QuadVertexBufferPtr->Color = color;
-		s_Data.QuadVertexBufferPtr->TexCoord = { 1.0f, 1.0f };
-		s_Data.QuadVertexBufferPtr->TexIndex = textureIndex;
-		s_Data.QuadVertexBufferPtr++;
-
-		s_Data.QuadVertexBufferPtr->Position = transform * s_Data.QuadVertexPositions[3];
-		s_Data.QuadVertexBufferPtr->Color = color;
-		s_Data.QuadVertexBufferPtr->TexCoord = { 0.0f, 1.0f };
-		s_Data.QuadVertexBufferPtr->TexIndex = textureIndex;
-		s_Data.QuadVertexBufferPtr++;
+		for (size_t i = 0; i < quadVertexCount; i++) {
+			s_Data.QuadVertexBufferPtr->Position = transform * s_Data.QuadVertexPositions[i];
+			s_Data.QuadVertexBufferPtr->Color = color;
+			s_Data.QuadVertexBufferPtr->TexCoord = textureCoords[i];
+			s_Data.QuadVertexBufferPtr->TexIndex = textureIndex;
+			s_Data.QuadVertexBufferPtr++;
+		}
 
 		s_Data.QuadIndexCount += 6;
 
@@ -214,45 +205,36 @@ namespace Pressia {
 		#endif
 	}
 
-	void Renderer2D::DrawQuad(const glm::vec2& position, const glm::vec2& size, const float rotation, const glm::vec4& color) { 		// Draw quad with 2 coord position, rotation, and flat color
+	void Renderer2D::DrawQuad(const glm::vec2& position, const glm::vec2& size, const float rotation, const glm::vec4& color) {	// Draw quad with 2 coord position, rotation, and flat color
 		DrawQuad({ position.x, position.y, 0.0f }, size, rotation, color);
 	}
 
-	void Renderer2D::DrawQuad(const glm::vec3& position, const glm::vec2& size, const float rotation, const glm::vec4& color) {			// Draw quad with 3 coord position, rotation, and flat color
+	void Renderer2D::DrawQuad(const glm::vec3& position, const glm::vec2& size, const float rotation, const glm::vec4& color) {	// Draw quad with 3 coord position, rotation, and flat color
 		PS_PROFILE_RENDERER_FUNCTION();
 
-		if (s_Data.QuadIndexCount >= s_Data.MaxIndices) {
+		constexpr size_t quadVertexCount = 4;
+		constexpr float textureIndex = 0.0f;	//White texture slot
+		constexpr glm::vec2 textureCoords[] = {
+			{ 0.0f, 0.0f },
+			{ 1.0f, 0.0f },
+			{ 1.0f, 1.0f },
+			{ 0.0f, 1.0f }
+		};
+
+		if (s_Data.QuadIndexCount >= s_Data.MaxIndices) {	//Check if max number of quads have been constructed
 			FlushAndReset();
 		}
-
-		constexpr float textureIndex = 0.0f;	//White texture slot
 
 		glm::mat4 transform = glm::mat4(1.0f);
 		transform = glm::translate(transform, position) * glm::scale(transform, { size.x, size.y, 1.0f }) * glm::rotate(transform, rotation, glm::vec3(0.0f, 0.0f, 1.0f));
 
-		s_Data.QuadVertexBufferPtr->Position = transform * s_Data.QuadVertexPositions[0];
-		s_Data.QuadVertexBufferPtr->Color = color;
-		s_Data.QuadVertexBufferPtr->TexCoord = { 0.0f, 0.0f };
-		s_Data.QuadVertexBufferPtr->TexIndex = textureIndex;
-		s_Data.QuadVertexBufferPtr++;
-
-		s_Data.QuadVertexBufferPtr->Position = transform * s_Data.QuadVertexPositions[1];
-		s_Data.QuadVertexBufferPtr->Color = color;
-		s_Data.QuadVertexBufferPtr->TexCoord = { 1.0f, 0.0f };
-		s_Data.QuadVertexBufferPtr->TexIndex = textureIndex;
-		s_Data.QuadVertexBufferPtr++;
-
-		s_Data.QuadVertexBufferPtr->Position = transform * s_Data.QuadVertexPositions[2];
-		s_Data.QuadVertexBufferPtr->Color = color;
-		s_Data.QuadVertexBufferPtr->TexCoord = { 1.0f, 1.0f };
-		s_Data.QuadVertexBufferPtr->TexIndex = textureIndex;
-		s_Data.QuadVertexBufferPtr++;
-
-		s_Data.QuadVertexBufferPtr->Position = transform * s_Data.QuadVertexPositions[3];
-		s_Data.QuadVertexBufferPtr->Color = color;
-		s_Data.QuadVertexBufferPtr->TexCoord = { 0.0f, 1.0f };
-		s_Data.QuadVertexBufferPtr->TexIndex = textureIndex;
-		s_Data.QuadVertexBufferPtr++;
+		for (size_t i = 0; i < quadVertexCount; i++) {
+			s_Data.QuadVertexBufferPtr->Position = transform * s_Data.QuadVertexPositions[i];
+			s_Data.QuadVertexBufferPtr->Color = color;
+			s_Data.QuadVertexBufferPtr->TexCoord = textureCoords[i];
+			s_Data.QuadVertexBufferPtr->TexIndex = textureIndex;
+			s_Data.QuadVertexBufferPtr++;
+		}
 
 		s_Data.QuadIndexCount += 6;
 
@@ -283,12 +265,14 @@ namespace Pressia {
 	void Renderer2D::DrawQuad(const glm::vec3& position, const glm::vec2& size, const Ref<Texture2D>& texture, float tilingFactor, const glm::vec4 tintColor) {	// Draw quad with 3 coord position and provided texture
 		PS_PROFILE_RENDERER_FUNCTION();
 
-		if (s_Data.QuadIndexCount >= s_Data.MaxIndices) {
+		constexpr size_t quadVertexCount = 4;
+		const glm::vec2* textureCoords = texture->GetTexCoords();
+
+		if (s_Data.QuadIndexCount >= s_Data.MaxIndices) {	//Check if max number of quads have been constructed
 			FlushAndReset();
 		}
 
 		float textureIndex = 0.0f;
-
 		for (uint32_t i = 1; i < s_Data.TextureSlotIndex; i++) {	//Look through current textures to find current texture (for repeated texture use)
 			if (*s_Data.TextureSlots[i].get() == *texture.get()) {
 				textureIndex = (float)i;
@@ -296,7 +280,7 @@ namespace Pressia {
 			}
 		}
 
-		if (textureIndex == 0.0f) {									//Add new texture
+		if (textureIndex == 0.0f) {	//Add new texture
 			textureIndex = (float)s_Data.TextureSlotIndex;
 			s_Data.TextureSlots[s_Data.TextureSlotIndex] = texture;
 			s_Data.TextureSlotIndex++;
@@ -305,33 +289,14 @@ namespace Pressia {
 		glm::mat4 transform = glm::mat4(1.0f);
 		transform = glm::translate(transform, position) * glm::scale(transform, { size.x, size.y, 1.0f });
 
-		s_Data.QuadVertexBufferPtr->Position = transform * s_Data.QuadVertexPositions[0];
-		s_Data.QuadVertexBufferPtr->Color = tintColor;
-		s_Data.QuadVertexBufferPtr->TexCoord = { 0.0f, 0.0f };
-		s_Data.QuadVertexBufferPtr->TexIndex = textureIndex;
-		s_Data.QuadVertexBufferPtr->TilingFactor = tilingFactor;
-		s_Data.QuadVertexBufferPtr++;
-
-		s_Data.QuadVertexBufferPtr->Position = transform * s_Data.QuadVertexPositions[1];
-		s_Data.QuadVertexBufferPtr->Color = tintColor;
-		s_Data.QuadVertexBufferPtr->TexCoord = { 1.0f, 0.0f };
-		s_Data.QuadVertexBufferPtr->TexIndex = textureIndex;
-		s_Data.QuadVertexBufferPtr->TilingFactor = tilingFactor;
-		s_Data.QuadVertexBufferPtr++;
-
-		s_Data.QuadVertexBufferPtr->Position = transform * s_Data.QuadVertexPositions[2];
-		s_Data.QuadVertexBufferPtr->Color = tintColor;
-		s_Data.QuadVertexBufferPtr->TexCoord = { 1.0f, 1.0f };
-		s_Data.QuadVertexBufferPtr->TexIndex = textureIndex;
-		s_Data.QuadVertexBufferPtr->TilingFactor = tilingFactor;
-		s_Data.QuadVertexBufferPtr++;
-
-		s_Data.QuadVertexBufferPtr->Position = transform * s_Data.QuadVertexPositions[3];
-		s_Data.QuadVertexBufferPtr->Color = tintColor;
-		s_Data.QuadVertexBufferPtr->TexCoord = { 0.0f, 1.0f };
-		s_Data.QuadVertexBufferPtr->TexIndex = textureIndex;
-		s_Data.QuadVertexBufferPtr->TilingFactor = tilingFactor;
-		s_Data.QuadVertexBufferPtr++;
+		for (size_t i = 0; i < quadVertexCount; i++) {
+			s_Data.QuadVertexBufferPtr->Position = transform * s_Data.QuadVertexPositions[i];
+			s_Data.QuadVertexBufferPtr->Color = tintColor;
+			s_Data.QuadVertexBufferPtr->TexCoord = textureCoords[i];
+			s_Data.QuadVertexBufferPtr->TexIndex = textureIndex;
+			s_Data.QuadVertexBufferPtr->TilingFactor = tilingFactor;
+			s_Data.QuadVertexBufferPtr++;
+		}
 
 		s_Data.QuadIndexCount += 6;
 
@@ -362,12 +327,14 @@ namespace Pressia {
 	void Renderer2D::DrawQuad(const glm::vec3& position, const glm::vec2& size, const float rotation, const Ref<Texture2D>& texture, float tilingFactor, const glm::vec4 tintColor) {	// Draw quad with 3 coord position, rotation, and provided texture
 		PS_PROFILE_RENDERER_FUNCTION();
 
-		if (s_Data.QuadIndexCount >= s_Data.MaxIndices) {
+		constexpr size_t quadVertexCount = 4;
+		const glm::vec2* textureCoords = texture->GetTexCoords();
+
+		if (s_Data.QuadIndexCount >= s_Data.MaxIndices) {	//Check if max number of quads have been constructed
 			FlushAndReset();
 		}
 
 		float textureIndex = 0.0f;
-
 		for (uint32_t i = 1; i < s_Data.TextureSlotIndex; i++) {	//Look through current textures to find current texture (for repeated texture use)
 			if (*s_Data.TextureSlots[i].get() == *texture.get()) {
 				textureIndex = (float)i;
@@ -375,7 +342,7 @@ namespace Pressia {
 			}
 		}
 
-		if (textureIndex == 0.0f) {									//Add new texture
+		if (textureIndex == 0.0f) {	//Add new texture
 			textureIndex = (float)s_Data.TextureSlotIndex;
 			s_Data.TextureSlots[s_Data.TextureSlotIndex] = texture;
 			s_Data.TextureSlotIndex++;
@@ -384,33 +351,14 @@ namespace Pressia {
 		glm::mat4 transform = glm::mat4(1.0f);
 		transform = glm::translate(transform, position) * glm::scale(transform, { size.x, size.y, 1.0f }) * glm::rotate(transform, rotation, glm::vec3(0.0f, 0.0f, 1.0f));
 
-		s_Data.QuadVertexBufferPtr->Position = transform * s_Data.QuadVertexPositions[0];
-		s_Data.QuadVertexBufferPtr->Color = tintColor;
-		s_Data.QuadVertexBufferPtr->TexCoord = { 0.0f, 0.0f };
-		s_Data.QuadVertexBufferPtr->TexIndex = textureIndex;
-		s_Data.QuadVertexBufferPtr->TilingFactor = tilingFactor;
-		s_Data.QuadVertexBufferPtr++;
-
-		s_Data.QuadVertexBufferPtr->Position = transform * s_Data.QuadVertexPositions[1];
-		s_Data.QuadVertexBufferPtr->Color = tintColor;
-		s_Data.QuadVertexBufferPtr->TexCoord = { 1.0f, 0.0f };
-		s_Data.QuadVertexBufferPtr->TexIndex = textureIndex;
-		s_Data.QuadVertexBufferPtr->TilingFactor = tilingFactor;
-		s_Data.QuadVertexBufferPtr++;
-
-		s_Data.QuadVertexBufferPtr->Position = transform * s_Data.QuadVertexPositions[2];
-		s_Data.QuadVertexBufferPtr->Color = tintColor;
-		s_Data.QuadVertexBufferPtr->TexCoord = { 1.0f, 1.0f };
-		s_Data.QuadVertexBufferPtr->TexIndex = textureIndex;
-		s_Data.QuadVertexBufferPtr->TilingFactor = tilingFactor;
-		s_Data.QuadVertexBufferPtr++;
-
-		s_Data.QuadVertexBufferPtr->Position = transform * s_Data.QuadVertexPositions[3];
-		s_Data.QuadVertexBufferPtr->Color = tintColor;
-		s_Data.QuadVertexBufferPtr->TexCoord = { 0.0f, 1.0f };
-		s_Data.QuadVertexBufferPtr->TexIndex = textureIndex;
-		s_Data.QuadVertexBufferPtr->TilingFactor = tilingFactor;
-		s_Data.QuadVertexBufferPtr++;
+		for (size_t i = 0; i < quadVertexCount; i++) {
+			s_Data.QuadVertexBufferPtr->Position = transform * s_Data.QuadVertexPositions[i];
+			s_Data.QuadVertexBufferPtr->Color = tintColor;
+			s_Data.QuadVertexBufferPtr->TexCoord = textureCoords[i];
+			s_Data.QuadVertexBufferPtr->TexIndex = textureIndex;
+			s_Data.QuadVertexBufferPtr->TilingFactor = tilingFactor;
+			s_Data.QuadVertexBufferPtr++;
+		}
 
 		s_Data.QuadIndexCount += 6;
 
@@ -441,4 +389,4 @@ namespace Pressia {
 		memset(&s_Data.Stats, 0, sizeof(Statistics));
 	}
 
-}
+	}

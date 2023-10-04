@@ -12,6 +12,8 @@ void Sandbox2D::OnAttach() {
 	PS_PROFILE_FUNCTION();
 
 	m_Texture = Pressia::Texture2D::Create("Assets/Textures/Penguin.png");
+	m_TextureMap = Pressia::Texture2D::Create("Assets/Textures/colored_tilemap.png");
+	m_Sprite = Pressia::Texture2D::CreateSubTexture("Assets/Textures/colored_tilemap.png", { 12, 7 }, { 8, 8 }, { 1, 1 }, { 1, 1 });
 }
 
 void Sandbox2D::OnDetach() {
@@ -49,6 +51,9 @@ void Sandbox2D::OnUpdate(Pressia::Timestep ts) {
 		Pressia::Renderer2D::DrawQuad({ 5.0f, 0.0f, 0.0f }, { 2.0f, 2.0f }, { 0.2f, 0.8f, 0.2f, 1.0f });
 		Pressia::Renderer2D::DrawQuad({ 10.0f, 0.0f, 0.0f }, { 2.0f, 2.0f }, m_Quad2Angle, m_Texture);
 
+		Pressia::Renderer2D::DrawQuad({ 0.0f, -10.0f, 0.0f }, { 2.0f, 2.0f }, m_TextureMap);
+		Pressia::Renderer2D::DrawQuad({ 5.0f, -10.0f, 0.0f }, { 2.0f, 2.0f }, m_Sprite);
+
 		//Animated quad
 		static float rotation = 0.0f;
 		rotation += ts * 5.0f;
@@ -58,8 +63,8 @@ void Sandbox2D::OnUpdate(Pressia::Timestep ts) {
 
 		Pressia::Renderer2D::BeginScene(m_CameraController.GetCamera());
 
-		for (float y = 0; y < m_StressTestBound; y += 1.0f) {
-			for (float x = 0; x < m_StressTestBound; x += 1.0f) {
+		for (float y = 0.0f; y < m_StressTestBound; y += 1.0f) {
+			for (float x = 0.0f; x < m_StressTestBound; x += 1.0f) {
 				Pressia::Renderer2D::DrawQuad({ x, y, 0.0f }, { 1.0f, 1.0f }, 0.0f, { x / m_StressTestBound, y / m_StressTestBound, 0.3f, 1.0f });
 			}
 		}

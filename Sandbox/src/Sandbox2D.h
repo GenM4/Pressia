@@ -21,6 +21,8 @@ private:
 	Pressia::Ref<Pressia::VertexArray> m_SquareVA;
 	Pressia::Ref<Pressia::Shader> m_Shader;
 	Pressia::Ref<Pressia::Texture2D> m_Texture;
+	Pressia::Ref<Pressia::Texture2D> m_TextureMap;
+	Pressia::Ref<Pressia::Texture2D> m_Sprite;
 
 	glm::vec4 m_SquareColor = { 0.2f, 0.3f, 0.8f, 1.0f };
 	glm::vec3 m_Quad1Pos = { 0.0f, 0.0f, 0.0f };
@@ -31,6 +33,6 @@ private:
 	float m_TilingFactor = 1.0f;
 	bool m_ResetRenderStats = false;
 	float m_TPF = 0.0f;
-	float m_StressTestBound = 1.0;
+	float m_StressTestBound = 1.0f;
 };
 
