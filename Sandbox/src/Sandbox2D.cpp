@@ -14,6 +14,8 @@ void Sandbox2D::OnAttach() {
 	m_Texture = Pressia::Texture2D::Create("Assets/Textures/Penguin.png");
 	m_TextureMap = Pressia::Texture2D::Create("Assets/Textures/colored_tilemap.png");
 	m_Sprite = Pressia::Texture2D::CreateSubTexture("Assets/Textures/colored_tilemap.png", { 12, 7 }, { 8, 8 }, { 1, 1 }, { 1, 1 });
+
+	m_CameraController.SetZoomLevel(10.0f);
 }
 
 void Sandbox2D::OnDetach() {
