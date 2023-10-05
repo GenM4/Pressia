@@ -85,13 +85,15 @@ void Sandbox2D::OnUpdate(Pressia::Timestep ts) {
 void Sandbox2D::OnImGuiRender() {
 	PS_PROFILE_FUNCTION();
 
-	ImGui::Begin("Frame Rate");
+	ImGui::DockSpaceOverViewport(ImGui::GetMainViewport());	// Dockspace
+
+	ImGui::Begin("Frame Rate");	//FPS Meter
 	ImGui::Text("Frame Time: %5.3f ms", m_TPF * 1000.0f);
 	ImGui::Text("Frame Rate: %.0f", 1 / m_TPF);
 	ImGui::End();
 
-	ImGui::Begin("Settings");
 
+	ImGui::Begin("Settings");
 	ImGui::ColorEdit4("Square Color", glm::value_ptr(m_SquareColor));
 	ImGui::SliderFloat2("Quad 1 Position", glm::value_ptr(m_Quad1Pos), -5.0f, 5.0f);
 	ImGui::SliderFloat2("Quad 2 Position", glm::value_ptr(m_Quad2Pos), -5.0f, 5.0f);
@@ -102,21 +104,24 @@ void Sandbox2D::OnImGuiRender() {
 	ImGui::SliderFloat("Stress Test Bounds", &m_StressTestBound, 1.0f, 300.0f);
 	ImGui::End();
 
-	ImGui::Begin("Renderer Statistics");
 
+	ImGui::Begin("Renderer Statistics");
 	if (m_ResetRenderStats)
 		ImGui::Text("Showing Renderer Statistics per frame");
 	else
 		ImGui::Text("Showing Total Renderer Statistics");
-
 	ImGui::Checkbox("Reset every frame", &m_ResetRenderStats);
-
 	auto stats = Pressia::Renderer2D::GetStats();
 	ImGui::Text("Draw Calls: %d", stats.DrawCalls);
 	ImGui::Text("Quad Count: %d", stats.QuadCount);
 	ImGui::Text("Vertex Count: %d", stats.GetTotalVertexCount());
 	ImGui::Text("Index Count: %d", stats.GetTotalIndexCount());
+	ImGui::End();
 
+
+	ImGui::Begin("Texture");
+	uint32_t textureID = m_Texture->GetRendererID();
+	ImGui::Image((void*)textureID, ImVec2(512.0f, 512.0f));
 	ImGui::End();
 }
 
