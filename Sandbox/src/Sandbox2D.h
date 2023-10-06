@@ -18,11 +18,11 @@ private:
 	Pressia::OrthographicCameraController m_CameraController;
 
 	//Temp
-	Pressia::Ref<Pressia::VertexArray> m_SquareVA;
 	Pressia::Ref<Pressia::Shader> m_Shader;
 	Pressia::Ref<Pressia::Texture2D> m_Texture;
 	Pressia::Ref<Pressia::Texture2D> m_TextureMap;
 	Pressia::Ref<Pressia::Texture2D> m_Sprite;
+	Pressia::Ref<Pressia::Framebuffer> m_Framebuffer;
 
 	glm::vec4 m_SquareColor = { 0.2f, 0.3f, 0.8f, 1.0f };
 	glm::vec3 m_Quad1Pos = { 0.0f, 0.0f, 0.0f };

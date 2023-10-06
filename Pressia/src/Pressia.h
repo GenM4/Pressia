@@ -20,6 +20,7 @@
 #include "Pressia/Renderer/RenderCommand.h"
 
 #include "Pressia/Renderer/Buffer.h"
+#include "Pressia/Renderer/Framebuffer.h"
 #include "Pressia/Renderer/Shader.h"
 #include "Pressia/Renderer/Texture.h"
 #include "Pressia/Renderer/VertexArray.h"

@@ -15,6 +15,11 @@ void Sandbox2D::OnAttach() {
 	m_TextureMap = Pressia::Texture2D::Create("Assets/Textures/colored_tilemap.png");
 	m_Sprite = Pressia::Texture2D::CreateSubTexture("Assets/Textures/colored_tilemap.png", { 12, 7 }, { 8, 8 }, { 1, 1 }, { 1, 1 });
 
+	Pressia::FramebufferSpecification fbspec;
+	fbspec.Width = 1920;
+	fbspec.Height = 1080;
+	m_Framebuffer = Pressia::Framebuffer::Create(fbspec);
+
 	m_CameraController.SetZoomLevel(10.0f);
 }
 
@@ -34,6 +39,7 @@ void Sandbox2D::OnUpdate(Pressia::Timestep ts) {
 	// Render
 	{
 		PS_PROFILE_SCOPE("Pre Rendering");
+		m_Framebuffer->Bind();
 		Pressia::RenderCommand::SetClearColor({ 0.1f, 0.1f, 0.1f, 1 });
 		Pressia::RenderCommand::Clear();
 	}
@@ -79,13 +85,16 @@ void Sandbox2D::OnUpdate(Pressia::Timestep ts) {
 		}
 		*/
 		Pressia::Renderer2D::EndScene();
+		m_Framebuffer->Unbind();
 	}
 }
 
 void Sandbox2D::OnImGuiRender() {
 	PS_PROFILE_FUNCTION();
 
-	ImGui::DockSpaceOverViewport(ImGui::GetMainViewport());	// Dockspace
+	static bool dockingEnabled = true;	// Enable/Disable docking (for debug)
+	if (dockingEnabled)
+		ImGui::DockSpaceOverViewport(ImGui::GetMainViewport());	// Dockspace
 
 	ImGui::Begin("Frame Rate");	//FPS Meter
 	ImGui::Text("Frame Time: %5.3f ms", m_TPF * 1000.0f);
@@ -120,8 +129,8 @@ void Sandbox2D::OnImGuiRender() {
 
 
 	ImGui::Begin("Texture");
-	uint32_t textureID = m_Texture->GetRendererID();
-	ImGui::Image((void*)textureID, ImVec2(512.0f, 512.0f));
+	uint32_t textureID = m_Framebuffer->GetColorAttachmentRendererID();
+	ImGui::Image((void*)textureID, ImVec2(1920.0f, 1080.0f), ImVec2{ 0,1 }, ImVec2{ 1,0 });
 	ImGui::End();
 }
 
