@@ -3,6 +3,7 @@
 bin/
 bin-int/
 Sandbox/Assets/
+Pressia-Chamber/Assets/
 
 *.user
 *.json

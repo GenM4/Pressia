@@ -1,7 +1,7 @@
 #include "pspch.h"
 #include "WindowsWindow.h"
 
-#include "Platform/OpenGL/OpenGLContext.h"
+#include "Platform/OpenGL/OpenGLContext.h"	// Abstract for other renderer APIs
 #include "Pressia/Events/ApplicationEvent.h"
 #include "Pressia/Events/MouseEvent.h"
 #include "Pressia/Events/KeyEvent.h"
@@ -14,8 +14,8 @@ namespace Pressia {
 		PS_CORE_ERROR("GLFW Error ({0}): {1}", error, description);
 	}
 
-	Window* Window::Create(const WindowProps& props) {
-		return new WindowsWindow(props);
+	Scope<Window> Window::Create(const WindowProps& props) {
+		return CreateScope<WindowsWindow>(props);
 	}
 
 	WindowsWindow::WindowsWindow(const WindowProps& props) {
@@ -45,7 +45,7 @@ namespace Pressia {
 
 		m_Window = glfwCreateWindow((int)props.Width, (int)props.Height, m_Data.Title.c_str(), nullptr, nullptr);
 
-		m_Context = new OpenGLContext(m_Window);
+		m_Context = new OpenGLContext(m_Window);	// Abstract for other renderer APIs
 		m_Context->Init();
 
 		glfwSetWindowUserPointer(m_Window, &m_Data);

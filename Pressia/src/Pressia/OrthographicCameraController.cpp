@@ -48,6 +48,11 @@ namespace Pressia {
 		dispatcher.Dispatch<WindowResizeEvent>(PS_BIND_EVENT_FN(OrthographicCameraController::OnWindowResized));
 	}
 
+	void OrthographicCameraController::ResizeBounds(float width, float height) {
+		m_AspectRatio = width / height;
+		CalculateView();
+	}
+
 	void OrthographicCameraController::CalculateView() {
 		m_Camera.SetProjection(-m_AspectRatio * m_ZoomLevel, m_AspectRatio * m_ZoomLevel, -m_ZoomLevel, m_ZoomLevel);
 	}
@@ -65,9 +70,7 @@ namespace Pressia {
 	bool OrthographicCameraController::OnWindowResized(WindowResizeEvent& e) {
 		PS_PROFILE_RENDERER_FUNCTION();
 
-		m_AspectRatio = (float)e.GetWidth() / (float)e.GetHeight();
-		CalculateView();
-
+		ResizeBounds((float)e.GetWidth(), (float)e.GetHeight());
 		return false;
 	}
 

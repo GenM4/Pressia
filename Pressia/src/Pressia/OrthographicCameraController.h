@@ -15,6 +15,8 @@ namespace Pressia {
 		void OnUpdate(Timestep ts);
 		void OnEvent(Event& e);
 
+		void ResizeBounds(float width, float height);
+
 		OrthographicCamera& GetCamera() { return m_Camera; }
 		const OrthographicCamera& GetCamera() const { return m_Camera; }
 
@@ -33,7 +35,7 @@ namespace Pressia {
 		bool m_Rotation;
 
 		glm::vec3 m_CameraPosition = { 0.0f, 0.0f, 0.0f };
-		float m_CameraRotation = 0.0f;
+		float m_CameraRotation = 0.0f;	//Rotated angle, CCW
 
 		float m_CameraTranslationSpeed = 1.0f;
 		float m_CameraRotationSpeed = 70.0f;

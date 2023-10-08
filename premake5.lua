@@ -7,7 +7,7 @@ workspace "Pressia"
 		"Dist",
 	}
 	
-	startproject "Sandbox"
+	startproject "Pressia-Chamber"
 	outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 
 	-- Include Directories
@@ -123,9 +123,50 @@ project "Sandbox"
 	filter "system:windows"
 		systemversion "latest"
 
-		defines {
-			
-		}
+	filter "configurations:Debug"
+		defines "PS_DEBUG"
+		symbols "On"
+		runtime "Debug"
+
+	filter "configurations:Release"
+		defines "PS_RELEASE"
+		symbols "On"
+		runtime "Release"
+
+	filter "configurations:Dist"
+		defines "PS_DIST"
+		symbols "On"
+		runtime "Release"
+
+
+project "Pressia-Chamber"
+	location "Pressia-Chamber"
+	kind "ConsoleApp"
+	language "C++"
+	cppdialect "C++17"
+	staticruntime "On"
+	
+	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
+	objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
+
+	files {
+		"%{prj.name}/src/**.h",
+		"%{prj.name}/src/**.cpp"
+	}
+
+	includedirs {
+		"Pressia/vendor/spdlog/include",
+		"Pressia/src",
+		"Pressia/vendor",
+		"%{IncludeDir.glm}"
+	}
+
+	links {
+		"Pressia"
+	}
+
+	filter "system:windows"
+		systemversion "latest"
 
 	filter "configurations:Debug"
 		defines "PS_DEBUG"
