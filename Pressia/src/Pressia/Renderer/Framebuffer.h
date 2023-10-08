@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Pressia/Core/Core.h"
+#include "Pressia/Renderer/RendererConfig.h"
 
 namespace Pressia {
 

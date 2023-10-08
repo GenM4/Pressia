@@ -23,6 +23,14 @@ namespace Pressia {
 		m_Framebuffer = Framebuffer::Create(fbspec);
 
 		m_CameraController.SetZoomLevel(10.0f);
+
+		m_ActiveScene = CreateRef<Scene>();
+
+		auto square = m_ActiveScene->CreateEntity("Square Entity");
+
+		square.AddComponent<SpriteRendererComponent>(glm::vec4{ 0.2f, 0.7f, 0.5f, 1.0f });
+
+		m_SquareEntity = square;
 	}
 
 	void EditorLayer::OnDetach() {
@@ -40,56 +48,18 @@ namespace Pressia {
 			m_CameraController.OnUpdate(ts);
 
 		// Render
-		{
-			PS_PROFILE_SCOPE("Pre Rendering");
-			m_Framebuffer->Bind();
-			RenderCommand::SetClearColor({ 0.1f, 0.1f, 0.1f, 1 });
-			RenderCommand::Clear();
-		}
-
 		if (m_ResetRenderStats)
 			Renderer2D::ResetStats();
 
-		{
-			PS_PROFILE_SCOPE("Rendering");
-			Renderer2D::BeginScene(m_CameraController.GetCamera());
+		m_Framebuffer->Bind();
+		RenderCommand::SetClearColor({ 0.1f, 0.1f, 0.1f, 1 });
+		RenderCommand::Clear();
+		Renderer2D::BeginScene(m_CameraController.GetCamera());
 
-			Renderer2D::DrawQuad({ m_Quad1Pos.x, m_Quad1Pos.y + 5.0f, -0.1f }, { 0.8f, 0.8f }, m_Quad1Angle, m_SquareColor);
-			Renderer2D::DrawQuad(m_Quad2Pos, { 2.0f, 2.0f }, m_Quad2Angle, m_Texture, m_TilingFactor, m_SquareColor);
+		m_ActiveScene->OnUpdate(ts);	// Update Scene
 
-			Renderer2D::DrawQuad({ -5.0f, 0.0f, 0.0f }, { m_QuadScale.x, m_QuadScale.y }, { 0.8f, 0.3f, 0.8f, 1.0f });
-			Renderer2D::DrawQuad({ 0.0f, -5.0f, 0.0f }, { 2.0f, 2.0f }, m_Texture, m_TilingFactor);
-			Renderer2D::DrawQuad({ 5.0f, 0.0f, 0.0f }, { 2.0f, 2.0f }, { 0.2f, 0.8f, 0.2f, 1.0f });
-			Renderer2D::DrawQuad({ 10.0f, 0.0f, 0.0f }, { 2.0f, 2.0f }, m_Quad2Angle, m_Texture);
-
-			Renderer2D::DrawQuad({ 0.0f, -10.0f, 0.0f }, { 2.0f, 2.0f }, m_TextureMap);
-			Renderer2D::DrawQuad({ 5.0f, -10.0f, 0.0f }, { 2.0f, 2.0f }, m_Sprite);
-
-			//Animated quad
-			static float rotation = 0.0f;
-			rotation += ts * 5.0f;
-			Renderer2D::DrawQuad({ 15.0f, 0.0f, 0.0f }, { 2.0f, 2.0f }, rotation, m_Texture);
-
-			Renderer2D::EndScene();
-
-			Renderer2D::BeginScene(m_CameraController.GetCamera());
-
-			for (float y = 0.0f; y < m_StressTestBound; y += 1.0f) {
-				for (float x = 0.0f; x < m_StressTestBound; x += 1.0f) {
-					Renderer2D::DrawQuad({ x, y, 0.0f }, { 1.0f, 1.0f }, 0.0f, { x / m_StressTestBound, y / m_StressTestBound, 0.3f, 1.0f });
-				}
-			}
-
-			/*
-			for (float y = -20.0f; y < 20.0f; y += 1.0f) {
-				for (float x = -20.0f; x < 20.0f; x += 1.0f) {
-					Renderer2D::DrawQuad({ x, y, 0.0f }, { 1.0f, 1.0f }, 0.0f, { x / 50.0f, y / 50.0f, 0.3f, 1.0f });
-				}
-			}
-			*/
-			Renderer2D::EndScene();
-			m_Framebuffer->Unbind();
-		}
+		Renderer2D::EndScene();
+		m_Framebuffer->Unbind();
 	}
 
 	void EditorLayer::OnImGuiRender() {
@@ -106,14 +76,13 @@ namespace Pressia {
 
 
 		ImGui::Begin("Settings");
-		ImGui::ColorEdit4("Square Color", glm::value_ptr(m_SquareColor));
-		ImGui::SliderFloat2("Quad 1 Position", glm::value_ptr(m_Quad1Pos), -5.0f, 5.0f);
-		ImGui::SliderFloat2("Quad 2 Position", glm::value_ptr(m_Quad2Pos), -5.0f, 5.0f);
-		ImGui::SliderAngle("Quad 1 Angle", &m_Quad1Angle);
-		ImGui::SliderAngle("Quad 2 Angle", &m_Quad2Angle);
-		ImGui::SliderFloat2("Quad Scale", glm::value_ptr(m_QuadScale), 1.0f, 25.0f);
-		ImGui::SliderFloat("Texture Tiling", &m_TilingFactor, 1.0f, 20.0f);
-		ImGui::SliderFloat("Stress Test Bounds", &m_StressTestBound, 1.0f, 300.0f);
+		ImGui::Separator();
+		if (m_SquareEntity) {
+			ImGui::Text("%s", m_SquareEntity.GetComponent<TagComponent>().Tag.c_str());
+			auto& squareColor = m_SquareEntity.GetComponent<SpriteRendererComponent>().Color;
+			ImGui::ColorEdit4("Square Color", glm::value_ptr(squareColor));
+		}
+		ImGui::Separator();
 		ImGui::End();
 
 
@@ -142,7 +111,7 @@ namespace Pressia {
 		ImVec2 viewportPanelSize = ImGui::GetContentRegionAvail();
 
 		if (m_ViewportSize != *((glm::vec2*)&viewportPanelSize)) {
-			//m_Framebuffer->Resize((uint32_t)viewportPanelSize.x, (uint32_t)viewportPanelSize.y);
+			m_Framebuffer->Resize((uint32_t)viewportPanelSize.x, (uint32_t)viewportPanelSize.y);
 			m_ViewportSize = { viewportPanelSize.x, viewportPanelSize.y };
 
 			m_CameraController.ResizeBounds(viewportPanelSize.x, viewportPanelSize.y);

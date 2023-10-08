@@ -31,6 +31,9 @@
     <Filter Include="src\Pressia\Renderer">
       <UniqueIdentifier>{19CC9062-055B-1A2C-AE79-2E279AE72AD2}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\Pressia\Scene">
+      <UniqueIdentifier>{709206C6-DCA8-045C-2520-907D9175D5E3}</UniqueIdentifier>
+    </Filter>
     <Filter Include="vendor">
       <UniqueIdentifier>{B3738122-9F15-ACF8-88D0-BF4C74113349}</UniqueIdentifier>
     </Filter>
@@ -159,6 +162,9 @@
     <ClInclude Include="src\Pressia\Renderer\VertexArray.h">
       <Filter>src\Pressia\Renderer</Filter>
     </ClInclude>
+    <ClInclude Include="src\Pressia\Scene\Scene.h">
+      <Filter>src\Pressia\Scene</Filter>
+    </ClInclude>
     <ClInclude Include="src\pspch.h">
       <Filter>src</Filter>
     </ClInclude>
@@ -244,6 +250,9 @@
     </ClCompile>
     <ClCompile Include="src\Pressia\Renderer\VertexArray.cpp">
       <Filter>src\Pressia\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Pressia\Scene\Scene.cpp">
+      <Filter>src\Pressia\Scene</Filter>
     </ClCompile>
     <ClCompile Include="src\pspch.cpp">
       <Filter>src</Filter>

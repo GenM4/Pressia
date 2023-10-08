@@ -21,6 +21,7 @@ workspace "Pressia"
 	IncludeDir["imgui"] = "Pressia/vendor/imgui"
 	IncludeDir["glm"] = "Pressia/vendor/glm"
 	IncludeDir["stb_image"] = "Pressia/vendor/stb_image"
+	IncludeDir["entt"] = "Pressia/vendor/entt/include"
 
 	group "Dependencies"
 		include "Pressia/vendor/GLFW"
@@ -59,7 +60,8 @@ project "Pressia"
 		"%{IncludeDir.GLAD}",
 		"%{IncludeDir.imgui}",
 		"%{IncludeDir.glm}",
-		"%{IncludeDir.stb_image}"
+		"%{IncludeDir.stb_image}",
+		"%{IncludeDir.entt}"
 	}
 
 	links {
@@ -118,7 +120,8 @@ project "Sandbox"
 		"Pressia/vendor/spdlog/include",
 		"Pressia/src",
 		"Pressia/vendor",
-		"%{IncludeDir.glm}"
+		"%{IncludeDir.glm}",
+		"%{IncludeDir.entt}"
 	}
 
 	links {
@@ -163,7 +166,8 @@ project "Pressia-Chamber"
 		"Pressia/vendor/spdlog/include",
 		"Pressia/src",
 		"Pressia/vendor",
-		"%{IncludeDir.glm}"
+		"%{IncludeDir.glm}",
+		"%{IncludeDir.entt}"
 	}
 
 	links {
