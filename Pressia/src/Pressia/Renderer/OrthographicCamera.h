@@ -7,6 +7,8 @@ namespace Pressia {
 	class OrthographicCamera {
 	public:
 		OrthographicCamera(float left, float right, float bottom, float top);
+		~OrthographicCamera();
+
 		void SetProjection(float left, float right, float bottom, float top);
 
 		const glm::vec3& GetPosition() const { return m_Position; }

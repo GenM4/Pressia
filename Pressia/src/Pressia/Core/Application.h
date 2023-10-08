@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Core.h"
+#include "Pressia/Core/Core.h"
 
 #include "Window.h"
 #include "Pressia/Core/LayerStack.h"
@@ -34,6 +34,8 @@ namespace Pressia {
 		inline Window& GetWindow() { return *m_Window; }
 
 		void Close();
+
+		ImGuiLayer* GetImGuiLayer() { return m_ImGuiLayer; }
 	private:
 		bool OnWindowClose(WindowCloseEvent& e);
 		bool OnWindowResize(WindowResizeEvent& e);

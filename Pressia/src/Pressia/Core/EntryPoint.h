@@ -12,11 +12,11 @@ int main(int argc, char** argv) {
 	auto app = Pressia::CreateApplication();
 	PS_PROFILE_END_SESSION();
 
-	PS_PROFILE_BEGIN_SESSION("Startup", "Pressia_Profile_Runtime.json");
+	PS_PROFILE_BEGIN_SESSION("Runtime", "Pressia_Profile_Runtime.json");
 	app->Run();
 	PS_PROFILE_END_SESSION();
 
-	PS_PROFILE_BEGIN_SESSION("Startup", "Pressia_Profile_Shutdown.json");
+	PS_PROFILE_BEGIN_SESSION("Shutdown", "Pressia_Profile_Shutdown.json");
 	delete app;
 	PS_PROFILE_END_SESSION();
 }

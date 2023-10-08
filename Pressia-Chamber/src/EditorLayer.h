@@ -26,7 +26,8 @@ namespace Pressia {
 		Ref<Framebuffer> m_Framebuffer;
 
 		glm::vec2 m_ViewportSize = { 0.0f, 0.0f };
-
+		bool m_ViewportFocused = false;
+		bool m_ViewportHovered = false;
 		glm::vec4 m_SquareColor = { 0.2f, 0.3f, 0.8f, 1.0f };
 		glm::vec3 m_Quad1Pos = { 0.0f, 0.0f, 0.0f };
 		glm::vec3 m_Quad2Pos = { 0.0f, 0.0f, 0.0f };

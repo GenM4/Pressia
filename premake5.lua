@@ -6,6 +6,10 @@ workspace "Pressia"
 		"Release",
 		"Dist",
 	}
+
+	flags {
+		"MultiProcessorCompile"
+	}
 	
 	startproject "Pressia-Chamber"
 	outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
@@ -42,10 +46,10 @@ project "Pressia"
 	files {
 		"%{prj.name}/src/**.h",
 		"%{prj.name}/src/**.cpp",
-		"%{prj.name}/vendor/stb_image/stb_image.h",
-		"%{prj.name}/vendor/stb_image/stb_image.cpp",
-		"%{prj.name}/vendor/glm/glm.hpp",
-		"%{prj.name}/vendor/glm/glm.inl"
+		"%{prj.name}/vendor/stb_image/stb_image**.h",
+		"%{prj.name}/vendor/stb_image/stb_image**.cpp",
+		"%{prj.name}/vendor/glm/glm**.hpp",
+		"%{prj.name}/vendor/glm/glm**.inl"
 	}
 
 	includedirs {
@@ -66,12 +70,13 @@ project "Pressia"
 		"dwmapi.lib"
 	}
 
+	defines {
+			"_CRT_SECURE_NO_WARNINGS",
+			"GLFW_INCLUDE_NONE"
+	}
+
 	filter "system:windows"
 		systemversion "latest"
-
-		defines {
-			"GLFW_INCLUDE_NONE"
-		}
 
 	filter "configurations:Debug"
 		defines {

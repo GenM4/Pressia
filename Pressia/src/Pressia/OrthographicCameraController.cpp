@@ -13,23 +13,23 @@ namespace Pressia {
 	void OrthographicCameraController::OnUpdate(Timestep ts) {
 		PS_PROFILE_FUNCTION();
 
-		if (Input::IsKeyPressed(PS_KEY_A))
+		if (Input::IsKeyPressed(PSKeyCode::A))
 			m_CameraPosition.x -= m_CameraTranslationSpeed * ts;
 
-		else if (Input::IsKeyPressed(PS_KEY_D))
+		else if (Input::IsKeyPressed(PSKeyCode::D))
 			m_CameraPosition.x += m_CameraTranslationSpeed * ts;
 
-		if (Input::IsKeyPressed(PS_KEY_W))
+		if (Input::IsKeyPressed(PSKeyCode::W))
 			m_CameraPosition.y += m_CameraTranslationSpeed * ts;
 
-		else if (Input::IsKeyPressed(PS_KEY_S))
+		else if (Input::IsKeyPressed(PSKeyCode::S))
 			m_CameraPosition.y -= m_CameraTranslationSpeed * ts;
 
 		if (m_Rotation) {
-			if (Input::IsKeyPressed(PS_KEY_Q))
+			if (Input::IsKeyPressed(PSKeyCode::Q))
 				m_CameraRotation -= m_CameraRotationSpeed * ts;
 
-			else if (Input::IsKeyPressed(PS_KEY_E))
+			else if (Input::IsKeyPressed(PSKeyCode::E))
 				m_CameraRotation += m_CameraRotationSpeed * ts;
 
 			m_Camera.SetRotation(m_CameraRotation);

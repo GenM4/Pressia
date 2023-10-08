@@ -1,20 +1,19 @@
 #include "pspch.h"
-#include "WindowsInput.h"
+#include "Pressia/Core/Input.h"
+
 #include "Pressia/Core/Application.h"
 
 #include <GLFW/glfw3.h>
 
 namespace Pressia {
 
-	Input* Input::s_Instance = new WindowsInput();
-
-	bool WindowsInput::IsKeyPressedImpl(int keycode) {
+	bool Input::IsKeyPressed(PSKeyCode keycode) {
 		auto window = static_cast<GLFWwindow*>(Application::Get().GetWindow().GetNativeWindow());
-		auto state = glfwGetKey(window, keycode);
+		auto state = glfwGetKey(window, (int)keycode);
 		return state == GLFW_PRESS || state == GLFW_REPEAT;
 	}
 
-	std::pair<float, float> WindowsInput::GetMousePosImpl() {
+	std::pair<float, float> Input::GetMousePos() {
 		auto window = static_cast<GLFWwindow*>(Application::Get().GetWindow().GetNativeWindow());
 		double xpos, ypos;
 		glfwGetCursorPos(window, &xpos, &ypos);
@@ -22,20 +21,20 @@ namespace Pressia {
 		return { (float)xpos, (float)ypos };
 	}
 
-	bool WindowsInput::IsMouseButtonPressedImpl(int button) {
+	bool Input::IsMouseButtonPressed(int button) {
 		auto window = static_cast<GLFWwindow*>(Application::Get().GetWindow().GetNativeWindow());
 		auto state = glfwGetMouseButton(window, button);
 
 		return state == GLFW_PRESS;
 	}
 
-	float WindowsInput::GetMouseXImpl() {
-		auto [x, y] = GetMousePosImpl();
+	float Input::GetMouseX() {
+		auto [x, y] = GetMousePos();
 		return x;
 	}
 
-	float WindowsInput::GetMouseYImpl() {
-		auto [x, y] = GetMousePosImpl();
+	float Input::GetMouseY() {
+		auto [x, y] = GetMousePos();
 		return y;
 	}
 }

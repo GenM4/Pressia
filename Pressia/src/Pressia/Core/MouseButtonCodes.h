@@ -1,15 +1,25 @@
 #pragma once
 
-//From glfw3.h
-#define PS_MOUSE_BUTTON_1         0
-#define PS_MOUSE_BUTTON_2         1
-#define PS_MOUSE_BUTTON_3         2
-#define PS_MOUSE_BUTTON_4         3
-#define PS_MOUSE_BUTTON_5         4
-#define PS_MOUSE_BUTTON_6         5
-#define PS_MOUSE_BUTTON_7         6
-#define PS_MOUSE_BUTTON_8         7
-#define PS_MOUSE_BUTTON_LAST      PS_MOUSE_BUTTON_8
-#define PS_MOUSE_BUTTON_LEFT      PS_MOUSE_BUTTON_1
-#define PS_MOUSE_BUTTON_RIGHT     PS_MOUSE_BUTTON_2
-#define PS_MOUSE_BUTTON_MIDDLE    PS_MOUSE_BUTTON_3
+namespace Pressia {
+
+	enum class MouseCode {
+
+		//From glfw3.h
+		PS_MOUSE_BUTTON_1 = 0,
+		PS_MOUSE_BUTTON_2 = 1,
+		PS_MOUSE_BUTTON_3 = 2,
+		PS_MOUSE_BUTTON_4 = 3,
+		PS_MOUSE_BUTTON_5 = 4,
+		PS_MOUSE_BUTTON_6 = 5,
+		PS_MOUSE_BUTTON_7 = 6,
+		PS_MOUSE_BUTTON_8 = 7,
+		PS_MOUSE_BUTTON_LAST = PS_MOUSE_BUTTON_8,
+		PS_MOUSE_BUTTON_LEFT = PS_MOUSE_BUTTON_1,
+		PS_MOUSE_BUTTON_RIGHT = PS_MOUSE_BUTTON_2,
+		PS_MOUSE_BUTTON_MIDDLE = PS_MOUSE_BUTTON_3,
+
+	};
+
+}
+
+

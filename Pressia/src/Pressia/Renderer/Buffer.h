@@ -91,7 +91,7 @@ namespace Pressia {
 
 	class VertexBuffer {
 	public:
-		virtual ~VertexBuffer() {}
+		virtual ~VertexBuffer() = default;
 
 		virtual void Bind() const = 0;
 		virtual void UnBind() const = 0;
@@ -107,7 +107,7 @@ namespace Pressia {
 
 	class IndexBuffer {					//32-bit index buffer
 	public:
-		virtual ~IndexBuffer() {}
+		virtual ~IndexBuffer() = default;
 
 		virtual void Bind() const = 0;
 		virtual void UnBind() const = 0;

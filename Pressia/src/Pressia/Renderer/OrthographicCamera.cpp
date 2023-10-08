@@ -10,6 +10,9 @@ namespace Pressia {
 		m_ViewProjectionMatrix = m_ProjectionMatrix * m_ViewMatrix;
 	}
 
+	OrthographicCamera::~OrthographicCamera() {
+	}
+
 	void OrthographicCamera::SetProjection(float left, float right, float bottom, float top) {
 		PS_PROFILE_RENDERER_FUNCTION();
 
