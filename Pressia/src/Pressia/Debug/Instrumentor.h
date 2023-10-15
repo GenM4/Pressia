@@ -20,14 +20,9 @@ namespace Pressia {
 	};
 
 	class Instrumentor {
-	private:
-		InstrumentationSession* m_CurrentSession;
-		std::ofstream m_OutputStream;
-		int m_ProfileCount;
 	public:
-		Instrumentor()
-			: m_CurrentSession(nullptr), m_ProfileCount(0) {
-		}
+		Instrumentor(const Instrumentor&) = delete;
+		Instrumentor(Instrumentor&&) = delete;
 
 		void BeginSession(const std::string& name, const std::string& filepath = "results.json") {
 			m_OutputStream.open(filepath);
@@ -63,6 +58,20 @@ namespace Pressia {
 			m_OutputStream.flush();
 		}
 
+		static Instrumentor& Get() {
+			static Instrumentor instance;
+			return instance;
+		}
+
+	private:
+		Instrumentor()
+			: m_CurrentSession(nullptr), m_ProfileCount(0) {
+		}
+
+		~Instrumentor() {
+			EndSession();
+		}
+
 		void WriteHeader() {
 			m_OutputStream << "{\"otherData\": {},\"traceEvents\":[";
 			m_OutputStream.flush();
@@ -73,10 +82,10 @@ namespace Pressia {
 			m_OutputStream.flush();
 		}
 
-		static Instrumentor& Get() {
-			static Instrumentor instance;
-			return instance;
-		}
+	private:
+		InstrumentationSession* m_CurrentSession;
+		std::ofstream m_OutputStream;
+		int m_ProfileCount;
 	};
 
 	class InstrumentationTimer {

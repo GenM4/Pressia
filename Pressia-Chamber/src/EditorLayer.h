@@ -27,6 +27,8 @@ namespace Pressia {
 
 		Ref<Scene> m_ActiveScene;
 		Entity m_SquareEntity;
+		Entity m_CameraEntity;
+		Entity m_CameraEntity2;
 
 		glm::vec2 m_ViewportSize = { 0.0f, 0.0f };
 		bool m_ViewportFocused = false;
@@ -34,5 +36,8 @@ namespace Pressia {
 
 		bool m_ResetRenderStats = false;
 		float m_TPF = 0.0f;
+
+		bool m_Camera1Selected = true;
+		bool m_Camera2Selected = false;
 	};
 }

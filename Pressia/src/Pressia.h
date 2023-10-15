@@ -29,6 +29,7 @@
 
 #include "Pressia/Scene/Scene.h"
 #include "Pressia/Scene/Entity.h"
+#include "Pressia/Scene/ScriptableEntity.h"
 #include "Pressia/Scene/Components.h"
 
 // ------------ Entry Point ------------

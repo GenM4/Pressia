@@ -109,6 +109,20 @@ namespace Pressia {
 
 	}
 
+	void Renderer2D::BeginScene(const Camera& camera, const glm::mat4& cameraTransform) {
+		PS_PROFILE_RENDERER_FUNCTION();
+
+		glm::mat4 viewProj = camera.GetProjection() * glm::inverse(cameraTransform);
+
+		s_Data.TextureShader->Bind();
+		s_Data.TextureShader->SetMat4("u_ViewProjection", viewProj);
+
+		s_Data.QuadIndexCount = 0;
+		s_Data.QuadVertexBufferPtr = s_Data.QuadVertexBufferBase;
+
+		s_Data.TextureSlotIndex = 1;
+	}
+
 	void Renderer2D::BeginScene(const OrthographicCamera& camera) {
 		PS_PROFILE_RENDERER_FUNCTION();
 
@@ -218,7 +232,7 @@ namespace Pressia {
 		s_Data.QuadVA->Bind();
 		RenderCommand::DrawIndexed(s_Data.QuadVA);
 		#endif
-	}
+		}
 
 	void Renderer2D::DrawQuad(const glm::vec2& position, const glm::vec2& size, const Ref<Texture2D>& texture, float tilingFactor, const glm::vec4 tintColor) {	// Draw quad with 2 coord position and provided texture
 		DrawQuad({ position.x, position.y, 0.0f }, size, texture, tilingFactor, tintColor);
@@ -295,7 +309,7 @@ namespace Pressia {
 		s_Data.QuadVA->Bind();
 		RenderCommand::DrawIndexed(s_Data.QuadVA);
 		#endif
-	}
+		}
 
 	Renderer2D::Statistics Renderer2D::GetStats() {
 		return s_Data.Stats;
@@ -305,4 +319,4 @@ namespace Pressia {
 		memset(&s_Data.Stats, 0, sizeof(Statistics));
 	}
 
-}
+	}

@@ -31,6 +31,34 @@ namespace Pressia {
 		square.AddComponent<SpriteRendererComponent>(glm::vec4{ 0.2f, 0.7f, 0.5f, 1.0f });
 
 		m_SquareEntity = square;
+
+		m_CameraEntity = m_ActiveScene->CreateEntity("Camera Entity");
+		m_CameraEntity.AddComponent<CameraComponent>();
+
+		m_CameraEntity2 = m_ActiveScene->CreateEntity("Camera Entity 2");
+		m_CameraEntity2.AddComponent<CameraComponent>();
+
+
+		class CameraController : public ScriptableEntity {
+		public:
+			void OnCreate() { std::cout << "Created" << std::endl; }
+			void OnUpdate(Timestep ts) {
+				auto& transform = GetComponent<TransformComponent>().Transform;
+				float speed = 5.0f;
+
+				if (Input::IsKeyPressed(PSKeyCode::A))
+					transform[3][0] -= speed * ts;
+				if (Input::IsKeyPressed(PSKeyCode::D))
+					transform[3][0] += speed * ts;
+				if (Input::IsKeyPressed(PSKeyCode::S))
+					transform[3][1] -= speed * ts;
+				if (Input::IsKeyPressed(PSKeyCode::W))
+					transform[3][1] += speed * ts;
+			}
+			void OnDestroy() {}
+		};
+
+		m_CameraEntity.AddComponent<NativeScriptComponent>().Bind<CameraController>();
 	}
 
 	void EditorLayer::OnDetach() {
@@ -43,6 +71,13 @@ namespace Pressia {
 
 		m_TPF = ts;
 
+		// Resize
+		if (FramebufferSpecification spec = m_Framebuffer->GetSpecification(); m_ViewportSize.x > 0.0f && m_ViewportSize.y > 0.0f && (spec.Width != m_ViewportSize.x || spec.Height != m_ViewportSize.y)) {
+			m_Framebuffer->Resize((uint32_t)m_ViewportSize.x, (uint32_t)m_ViewportSize.y);
+			m_CameraController.ResizeBounds(m_ViewportSize.x, m_ViewportSize.y);
+			m_ActiveScene->OnViewportResize((uint32_t)m_ViewportSize.x, (uint32_t)m_ViewportSize.y);
+		}
+
 		//Update
 		if (m_ViewportFocused)
 			m_CameraController.OnUpdate(ts);
@@ -54,11 +89,7 @@ namespace Pressia {
 		m_Framebuffer->Bind();
 		RenderCommand::SetClearColor({ 0.1f, 0.1f, 0.1f, 1 });
 		RenderCommand::Clear();
-		Renderer2D::BeginScene(m_CameraController.GetCamera());
-
 		m_ActiveScene->OnUpdate(ts);	// Update Scene
-
-		Renderer2D::EndScene();
 		m_Framebuffer->Unbind();
 	}
 
@@ -76,13 +107,29 @@ namespace Pressia {
 
 
 		ImGui::Begin("Settings");
-		ImGui::Separator();
+
 		if (m_SquareEntity) {
+			ImGui::Separator();
 			ImGui::Text("%s", m_SquareEntity.GetComponent<TagComponent>().Tag.c_str());
 			auto& squareColor = m_SquareEntity.GetComponent<SpriteRendererComponent>().Color;
 			ImGui::ColorEdit4("Square Color", glm::value_ptr(squareColor));
+			ImGui::Separator();
 		}
-		ImGui::Separator();
+
+		m_Camera1Selected = ImGui::RadioButton("Camera 1", m_CameraEntity.GetComponent<CameraComponent>().Primary);
+		m_Camera2Selected = ImGui::RadioButton("Camera 2", m_CameraEntity2.GetComponent<CameraComponent>().Primary);
+
+		if (m_Camera1Selected) {
+			m_CameraEntity.GetComponent<CameraComponent>().Primary = true;
+			m_CameraEntity2.GetComponent<CameraComponent>().Primary = false;
+		}
+		else if (m_Camera2Selected) {
+			m_CameraEntity.GetComponent<CameraComponent>().Primary = false;
+			m_CameraEntity2.GetComponent<CameraComponent>().Primary = true;
+		}
+
+		ImGui::DragFloat3("Camera 1 Transform", glm::value_ptr(m_CameraEntity.GetComponent<TransformComponent>().Transform[3]));
+		ImGui::DragFloat3("Camera 2 Transform", glm::value_ptr(m_CameraEntity2.GetComponent<TransformComponent>().Transform[3]));
 		ImGui::End();
 
 

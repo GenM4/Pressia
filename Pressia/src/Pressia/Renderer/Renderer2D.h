@@ -1,5 +1,6 @@
 #pragma once
 
+#include "Pressia/Renderer/Camera.h"
 #include "Pressia/Renderer/OrthographicCamera.h"
 #include "Pressia/Renderer/Texture.h"
 
@@ -10,7 +11,9 @@ namespace Pressia {
 		static void Init();
 		static void Shutdown();
 
-		static void BeginScene(const OrthographicCamera& camera);
+		static void BeginScene(const Camera& camera, const glm::mat4& cameraTransform);
+		static void BeginScene(const OrthographicCamera& camera);	//TODO: roll into camera.h or something
+
 		static void EndScene();
 		static void Flush();
 
