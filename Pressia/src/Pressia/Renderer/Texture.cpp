@@ -44,7 +44,7 @@ namespace Pressia {
 		else
 			spacingX = spacing.x * coords.x;
 		if (coords.y == 0.0f)
-			spacingY == 0.0f;
+			spacingY = 0.0f;
 		else
 			spacingY = spacing.y * coords.y;
 

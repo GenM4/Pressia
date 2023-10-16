@@ -178,7 +178,8 @@ project "Pressia-Chamber"
 		systemversion "latest"
 
 	filter "configurations:Debug"
-		defines "PS_DEBUG"
+		defines {	"PS_DEBUG",
+					"PS_ENABLE_ASSERTS" }
 		symbols "On"
 		runtime "Debug"
 

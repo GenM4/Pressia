@@ -151,9 +151,6 @@
     </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="src\Pressia\Scene\SceneCamera.h" />
-    <ClInclude Include="src\Pressia\Renderer\Camera.h" />
-    <ClInclude Include="src\Pressia\Scene\Entity.h" />
     <ClInclude Include="src\Platform\OpenGL\OpenGLBuffer.h" />
     <ClInclude Include="src\Platform\OpenGL\OpenGLContext.h" />
     <ClInclude Include="src\Platform\OpenGL\OpenGLFramebuffer.h" />
@@ -183,6 +180,7 @@
     <ClInclude Include="src\Pressia\ImGui\ImGuiLayer.h" />
     <ClInclude Include="src\Pressia\OrthographicCameraController.h" />
     <ClInclude Include="src\Pressia\Renderer\Buffer.h" />
+    <ClInclude Include="src\Pressia\Renderer\Camera.h" />
     <ClInclude Include="src\Pressia\Renderer\Framebuffer.h" />
     <ClInclude Include="src\Pressia\Renderer\GraphicsContext.h" />
     <ClInclude Include="src\Pressia\Renderer\OrthographicCamera.h" />
@@ -195,14 +193,14 @@
     <ClInclude Include="src\Pressia\Renderer\Texture.h" />
     <ClInclude Include="src\Pressia\Renderer\VertexArray.h" />
     <ClInclude Include="src\Pressia\Scene\Components.h" />
+    <ClInclude Include="src\Pressia\Scene\Entity.h" />
     <ClInclude Include="src\Pressia\Scene\Scene.h" />
+    <ClInclude Include="src\Pressia\Scene\SceneCamera.h" />
     <ClInclude Include="src\Pressia\Scene\ScriptableEntity.h" />
     <ClInclude Include="src\pspch.h" />
     <ClInclude Include="vendor\stb_image\stb_image.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\Pressia\Scene\SceneCamera.cpp" />
-    <ClCompile Include="src\Pressia\Scene\Entity.cpp" />
     <ClCompile Include="src\Platform\OpenGL\OpenGLBuffer.cpp" />
     <ClCompile Include="src\Platform\OpenGL\OpenGLContext.cpp" />
     <ClCompile Include="src\Platform\OpenGL\OpenGLFramebuffer.cpp" />
@@ -229,7 +227,9 @@
     <ClCompile Include="src\Pressia\Renderer\Shader.cpp" />
     <ClCompile Include="src\Pressia\Renderer\Texture.cpp" />
     <ClCompile Include="src\Pressia\Renderer\VertexArray.cpp" />
+    <ClCompile Include="src\Pressia\Scene\Entity.cpp" />
     <ClCompile Include="src\Pressia\Scene\Scene.cpp" />
+    <ClCompile Include="src\Pressia\Scene\SceneCamera.cpp" />
     <ClCompile Include="src\pspch.cpp">
       <PrecompiledHeader>Create</PrecompiledHeader>
     </ClCompile>

@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Pressia.h"
+#include "Panels/SceneHeirarchyPanel.h"
 
 namespace Pressia {
 	class EditorLayer : public Layer {
@@ -39,5 +40,9 @@ namespace Pressia {
 
 		bool m_Camera1Selected = true;
 		bool m_Camera2Selected = false;
+		bool m_CameraSelectedFB[2] = { m_Camera1Selected, m_Camera2Selected };
+
+		//	Panels
+		SceneHeirarchyPanel m_SHP;
 	};
 }

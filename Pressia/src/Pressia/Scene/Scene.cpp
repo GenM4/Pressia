@@ -8,20 +8,7 @@
 namespace Pressia {
 
 	Scene::Scene() {
-		struct TransformComponent {
-			glm::mat4 Transform;
 
-			TransformComponent() = default;
-			TransformComponent(const TransformComponent&) = default;
-			TransformComponent(const glm::mat4& transform) : Transform(transform) {}
-
-			operator glm::mat4& () { return Transform; }
-			operator const glm::mat4& () const { return Transform; }
-		};
-
-		entt::entity entity = m_Registry.create();
-
-		m_Registry.emplace<TransformComponent>(entity);
 	}
 
 	Scene::~Scene() {
@@ -53,46 +40,44 @@ namespace Pressia {
 		// Update Scripts
 		{
 			m_Registry.view<NativeScriptComponent>().each([=](auto entity, auto& nsc) {
+				// Move to OnScenePlay once implemented
 				if (!nsc.Instance) {
-					nsc.InstantiateFunction();
+					nsc.Instance = nsc.InstantiateScript();
 					nsc.Instance->m_Entity = Entity{ entity, this };
-					nsc.OnCreateFunction(nsc.Instance);
+					nsc.Instance->OnCreate();
 				}
-				if (nsc.OnUpdateFunction)
-					nsc.OnUpdateFunction(nsc.Instance, ts);
+
+				nsc.Instance->OnUpdate(ts);
 				});
 		}
 
 		// Render 2D
 
-		Camera* mainCamera = nullptr;
 		glm::mat4* cameraTransform = nullptr;
 
 		{
 			auto view = m_Registry.view<TransformComponent, CameraComponent>();
 			for (auto entity : view) {
-				auto& [transform, camera] = view.get<TransformComponent, CameraComponent>(entity);
+				auto [transform, camera] = view.get<TransformComponent, CameraComponent>(entity);
 
-				if (camera.Primary) {
-					mainCamera = &camera.Camera;
+				if (&camera.Camera == m_CurrentCamera) {
 					cameraTransform = &transform.Transform;
 					break;
 				}
 			}
 		}
 
-		if (mainCamera) {
-			Renderer2D::BeginScene(mainCamera->GetProjection(), *cameraTransform);
+		PS_CORE_ASSERT(m_CurrentCamera != nullptr, "No camera set");
+		Renderer2D::BeginScene(m_CurrentCamera->GetProjection(), *cameraTransform);
 
-			auto group = m_Registry.group<TransformComponent>(entt::get<SpriteRendererComponent>);
-			for (auto entity : group) {
-				auto& [transform, sprite] = group.get<TransformComponent, SpriteRendererComponent>(entity);
+		auto group = m_Registry.group<TransformComponent>(entt::get<SpriteRendererComponent>);
+		for (auto entity : group) {
+			auto [transform, sprite] = group.get<TransformComponent, SpriteRendererComponent>(entity);
 
-				Renderer2D::DrawQuad(transform, sprite.Color);
-			}
-
-			Renderer2D::EndScene();
+			Renderer2D::DrawQuad(transform, sprite.Color);
 		}
+
+		Renderer2D::EndScene();
 	}
 
 }

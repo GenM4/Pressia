@@ -26,18 +26,16 @@ namespace Pressia {
 
 		m_ActiveScene = CreateRef<Scene>();
 
-		auto square = m_ActiveScene->CreateEntity("Square Entity");
-
-		square.AddComponent<SpriteRendererComponent>(glm::vec4{ 0.2f, 0.7f, 0.5f, 1.0f });
-
-		m_SquareEntity = square;
+		m_SquareEntity = m_ActiveScene->CreateEntity("Square Entity");
+		m_SquareEntity.AddComponent<SpriteRendererComponent>(glm::vec4{ 0.2f, 0.7f, 0.5f, 1.0f });
 
 		m_CameraEntity = m_ActiveScene->CreateEntity("Camera Entity");
 		m_CameraEntity.AddComponent<CameraComponent>();
 
 		m_CameraEntity2 = m_ActiveScene->CreateEntity("Camera Entity 2");
-		m_CameraEntity2.AddComponent<CameraComponent>();
+		m_CameraEntity2.AddComponent<CameraComponent>().Camera.SetOrthographicSize(5.0f);
 
+		m_ActiveScene->SetCamera(m_CameraEntity.GetComponent<CameraComponent>().Camera);
 
 		class CameraController : public ScriptableEntity {
 		public:
@@ -59,6 +57,9 @@ namespace Pressia {
 		};
 
 		m_CameraEntity.AddComponent<NativeScriptComponent>().Bind<CameraController>();
+		m_CameraEntity2.AddComponent<NativeScriptComponent>().Bind<CameraController>();
+
+		m_SHP.SetContext(m_ActiveScene);
 	}
 
 	void EditorLayer::OnDetach() {
@@ -106,6 +107,8 @@ namespace Pressia {
 		ImGui::End();
 
 
+		m_SHP.OnImGuiRender();
+
 		ImGui::Begin("Settings");
 
 		if (m_SquareEntity) {
@@ -116,16 +119,19 @@ namespace Pressia {
 			ImGui::Separator();
 		}
 
-		m_Camera1Selected = ImGui::RadioButton("Camera 1", m_CameraEntity.GetComponent<CameraComponent>().Primary);
-		m_Camera2Selected = ImGui::RadioButton("Camera 2", m_CameraEntity2.GetComponent<CameraComponent>().Primary);
+		m_Camera1Selected = ImGui::RadioButton("Camera 1", m_CameraSelectedFB[0]);
+		m_Camera2Selected = ImGui::RadioButton("Camera 2", m_CameraSelectedFB[1]);
 
 		if (m_Camera1Selected) {
-			m_CameraEntity.GetComponent<CameraComponent>().Primary = true;
-			m_CameraEntity2.GetComponent<CameraComponent>().Primary = false;
+			m_ActiveScene->SetCamera(m_CameraEntity.GetComponent<CameraComponent>().Camera);
+			m_CameraSelectedFB[0] = true;
+			m_CameraSelectedFB[1] = false;
+
 		}
 		else if (m_Camera2Selected) {
-			m_CameraEntity.GetComponent<CameraComponent>().Primary = false;
-			m_CameraEntity2.GetComponent<CameraComponent>().Primary = true;
+			m_ActiveScene->SetCamera(m_CameraEntity2.GetComponent<CameraComponent>().Camera);
+			m_CameraSelectedFB[0] = false;
+			m_CameraSelectedFB[1] = true;
 		}
 
 		ImGui::DragFloat3("Camera 1 Transform", glm::value_ptr(m_CameraEntity.GetComponent<TransformComponent>().Transform[3]));

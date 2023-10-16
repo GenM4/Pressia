@@ -129,6 +129,9 @@
     <ClInclude Include="src\Pressia\Renderer\Buffer.h">
       <Filter>src\Pressia\Renderer</Filter>
     </ClInclude>
+    <ClInclude Include="src\Pressia\Renderer\Camera.h">
+      <Filter>src\Pressia\Renderer</Filter>
+    </ClInclude>
     <ClInclude Include="src\Pressia\Renderer\Framebuffer.h">
       <Filter>src\Pressia\Renderer</Filter>
     </ClInclude>
@@ -162,7 +165,19 @@
     <ClInclude Include="src\Pressia\Renderer\VertexArray.h">
       <Filter>src\Pressia\Renderer</Filter>
     </ClInclude>
+    <ClInclude Include="src\Pressia\Scene\Components.h">
+      <Filter>src\Pressia\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Pressia\Scene\Entity.h">
+      <Filter>src\Pressia\Scene</Filter>
+    </ClInclude>
     <ClInclude Include="src\Pressia\Scene\Scene.h">
+      <Filter>src\Pressia\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Pressia\Scene\SceneCamera.h">
+      <Filter>src\Pressia\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Pressia\Scene\ScriptableEntity.h">
       <Filter>src\Pressia\Scene</Filter>
     </ClInclude>
     <ClInclude Include="src\pspch.h">
@@ -171,11 +186,6 @@
     <ClInclude Include="vendor\stb_image\stb_image.h">
       <Filter>vendor\stb_image</Filter>
     </ClInclude>
-    <ClInclude Include="src\Pressia\Scene\Entity.h" />
-    <ClInclude Include="src\Pressia\Scene\Components.h" />
-    <ClInclude Include="src\Pressia\Renderer\Camera.h" />
-    <ClInclude Include="src\Pressia\Scene\SceneCamera.h" />
-    <ClInclude Include="src\Pressia\Scene\ScriptableEntity.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Platform\OpenGL\OpenGLBuffer.cpp">
@@ -256,7 +266,13 @@
     <ClCompile Include="src\Pressia\Renderer\VertexArray.cpp">
       <Filter>src\Pressia\Renderer</Filter>
     </ClCompile>
+    <ClCompile Include="src\Pressia\Scene\Entity.cpp">
+      <Filter>src\Pressia\Scene</Filter>
+    </ClCompile>
     <ClCompile Include="src\Pressia\Scene\Scene.cpp">
+      <Filter>src\Pressia\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Pressia\Scene\SceneCamera.cpp">
       <Filter>src\Pressia\Scene</Filter>
     </ClCompile>
     <ClCompile Include="src\pspch.cpp">
@@ -265,7 +281,5 @@
     <ClCompile Include="vendor\stb_image\stb_image.cpp">
       <Filter>vendor\stb_image</Filter>
     </ClCompile>
-    <ClCompile Include="src\Pressia\Scene\Entity.cpp" />
-    <ClCompile Include="src\Pressia\Scene\SceneCamera.cpp" />
   </ItemGroup>
 </Project>
