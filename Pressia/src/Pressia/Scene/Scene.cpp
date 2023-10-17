@@ -67,7 +67,6 @@ namespace Pressia {
 			}
 		}
 
-		PS_CORE_ASSERT(m_CurrentCamera != nullptr, "No camera set");
 		Renderer2D::BeginScene(m_CurrentCamera->GetProjection(), *cameraTransform);
 
 		auto group = m_Registry.group<TransformComponent>(entt::get<SpriteRendererComponent>);

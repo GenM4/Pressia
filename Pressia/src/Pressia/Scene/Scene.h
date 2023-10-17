@@ -20,7 +20,6 @@ namespace Pressia {
 		void OnUpdate(Timestep ts);
 
 		void SetCamera(Camera& camera) { m_CurrentCamera = &camera; }
-		const Camera* GetCamera() const { return m_CurrentCamera; }
 	private:
 		entt::registry m_Registry;
 		uint32_t m_ViewportWidth = 0, m_ViewportHeight = 0;
