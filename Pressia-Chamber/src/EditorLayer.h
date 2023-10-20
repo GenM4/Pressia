@@ -35,7 +35,7 @@ namespace Pressia {
 		bool m_ViewportFocused = false;
 		bool m_ViewportHovered = false;
 
-		bool m_ResetRenderStats = false;
+		bool m_ResetRenderStats = true;
 		float m_TPF = 0.0f;
 
 		bool m_Camera1Selected = true;

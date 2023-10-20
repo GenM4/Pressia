@@ -26,13 +26,16 @@ namespace Pressia {
 
 		m_ActiveScene = CreateRef<Scene>();
 
-		m_SquareEntity = m_ActiveScene->CreateEntity("Square Entity");
-		m_SquareEntity.AddComponent<SpriteRendererComponent>(glm::vec4{ 0.2f, 0.7f, 0.5f, 1.0f });
+		auto square = m_ActiveScene->CreateEntity("Green Square");
+		square.AddComponent<SpriteRendererComponent>(glm::vec4{ 0.2f, 0.7f, 0.5f, 0.5f });
 
-		m_CameraEntity = m_ActiveScene->CreateEntity("Camera Entity");
+		auto square2 = m_ActiveScene->CreateEntity("Blue Square");
+		square2.AddComponent<SpriteRendererComponent>(glm::vec4{ 0.2f, 0.5f, 0.7f, 1.0f });
+
+		m_CameraEntity = m_ActiveScene->CreateEntity("Camera 1");
 		m_CameraEntity.AddComponent<CameraComponent>();
 
-		m_CameraEntity2 = m_ActiveScene->CreateEntity("Camera Entity 2");
+		m_CameraEntity2 = m_ActiveScene->CreateEntity("Camera 2");
 		m_CameraEntity2.AddComponent<CameraComponent>().Camera.SetOrthographicSize(5.0f);
 
 		m_ActiveScene->SetCamera(m_CameraEntity.GetComponent<CameraComponent>().Camera);
@@ -111,14 +114,6 @@ namespace Pressia {
 
 		ImGui::Begin("Settings");
 
-		if (m_SquareEntity) {
-			ImGui::Separator();
-			ImGui::Text("%s", m_SquareEntity.GetComponent<TagComponent>().Tag.c_str());
-			auto& squareColor = m_SquareEntity.GetComponent<SpriteRendererComponent>().Color;
-			ImGui::ColorEdit4("Square Color", glm::value_ptr(squareColor));
-			ImGui::Separator();
-		}
-
 		m_Camera1Selected = ImGui::RadioButton("Camera 1", m_CameraSelectedFB[0]);
 		m_Camera2Selected = ImGui::RadioButton("Camera 2", m_CameraSelectedFB[1]);
 
@@ -134,8 +129,6 @@ namespace Pressia {
 			m_CameraSelectedFB[1] = true;
 		}
 
-		ImGui::DragFloat3("Camera 1 Transform", glm::value_ptr(m_CameraEntity.GetComponent<TransformComponent>().Transform[3]));
-		ImGui::DragFloat3("Camera 2 Transform", glm::value_ptr(m_CameraEntity2.GetComponent<TransformComponent>().Transform[3]));
 		ImGui::End();
 
 

@@ -15,6 +15,7 @@ namespace Pressia {
 
 	private:
 		void DrawEntityNode(Entity entity);
+		void DrawComponents(Entity selectionContext);
 	private:
 		Ref<Scene> m_Context;
 		Entity m_SelectionContext;
