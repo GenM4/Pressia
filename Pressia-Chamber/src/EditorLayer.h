@@ -27,9 +27,6 @@ namespace Pressia {
 		Ref<Framebuffer> m_Framebuffer;
 
 		Ref<Scene> m_ActiveScene;
-		Entity m_SquareEntity;
-		Entity m_CameraEntity;
-		Entity m_CameraEntity2;
 
 		glm::vec2 m_ViewportSize = { 0.0f, 0.0f };
 		bool m_ViewportFocused = false;
@@ -37,10 +34,6 @@ namespace Pressia {
 
 		bool m_ResetRenderStats = true;
 		float m_TPF = 0.0f;
-
-		bool m_Camera1Selected = true;
-		bool m_Camera2Selected = false;
-		bool m_CameraSelectedFB[2] = { m_Camera1Selected, m_Camera2Selected };
 
 		//	Panels
 		SceneHeirarchyPanel m_SHP;

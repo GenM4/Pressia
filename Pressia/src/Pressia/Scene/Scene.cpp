@@ -23,6 +23,10 @@ namespace Pressia {
 		return entity;
 	}
 
+	void Scene::DestroyEntity(Entity entity) {
+		m_Registry.destroy(entity);
+	}
+
 	void Scene::OnViewportResize(uint32_t width, uint32_t height) {
 		m_ViewportWidth = width;
 		m_ViewportHeight = height;
@@ -53,7 +57,7 @@ namespace Pressia {
 
 		// Render 2D
 
-		glm::mat4* cameraTransform = nullptr;
+		glm::mat4 cameraTransform;
 
 		{
 			auto view = m_Registry.view<TransformComponent, CameraComponent>();
@@ -61,19 +65,19 @@ namespace Pressia {
 				auto [transform, camera] = view.get<TransformComponent, CameraComponent>(entity);
 
 				if (&camera.Camera == m_CurrentCamera) {
-					cameraTransform = &transform.Transform;
+					cameraTransform = transform.GetTransform();
 					break;
 				}
 			}
 		}
 
-		Renderer2D::BeginScene(m_CurrentCamera->GetProjection(), *cameraTransform);
+		Renderer2D::BeginScene(m_CurrentCamera->GetProjection(), cameraTransform);
 
 		auto group = m_Registry.group<TransformComponent>(entt::get<SpriteRendererComponent>);
 		for (auto entity : group) {
 			auto [transform, sprite] = group.get<TransformComponent, SpriteRendererComponent>(entity);
 
-			Renderer2D::DrawQuad(transform, sprite.Color);
+			Renderer2D::DrawQuad(transform.GetTransform(), sprite.Color);
 		}
 
 		Renderer2D::EndScene();

@@ -32,35 +32,35 @@ namespace Pressia {
 		auto square2 = m_ActiveScene->CreateEntity("Blue Square");
 		square2.AddComponent<SpriteRendererComponent>(glm::vec4{ 0.2f, 0.5f, 0.7f, 1.0f });
 
-		m_CameraEntity = m_ActiveScene->CreateEntity("Camera 1");
-		m_CameraEntity.AddComponent<CameraComponent>();
+		auto camera1 = m_ActiveScene->CreateEntity("Camera 1");
+		camera1.AddComponent<CameraComponent>();
 
-		m_CameraEntity2 = m_ActiveScene->CreateEntity("Camera 2");
-		m_CameraEntity2.AddComponent<CameraComponent>().Camera.SetOrthographicSize(5.0f);
+		auto camera2 = m_ActiveScene->CreateEntity("Camera 2");
+		camera2.AddComponent<CameraComponent>().Camera.SetOrthographicSize(5.0f);
 
-		m_ActiveScene->SetCamera(m_CameraEntity.GetComponent<CameraComponent>().Camera);
+		m_ActiveScene->SetCamera(camera1.GetComponent<CameraComponent>().Camera);
 
 		class CameraController : public ScriptableEntity {
 		public:
 			void OnCreate() { std::cout << "Created" << std::endl; }
 			void OnUpdate(Timestep ts) {
-				auto& transform = GetComponent<TransformComponent>().Transform;
+				auto& tc = GetComponent<TransformComponent>();
 				float speed = 5.0f;
 
 				if (Input::IsKeyPressed(PSKeyCode::A))
-					transform[3][0] -= speed * ts;
+					tc.Translation.x -= speed * ts;
 				if (Input::IsKeyPressed(PSKeyCode::D))
-					transform[3][0] += speed * ts;
+					tc.Translation.x += speed * ts;
 				if (Input::IsKeyPressed(PSKeyCode::S))
-					transform[3][1] -= speed * ts;
+					tc.Translation.y -= speed * ts;
 				if (Input::IsKeyPressed(PSKeyCode::W))
-					transform[3][1] += speed * ts;
+					tc.Translation.y += speed * ts;
 			}
 			void OnDestroy() {}
 		};
 
-		m_CameraEntity.AddComponent<NativeScriptComponent>().Bind<CameraController>();
-		m_CameraEntity2.AddComponent<NativeScriptComponent>().Bind<CameraController>();
+		camera1.AddComponent<NativeScriptComponent>().Bind<CameraController>();
+		camera2.AddComponent<NativeScriptComponent>().Bind<CameraController>();
 
 		m_SHP.SetContext(m_ActiveScene);
 	}
@@ -113,21 +113,6 @@ namespace Pressia {
 		m_SHP.OnImGuiRender();
 
 		ImGui::Begin("Settings");
-
-		m_Camera1Selected = ImGui::RadioButton("Camera 1", m_CameraSelectedFB[0]);
-		m_Camera2Selected = ImGui::RadioButton("Camera 2", m_CameraSelectedFB[1]);
-
-		if (m_Camera1Selected) {
-			m_ActiveScene->SetCamera(m_CameraEntity.GetComponent<CameraComponent>().Camera);
-			m_CameraSelectedFB[0] = true;
-			m_CameraSelectedFB[1] = false;
-
-		}
-		else if (m_Camera2Selected) {
-			m_ActiveScene->SetCamera(m_CameraEntity2.GetComponent<CameraComponent>().Camera);
-			m_CameraSelectedFB[0] = false;
-			m_CameraSelectedFB[1] = true;
-		}
 
 		ImGui::End();
 
