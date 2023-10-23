@@ -91,7 +91,7 @@ namespace Pressia {
 			Renderer2D::ResetStats();
 
 		m_Framebuffer->Bind();
-		RenderCommand::SetClearColor({ 0.1f, 0.1f, 0.1f, 1 });
+		RenderCommand::SetClearColor({ 0.1f, 0.105f, 0.11f, 1.0f });
 		RenderCommand::Clear();
 		m_ActiveScene->OnUpdate(ts);	// Update Scene
 		m_Framebuffer->Unbind();

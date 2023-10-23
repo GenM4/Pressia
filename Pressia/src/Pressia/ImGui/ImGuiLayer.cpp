@@ -31,6 +31,8 @@ namespace Pressia {
 		//io.ConfigFlags |= ImGuiConfigFlags_ViewportsNoTaskBarIcons;
 		//io.ConfigFlags |= ImGuiConfigFlags_ViewportsNoMerge;
 
+		io.FontDefault = io.Fonts->AddFontFromFileTTF("Assets/Fonts/Inter-VariableFont_slnt,wght.ttf", 16);
+
 		// Setup Dear ImGui style
 		ImGui::StyleColorsDark();
 		//ImGui::StyleColorsClassic();
@@ -41,6 +43,8 @@ namespace Pressia {
 			style.WindowRounding = 0.0f;
 			style.Colors[ImGuiCol_WindowBg].w = 1.0f;
 		}
+
+		SetDarkThemeColors();
 
 		Application& app = Application::Get();
 		GLFWwindow* window = static_cast<GLFWwindow*>(app.GetWindow().GetNativeWindow());
@@ -91,4 +95,34 @@ namespace Pressia {
 			glfwMakeContextCurrent(backup_current_context);
 		}
 	}
+	void ImGuiLayer::SetDarkThemeColors() {
+		auto& colors = ImGui::GetStyle().Colors;
+		colors[ImGuiCol_WindowBg] = ImVec4{ 0.0751f, 0.075105f, 0.07511f, 1.0f };
+
+		colors[ImGuiCol_Header] = ImVec4{ 0.1f, 0.105f, 0.11f, 1.0f };
+		colors[ImGuiCol_HeaderHovered] = ImVec4{ 0.29f, 0.3f, 0.35f, 1.0f };
+		colors[ImGuiCol_HeaderActive] = ImVec4{ 0.15f, 0.151f, 0.16f, 1.0f };
+
+		colors[ImGuiCol_Button] = ImVec4{ 0.21f, 0.401f, 0.51f, 1.0f };
+		colors[ImGuiCol_ButtonHovered] = ImVec4{ 0.51f, 0.601f, 0.41f, 1.0f };
+		colors[ImGuiCol_ButtonActive] = ImVec4{ 0.451f, 0.5501f, 0.351f, 1.0f };
+
+		colors[ImGuiCol_FrameBg] = ImVec4{ 0.21f, 0.401f, 0.51f, 1.0f };
+		colors[ImGuiCol_FrameBgHovered] = ImVec4{ 0.51f, 0.601f, 0.41f, 1.0f };
+		colors[ImGuiCol_FrameBgActive] = ImVec4{ 0.451f, 0.5501f, 0.351f, 1.0f };
+
+		colors[ImGuiCol_Tab] = ImVec4{ 0.17f, 0.171f, 0.171f, 1.0f };
+		colors[ImGuiCol_TabHovered] = ImVec4{ 0.21f, 0.301f, 0.41f, 1.0f };
+		colors[ImGuiCol_TabActive] = ImVec4{ 0.221f, 0.251f, 0.351f, 1.0f };
+		colors[ImGuiCol_TabUnfocused] = ImVec4{ 0.14f, 0.141f, 0.141f, 1.0f };
+		colors[ImGuiCol_TabUnfocusedActive] = ImVec4{ 0.21f, 0.201f, 0.21f, 1.0f };
+
+		colors[ImGuiCol_TitleBg] = ImVec4{ 0.15f, 0.151f, 0.155f, 1.0f };
+		colors[ImGuiCol_TitleBgActive] = ImVec4{ 0.17f, 0.171f, 0.175f, 1.0f };
+		colors[ImGuiCol_TitleBgCollapsed] = ImVec4{ 0.61f, 0.601f, 0.651f, 1.0f };
+
+
+
+	}
 }
+
