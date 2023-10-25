@@ -1,5 +1,6 @@
 #include "EditorLayer.h"
 
+#include "Pressia/Scene/SceneSerializer.h"
 
 #include <glm/gtc/type_ptr.hpp>
 #include <imgui/imgui.h>
@@ -38,7 +39,7 @@ namespace Pressia {
 		auto camera2 = m_ActiveScene->CreateEntity("Camera 2");
 		camera2.AddComponent<CameraComponent>().Camera.SetOrthographicSize(5.0f);
 
-		m_ActiveScene->SetCamera(camera1.GetComponent<CameraComponent>().Camera);
+		m_ActiveScene->SetCamera(camera1);
 
 		class CameraController : public ScriptableEntity {
 		public:
@@ -55,6 +56,10 @@ namespace Pressia {
 					tc.Translation.y -= speed * ts;
 				if (Input::IsKeyPressed(PSKeyCode::W))
 					tc.Translation.y += speed * ts;
+				if (Input::IsKeyPressed(PSKeyCode::Q))
+					tc.Rotation.z += speed * ts;
+				if (Input::IsKeyPressed(PSKeyCode::E))
+					tc.Rotation.z -= speed * ts;
 			}
 			void OnDestroy() {}
 		};
@@ -100,6 +105,27 @@ namespace Pressia {
 	void EditorLayer::OnImGuiRender() {
 		PS_PROFILE_FUNCTION();
 
+		ImGuiWindowFlags windowFlags = ImGuiWindowFlags_MenuBar;
+		ImGui::Begin("Pressia Chamber", 0, windowFlags);
+		if (ImGui::BeginMenuBar()) {
+			if (ImGui::BeginMenu("File")) {
+				if (ImGui::MenuItem("Save")) {
+					SceneSerializer serializer(m_ActiveScene);
+					serializer.SerializeText("Assets/Scenes/Test.pss");
+				}
+
+				if (ImGui::MenuItem("Load")) {
+					SceneSerializer serializer(m_ActiveScene);
+					serializer.DeserializeText("Assets/Scenes/Test.pss");
+				}
+
+				ImGui::EndMenu();
+			}
+
+			ImGui::EndMenuBar();
+		}
+		ImGui::End();
+
 		static bool dockingEnabled = true;	// Enable/Disable docking (for debug)
 		if (dockingEnabled)
 			ImGui::DockSpaceOverViewport(ImGui::GetMainViewport());	// Dockspace
@@ -108,7 +134,6 @@ namespace Pressia {
 		ImGui::Text("Frame Time: %5.3f ms", m_TPF * 1000.0f);
 		ImGui::Text("Frame Rate: %.0f", 1 / m_TPF);
 		ImGui::End();
-
 
 		m_SHP.OnImGuiRender();
 

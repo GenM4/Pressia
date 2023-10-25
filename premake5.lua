@@ -22,11 +22,13 @@ workspace "Pressia"
 	IncludeDir["glm"] = "Pressia/vendor/glm"
 	IncludeDir["stb_image"] = "Pressia/vendor/stb_image"
 	IncludeDir["entt"] = "Pressia/vendor/entt/include"
+	IncludeDir["yamlcpp"] = "Pressia/vendor/yamlcpp/include"
 
 	group "Dependencies"
 		include "Pressia/vendor/GLFW"
 		include "Pressia/vendor/GLAD"
 		include "Pressia/vendor/imgui"
+		include "Pressia/vendor/yamlcpp"
 
 	group ""
 
@@ -61,15 +63,16 @@ project "Pressia"
 		"%{IncludeDir.imgui}",
 		"%{IncludeDir.glm}",
 		"%{IncludeDir.stb_image}",
-		"%{IncludeDir.entt}"
+		"%{IncludeDir.entt}",
+		"%{IncludeDir.yamlcpp}"
 	}
 
 	links {
 		"GLFW",
 		"GLAD",
 		"ImGui",
-		"opengl32.lib",
-		"dwmapi.lib"
+		"yamlcpp",
+		"opengl32.lib"
 	}
 
 	defines {

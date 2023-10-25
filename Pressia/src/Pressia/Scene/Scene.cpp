@@ -83,4 +83,15 @@ namespace Pressia {
 		Renderer2D::EndScene();
 	}
 
+	void Scene::SetCamera(Camera& camera) {
+		m_CurrentCamera = &camera;
+	}
+
+	void Scene::SetCamera(Entity& cameraEntity) {
+		m_CurrentCameraEntity = CreateRef<Entity>(cameraEntity);
+		auto& camera = cameraEntity.GetComponent<CameraComponent>().Camera;
+
+		SetCamera(camera);
+	}
+
 }
