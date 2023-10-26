@@ -136,6 +136,9 @@ namespace Pressia {
 	void Renderer2D::EndScene() {
 		PS_PROFILE_RENDERER_FUNCTION();
 
+		if (s_Data.QuadIndexCount == 0)
+			return;
+
 		uint32_t dataSize = (uint8_t*)s_Data.QuadVertexBufferPtr - (uint8_t*)s_Data.QuadVertexBufferBase;
 		s_Data.QuadVB->SetData(s_Data.QuadVertexBufferBase, dataSize);
 
@@ -317,4 +320,4 @@ namespace Pressia {
 		memset(&s_Data.Stats, 0, sizeof(Statistics));
 	}
 
-	}
+}

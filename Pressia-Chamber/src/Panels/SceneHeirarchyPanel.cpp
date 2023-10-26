@@ -12,6 +12,7 @@ namespace Pressia {
 
 	void SceneHeirarchyPanel::SetContext(const Ref<Scene>& context) {
 		m_Context = context;
+		m_SelectionContext = {};
 	}
 
 	void SceneHeirarchyPanel::OnImGuiRender() {

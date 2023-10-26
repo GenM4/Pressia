@@ -8,7 +8,9 @@
 namespace Pressia {
 
 	Scene::Scene() {
-
+		auto defaultCam = CreateEntity("Default Camera");
+		defaultCam.AddComponent<CameraComponent>();
+		SetCamera(defaultCam);
 	}
 
 	Scene::~Scene() {

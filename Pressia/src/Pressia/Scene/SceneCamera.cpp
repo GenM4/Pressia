@@ -6,7 +6,7 @@
 namespace Pressia {
 
 	Pressia::SceneCamera::SceneCamera() {
-
+		RecalculateProjection();
 	}
 
 	void Pressia::SceneCamera::SetOrthographic(float size, float nearClip, float farClip) {

@@ -34,6 +34,9 @@
     <Filter Include="src\Pressia\Scene">
       <UniqueIdentifier>{709206C6-DCA8-045C-2520-907D9175D5E3}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\Pressia\Utils">
+      <UniqueIdentifier>{B32634C6-1F3D-325C-68B4-BD7DD40903E4}</UniqueIdentifier>
+    </Filter>
     <Filter Include="vendor">
       <UniqueIdentifier>{B3738122-9F15-ACF8-88D0-BF4C74113349}</UniqueIdentifier>
     </Filter>
@@ -177,8 +180,14 @@
     <ClInclude Include="src\Pressia\Scene\SceneCamera.h">
       <Filter>src\Pressia\Scene</Filter>
     </ClInclude>
+    <ClInclude Include="src\Pressia\Scene\SceneSerializer.h">
+      <Filter>src\Pressia\Scene</Filter>
+    </ClInclude>
     <ClInclude Include="src\Pressia\Scene\ScriptableEntity.h">
       <Filter>src\Pressia\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Pressia\Utils\PlatformUtils.h">
+      <Filter>src\Pressia\Utils</Filter>
     </ClInclude>
     <ClInclude Include="src\pspch.h">
       <Filter>src</Filter>
@@ -186,7 +195,6 @@
     <ClInclude Include="vendor\stb_image\stb_image.h">
       <Filter>vendor\stb_image</Filter>
     </ClInclude>
-    <ClInclude Include="src\Pressia\Scene\SceneSerializer.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Platform\OpenGL\OpenGLBuffer.cpp">
@@ -211,6 +219,9 @@
       <Filter>src\Platform\OpenGL</Filter>
     </ClCompile>
     <ClCompile Include="src\Platform\Windows\WindowsInput.cpp">
+      <Filter>src\Platform\Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Platform\Windows\WindowsPlatformUtils.cpp">
       <Filter>src\Platform\Windows</Filter>
     </ClCompile>
     <ClCompile Include="src\Platform\Windows\WindowsWindow.cpp">
@@ -276,12 +287,14 @@
     <ClCompile Include="src\Pressia\Scene\SceneCamera.cpp">
       <Filter>src\Pressia\Scene</Filter>
     </ClCompile>
+    <ClCompile Include="src\Pressia\Scene\SceneSerializer.cpp">
+      <Filter>src\Pressia\Scene</Filter>
+    </ClCompile>
     <ClCompile Include="src\pspch.cpp">
       <Filter>src</Filter>
     </ClCompile>
     <ClCompile Include="vendor\stb_image\stb_image.cpp">
       <Filter>vendor\stb_image</Filter>
     </ClCompile>
-    <ClCompile Include="src\Pressia\Scene\SceneSerializer.cpp" />
   </ItemGroup>
 </Project>
