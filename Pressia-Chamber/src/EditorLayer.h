@@ -42,5 +42,8 @@ namespace Pressia {
 
 		//	Panels
 		SceneHeirarchyPanel m_SHP;
+
+		//	Gizmos
+		int m_GizmoType = -1;	//	-1 = no gizmo
 	};
 }

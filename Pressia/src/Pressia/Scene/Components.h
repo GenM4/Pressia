@@ -4,6 +4,8 @@
 #include "Pressia/Scene/ScriptableEntity.h"
 
 #include <glm/gtc/matrix_transform.hpp>
+#define GLM_ENABLE_EXPERIMENTAL
+#include <glm/gtx/quaternion.hpp>
 #include <glm/glm.hpp>
 
 namespace Pressia {
@@ -29,7 +31,7 @@ namespace Pressia {
 			auto transform = glm::mat4(1.0f);
 
 			transform = glm::translate(transform, Translation)
-				* glm::rotate(transform, Rotation.x, { 1, 0, 0 }) * glm::rotate(transform, Rotation.y, { 0, 1, 0 }) * glm::rotate(transform, Rotation.z, { 0, 0, 1 })
+				* glm::toMat4(glm::quat(Rotation))
 				* glm::scale(transform, Scale);
 
 			return transform;

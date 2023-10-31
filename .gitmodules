@@ -13,3 +13,6 @@
 [submodule "Pressia/vendor/yamlcpp"]
 	path = Pressia/vendor/yamlcpp
 	url = https://github.com/GenM4/yaml-cpp
+[submodule "Pressia/vendor/imguizmo"]
+	path = Pressia/vendor/imguizmo
+	url = https://github.com/GenM4/ImGuizmo

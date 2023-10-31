@@ -22,6 +22,10 @@ namespace Pressia {
 
 		void SetCamera(Camera& camera);
 		void SetCamera(Entity& cameraEntity);
+
+		Ref<Entity> GetCamera() { return m_CurrentCameraEntity; }
+
+		void CreateDefaultCamera();
 	private:
 		entt::registry m_Registry;
 		uint32_t m_ViewportWidth = 0, m_ViewportHeight = 0;

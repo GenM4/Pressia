@@ -10,6 +10,7 @@
 #include <GLFW/glfw3.h> // Temp
 #include <glad/glad.h> // Temp
 
+#include <ImGuizmo.h>
 
 namespace Pressia {
 
@@ -76,6 +77,7 @@ namespace Pressia {
 		ImGui_ImplOpenGL3_NewFrame();
 		ImGui_ImplGlfw_NewFrame();
 		ImGui::NewFrame();
+		ImGuizmo::BeginFrame();
 	}
 
 	void ImGuiLayer::End() {

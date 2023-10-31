@@ -28,6 +28,9 @@
     <Filter Include="src\Pressia\ImGui">
       <UniqueIdentifier>{7D9A56C5-E9B0-545B-3228-E07C9E7D25E3}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\Pressia\Math">
+      <UniqueIdentifier>{CCAB23A1-B8A4-42F3-E1D6-2778CD2E22FF}</UniqueIdentifier>
+    </Filter>
     <Filter Include="src\Pressia\Renderer">
       <UniqueIdentifier>{19CC9062-055B-1A2C-AE79-2E279AE72AD2}</UniqueIdentifier>
     </Filter>
@@ -125,6 +128,9 @@
     </ClInclude>
     <ClInclude Include="src\Pressia\ImGui\ImGuiLayer.h">
       <Filter>src\Pressia\ImGui</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Pressia\Math\Math.h">
+      <Filter>src\Pressia\Math</Filter>
     </ClInclude>
     <ClInclude Include="src\Pressia\OrthographicCameraController.h">
       <Filter>src\Pressia</Filter>
@@ -244,6 +250,9 @@
     </ClCompile>
     <ClCompile Include="src\Pressia\ImGui\ImGuiLayer.cpp">
       <Filter>src\Pressia\ImGui</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Pressia\Math\Math.cpp">
+      <Filter>src\Pressia\Math</Filter>
     </ClCompile>
     <ClCompile Include="src\Pressia\OrthographicCameraController.cpp">
       <Filter>src\Pressia</Filter>

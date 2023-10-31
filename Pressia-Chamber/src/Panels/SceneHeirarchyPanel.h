@@ -13,6 +13,7 @@ namespace Pressia {
 
 		void OnImGuiRender();
 
+		Entity GetSelectedEntity() { return m_SelectionContext; }
 	private:
 		void DrawEntityNode(Entity entity);
 		void DrawComponents(Entity selectionContext);

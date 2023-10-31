@@ -2,9 +2,12 @@
 
 #include "Pressia/Scene/SceneSerializer.h"
 #include "Pressia/Utils/PlatformUtils.h"
+#include "Pressia/Math/Math.h"
 
 #include <glm/gtc/type_ptr.hpp>
+
 #include <imgui/imgui.h>
+#include <imguizmo/ImGuizmo.h>
 #include <chrono>
 
 namespace Pressia {
@@ -26,22 +29,7 @@ namespace Pressia {
 
 		m_CameraController.SetZoomLevel(10.0f);
 
-		m_ActiveScene = CreateRef<Scene>();
 		/*
-		auto square = m_ActiveScene->CreateEntity("Green Square");
-		square.AddComponent<SpriteRendererComponent>(glm::vec4{ 0.2f, 0.7f, 0.5f, 0.5f });
-
-		auto square2 = m_ActiveScene->CreateEntity("Blue Square");
-		square2.AddComponent<SpriteRendererComponent>(glm::vec4{ 0.2f, 0.5f, 0.7f, 1.0f });
-
-		auto camera1 = m_ActiveScene->CreateEntity("Camera 1");
-		camera1.AddComponent<CameraComponent>();
-
-		auto camera2 = m_ActiveScene->CreateEntity("Camera 2");
-		camera2.AddComponent<CameraComponent>().Camera.SetOrthographicSize(5.0f);
-
-		m_ActiveScene->SetCamera(camera1);
-
 		class CameraController : public ScriptableEntity {
 		public:
 			void OnCreate() { std::cout << "Created" << std::endl; }
@@ -68,7 +56,8 @@ namespace Pressia {
 		camera1.AddComponent<NativeScriptComponent>().Bind<CameraController>();
 		camera2.AddComponent<NativeScriptComponent>().Bind<CameraController>();
 		*/
-		m_SHP.SetContext(m_ActiveScene);
+
+		NewScene();
 	}
 
 	void EditorLayer::OnDetach() {
@@ -211,7 +200,7 @@ namespace Pressia {
 
 		m_ViewportFocused = ImGui::IsWindowFocused();
 		m_ViewportHovered = ImGui::IsWindowHovered();
-		Application::Get().GetImGuiLayer()->BlockEvents(!m_ViewportFocused || !m_ViewportHovered);
+		Application::Get().GetImGuiLayer()->BlockEvents(!m_ViewportFocused && !m_ViewportHovered);
 
 		ImVec2 viewportPanelSize = ImGui::GetContentRegionAvail();
 
@@ -224,6 +213,48 @@ namespace Pressia {
 
 		uint32_t textureID = m_Framebuffer->GetColorAttachmentRendererID();
 		ImGui::Image((void*)textureID, ImVec2(m_ViewportSize.x, m_ViewportSize.y), ImVec2{ 0,1 }, ImVec2{ 1,0 });
+
+		//	Gizmos
+		Entity selectedEntity = m_SHP.GetSelectedEntity();
+		if (selectedEntity && m_GizmoType != -1) {
+			ImGuizmo::SetOrthographic(false);
+			ImGuizmo::SetDrawlist();
+			float windowWidth = (float)ImGui::GetWindowWidth();
+			float windowHeight = (float)ImGui::GetWindowHeight();
+			ImGuizmo::SetRect(ImGui::GetWindowPos().x, ImGui::GetWindowPos().y, windowWidth, windowHeight);
+
+			//	Camera
+			auto cameraEntity = m_ActiveScene->GetCamera();
+			const auto& camera = cameraEntity->GetComponent<CameraComponent>().Camera;
+			const glm::mat4& cameraProjection = camera.GetProjection();
+			glm::mat4 cameraView = glm::inverse(cameraEntity->GetComponent<TransformComponent>().GetTransform());
+
+			//	Entity transform
+			auto& tc = selectedEntity.GetComponent<TransformComponent>();
+			glm::mat4 transform = tc.GetTransform();
+
+			//	Snapping
+			bool snap = Input::IsKeyPressed(PSKeyCode::LEFT_CONTROL);
+			float snapValue = 0.5f;	//	Snap to 0.5m for translation/scale
+			if (m_GizmoType == ImGuizmo::OPERATION::ROTATE)
+				snapValue = 45.0f;	//	Snap to 45deg for rotation
+
+			float snapValues[3] = { snapValue, snapValue, snapValue };
+
+			ImGuizmo::Manipulate(glm::value_ptr(cameraView), glm::value_ptr(cameraProjection), (ImGuizmo::OPERATION)m_GizmoType, ImGuizmo::LOCAL, glm::value_ptr(transform), nullptr, snap ? snapValues : nullptr);
+
+			if (ImGuizmo::IsUsing()) {
+				glm::vec3 translation, scale;
+				glm::quat rotation;
+
+				Math::DecomposeTransform(transform, translation, rotation, scale);
+
+				tc.Translation = translation;
+				tc.Rotation = glm::eulerAngles(rotation);
+				tc.Scale = scale;
+
+			}
+		}
 
 		ImGui::End();
 		ImGui::PopStyleVar();
@@ -260,6 +291,21 @@ namespace Pressia {
 					SaveSceneAs();
 				break;
 			}
+			case (int)PSKeyCode::R: {
+				if (!ImGuizmo::IsUsing())
+					m_GizmoType = ImGuizmo::ROTATE;
+				break;
+			}
+			case (int)PSKeyCode::T: {
+				if (!ImGuizmo::IsUsing())
+					m_GizmoType = ImGuizmo::TRANSLATE;
+				break;
+			}
+			case (int)PSKeyCode::Y: {
+				if (!ImGuizmo::IsUsing())
+					m_GizmoType = ImGuizmo::SCALE;
+				break;
+			}
 		}
 
 		return false;
@@ -267,6 +313,7 @@ namespace Pressia {
 
 	void EditorLayer::NewScene() {
 		m_ActiveScene = CreateRef<Scene>();
+		m_ActiveScene->CreateDefaultCamera();
 		m_ActiveScene->OnViewportResize((uint32_t)m_ViewportSize.x, (uint32_t)m_ViewportSize.y);
 		m_SHP.SetContext(m_ActiveScene);
 	}
@@ -280,6 +327,9 @@ namespace Pressia {
 
 			SceneSerializer serializer(m_ActiveScene);
 			serializer.DeserializeText(filepath);
+
+			if (m_ActiveScene->GetCamera() == nullptr)
+				m_ActiveScene->CreateDefaultCamera();
 		}
 	}
 
