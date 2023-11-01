@@ -2,6 +2,7 @@
 
 #include "Pressia.h"
 #include "Panels/SceneHeirarchyPanel.h"
+#include "Pressia/Renderer/EditorCamera.h"
 
 namespace Pressia {
 	class EditorLayer : public Layer {
@@ -22,23 +23,18 @@ namespace Pressia {
 		void OpenScene();
 		void SaveSceneAs();
 	private:
-		OrthographicCameraController m_CameraController;
+		EditorCamera m_EditorCamera;
 
-		//Temp
-		Ref<Shader> m_Shader;
-		Ref<Texture2D> m_Texture;
-		Ref<Texture2D> m_TextureMap;
-		Ref<Texture2D> m_Sprite;
+		//	Temp
 		Ref<Framebuffer> m_Framebuffer;
+		bool m_ResetRenderStats = true;
+		float m_TPF = 0.0f;
 
 		Ref<Scene> m_ActiveScene;
 
 		glm::vec2 m_ViewportSize = { 0.0f, 0.0f };
 		bool m_ViewportFocused = false;
 		bool m_ViewportHovered = false;
-
-		bool m_ResetRenderStats = true;
-		float m_TPF = 0.0f;
 
 		//	Panels
 		SceneHeirarchyPanel m_SHP;

@@ -2,7 +2,7 @@
 
 namespace Pressia {
 
-	enum class MouseCode {
+	enum class PSMouseCode {
 
 		//From glfw3.h
 		PS_MOUSE_BUTTON_1 = 0,

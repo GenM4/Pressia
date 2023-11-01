@@ -12,22 +12,16 @@
 
 namespace Pressia {
 
-	EditorLayer::EditorLayer() : Layer("Sandbox2D"), m_CameraController(1920.0f / 1080.0f) {
+	EditorLayer::EditorLayer() : Layer("Sandbox2D") {
 	}
 
 	void EditorLayer::OnAttach() {
 		PS_PROFILE_FUNCTION();
 
-		m_Texture = Texture2D::Create("Assets/Textures/Penguin.png");
-		m_TextureMap = Texture2D::Create("Assets/Textures/colored_tilemap.png");
-		m_Sprite = Texture2D::CreateSubTexture("Assets/Textures/colored_tilemap.png", { 12, 7 }, { 8, 8 }, { 1, 1 }, { 1, 1 });
-
 		FramebufferSpecification fbspec;
 		fbspec.Width = 1920;
 		fbspec.Height = 1080;
 		m_Framebuffer = Framebuffer::Create(fbspec);
-
-		m_CameraController.SetZoomLevel(10.0f);
 
 		/*
 		class CameraController : public ScriptableEntity {
@@ -73,13 +67,13 @@ namespace Pressia {
 		// Resize
 		if (FramebufferSpecification spec = m_Framebuffer->GetSpecification(); m_ViewportSize.x > 0.0f && m_ViewportSize.y > 0.0f && (spec.Width != m_ViewportSize.x || spec.Height != m_ViewportSize.y)) {
 			m_Framebuffer->Resize((uint32_t)m_ViewportSize.x, (uint32_t)m_ViewportSize.y);
-			m_CameraController.ResizeBounds(m_ViewportSize.x, m_ViewportSize.y);
+			m_EditorCamera.SetViewportSize(m_ViewportSize.x, m_ViewportSize.y);
 			m_ActiveScene->OnViewportResize((uint32_t)m_ViewportSize.x, (uint32_t)m_ViewportSize.y);
 		}
 
 		//Update
 		if (m_ViewportFocused)
-			m_CameraController.OnUpdate(ts);
+			m_EditorCamera.OnUpdate(ts);
 
 		// Render
 		if (m_ResetRenderStats)
@@ -88,7 +82,7 @@ namespace Pressia {
 		m_Framebuffer->Bind();
 		RenderCommand::SetClearColor({ 0.1f, 0.105f, 0.11f, 1.0f });
 		RenderCommand::Clear();
-		m_ActiveScene->OnUpdate(ts);	// Update Scene
+		m_ActiveScene->OnUpdateEditor(ts, m_EditorCamera);	// Update Scene
 		m_Framebuffer->Unbind();
 	}
 
@@ -207,8 +201,6 @@ namespace Pressia {
 		if (m_ViewportSize != *((glm::vec2*)&viewportPanelSize)) {
 			m_Framebuffer->Resize((uint32_t)viewportPanelSize.x, (uint32_t)viewportPanelSize.y);
 			m_ViewportSize = { viewportPanelSize.x, viewportPanelSize.y };
-
-			m_CameraController.ResizeBounds(viewportPanelSize.x, viewportPanelSize.y);
 		}
 
 		uint32_t textureID = m_Framebuffer->GetColorAttachmentRendererID();
@@ -224,10 +216,16 @@ namespace Pressia {
 			ImGuizmo::SetRect(ImGui::GetWindowPos().x, ImGui::GetWindowPos().y, windowWidth, windowHeight);
 
 			//	Camera
-			auto cameraEntity = m_ActiveScene->GetCamera();
-			const auto& camera = cameraEntity->GetComponent<CameraComponent>().Camera;
-			const glm::mat4& cameraProjection = camera.GetProjection();
-			glm::mat4 cameraView = glm::inverse(cameraEntity->GetComponent<TransformComponent>().GetTransform());
+
+			//	Runtime Camera
+			//auto cameraEntity = m_ActiveScene->GetCamera();
+			//const auto& camera = cameraEntity->GetComponent<CameraComponent>().Camera;
+			//const glm::mat4& cameraProjection = camera.GetProjection();
+			//glm::mat4 cameraView = glm::inverse(cameraEntity->GetComponent<TransformComponent>().GetTransform());
+
+			//	Editor Camera
+			const glm::mat4& cameraProjection = m_EditorCamera.GetProjection();
+			glm::mat4 cameraView = m_EditorCamera.GetViewMatrix();
 
 			//	Entity transform
 			auto& tc = selectedEntity.GetComponent<TransformComponent>();
@@ -261,7 +259,7 @@ namespace Pressia {
 	}
 
 	void EditorLayer::OnEvent(Event& e) {
-		m_CameraController.OnEvent(e);
+		m_EditorCamera.OnEvent(e);
 
 		EventDispatcher dispatcher(e);
 		dispatcher.Dispatch<KeyPressedEvent>(PS_BIND_EVENT_FN(EditorLayer::OnKeyPressed));
@@ -312,6 +310,7 @@ namespace Pressia {
 	}
 
 	void EditorLayer::NewScene() {
+		m_EditorCamera = EditorCamera(45.0f, 16.0f / 9.0f, 0.001f, 1000.0f);	//	Reset editor camera
 		m_ActiveScene = CreateRef<Scene>();
 		m_ActiveScene->CreateDefaultCamera();
 		m_ActiveScene->OnViewportResize((uint32_t)m_ViewportSize.x, (uint32_t)m_ViewportSize.y);

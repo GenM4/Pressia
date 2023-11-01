@@ -21,9 +21,9 @@ namespace Pressia {
 		return { (float)xpos, (float)ypos };
 	}
 
-	bool Input::IsMouseButtonPressed(int button) {
+	bool Input::IsMouseButtonPressed(PSMouseCode button) {
 		auto window = static_cast<GLFWwindow*>(Application::Get().GetWindow().GetNativeWindow());
-		auto state = glfwGetMouseButton(window, button);
+		auto state = glfwGetMouseButton(window, (int)button);
 
 		return state == GLFW_PRESS;
 	}

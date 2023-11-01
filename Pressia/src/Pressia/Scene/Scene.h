@@ -2,6 +2,7 @@
 
 #include "Pressia/Core/TimeStep.h"
 #include "Pressia/Renderer/Camera.h"
+#include "Pressia/Renderer/EditorCamera.h"
 
 #include <entt.hpp>
 
@@ -18,7 +19,9 @@ namespace Pressia {
 		void DestroyEntity(Entity entity);
 
 		void OnViewportResize(uint32_t width, uint32_t height);
-		void OnUpdate(Timestep ts);
+
+		void OnUpdateRuntime(Timestep ts);
+		void OnUpdateEditor(Timestep ts, EditorCamera& camera);
 
 		void SetCamera(Camera& camera);
 		void SetCamera(Entity& cameraEntity);
