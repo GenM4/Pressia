@@ -29,6 +29,7 @@ namespace Pressia {
 		Ref<Framebuffer> m_Framebuffer;
 		bool m_ResetRenderStats = true;
 		float m_TPF = 0.0f;
+		int m_RenderTargetIndex = 0;
 
 		Ref<Scene> m_ActiveScene;
 

@@ -19,6 +19,7 @@ namespace Pressia {
 		PS_PROFILE_FUNCTION();
 
 		FramebufferSpecification fbspec;
+		fbspec.Attachments = { FramebufferTextureFormat::RGBA8, FramebufferTextureFormat::RGBA8, FramebufferTextureFormat::Depth };
 		fbspec.Width = 1920;
 		fbspec.Height = 1080;
 		m_Framebuffer = Framebuffer::Create(fbspec);
@@ -170,7 +171,7 @@ namespace Pressia {
 		m_SHP.OnImGuiRender();
 
 		ImGui::Begin("Settings");
-
+		ImGui::SliderInt("Render Target", &m_RenderTargetIndex, 0, 1);
 		ImGui::End();
 
 
@@ -203,7 +204,7 @@ namespace Pressia {
 			m_ViewportSize = { viewportPanelSize.x, viewportPanelSize.y };
 		}
 
-		uint32_t textureID = m_Framebuffer->GetColorAttachmentRendererID();
+		uint32_t textureID = m_Framebuffer->GetColorAttachmentRendererID(m_RenderTargetIndex);
 		ImGui::Image((void*)textureID, ImVec2(m_ViewportSize.x, m_ViewportSize.y), ImVec2{ 0,1 }, ImVec2{ 1,0 });
 
 		//	Gizmos
