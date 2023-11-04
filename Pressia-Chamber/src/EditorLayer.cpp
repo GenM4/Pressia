@@ -19,7 +19,7 @@ namespace Pressia {
 		PS_PROFILE_FUNCTION();
 
 		FramebufferSpecification fbspec;
-		fbspec.Attachments = { FramebufferTextureFormat::RGBA8, FramebufferTextureFormat::RGBA8, FramebufferTextureFormat::Depth };
+		fbspec.Attachments = { FramebufferTextureFormat::RGBA8, FramebufferTextureFormat::RED_INTEGER, FramebufferTextureFormat::Depth };
 		fbspec.Width = 1920;
 		fbspec.Height = 1080;
 		m_Framebuffer = Framebuffer::Create(fbspec);
@@ -84,6 +84,23 @@ namespace Pressia {
 		RenderCommand::SetClearColor({ 0.1f, 0.105f, 0.11f, 1.0f });
 		RenderCommand::Clear();
 		m_ActiveScene->OnUpdateEditor(ts, m_EditorCamera);	// Update Scene
+
+		auto [mx, my] = ImGui::GetMousePos();
+		mx -= m_ViewportBounds[0].x;
+		my -= m_ViewportBounds[0].y;
+		glm::vec2 viewportSize = m_ViewportBounds[1] - m_ViewportBounds[0];
+
+		my = viewportSize.y - my;
+
+		int mouseX = (int)mx;
+		int mouseY = (int)my;
+
+		if (mouseX >= 0 && mouseY >= 0 && mouseX < (int)viewportSize.x && mouseY < (int)viewportSize.y) {
+			int pixelData = m_Framebuffer->ReadPixel(1, mouseX, mouseY);
+			//PS_CORE_WARN("{0}, {1}", mouseX, mouseY);
+			PS_CORE_WARN("{0}", pixelData);
+		}
+
 		m_Framebuffer->Unbind();
 	}
 
@@ -100,8 +117,8 @@ namespace Pressia {
 		ImGuiWindowFlags window_flags = ImGuiWindowFlags_MenuBar | ImGuiWindowFlags_NoDocking;
 		if (opt_fullscreen) {
 			const ImGuiViewport* viewport = ImGui::GetMainViewport();
-			ImGui::SetNextWindowPos(viewport->WorkPos);
-			ImGui::SetNextWindowSize(viewport->WorkSize);
+			ImGui::SetNextWindowPos(viewport->Pos);
+			ImGui::SetNextWindowSize(viewport->Size);
 			ImGui::SetNextWindowViewport(viewport->ID);
 			ImGui::PushStyleVar(ImGuiStyleVar_WindowRounding, 0.0f);
 			ImGui::PushStyleVar(ImGuiStyleVar_WindowBorderSize, 0.0f);
@@ -160,15 +177,14 @@ namespace Pressia {
 			ImGui::EndMenuBar();
 		}
 
+		m_SHP.OnImGuiRender();
 
-		ImGui::End();
 
 		ImGui::Begin("Frame Rate");	//FPS Meter
 		ImGui::Text("Frame Time: %5.3f ms", m_TPF * 1000.0f);
 		ImGui::Text("Frame Rate: %.0f", 1 / m_TPF);
 		ImGui::End();
 
-		m_SHP.OnImGuiRender();
 
 		ImGui::Begin("Settings");
 		ImGui::SliderInt("Render Target", &m_RenderTargetIndex, 0, 1);
@@ -192,20 +208,26 @@ namespace Pressia {
 		//	Scene Viewport
 		ImGui::PushStyleVar(ImGuiStyleVar_WindowPadding, ImVec2{ 0, 0 });
 		ImGui::Begin("Viewport");
+		auto viewportOffset = ImGui::GetCursorPos();	//	Includes tab bar
 
 		m_ViewportFocused = ImGui::IsWindowFocused();
 		m_ViewportHovered = ImGui::IsWindowHovered();
 		Application::Get().GetImGuiLayer()->BlockEvents(!m_ViewportFocused && !m_ViewportHovered);
 
 		ImVec2 viewportPanelSize = ImGui::GetContentRegionAvail();
-
-		if (m_ViewportSize != *((glm::vec2*)&viewportPanelSize)) {
-			m_Framebuffer->Resize((uint32_t)viewportPanelSize.x, (uint32_t)viewportPanelSize.y);
-			m_ViewportSize = { viewportPanelSize.x, viewportPanelSize.y };
-		}
+		m_ViewportSize = { viewportPanelSize.x, viewportPanelSize.y };
 
 		uint32_t textureID = m_Framebuffer->GetColorAttachmentRendererID(m_RenderTargetIndex);
-		ImGui::Image((void*)textureID, ImVec2(m_ViewportSize.x, m_ViewportSize.y), ImVec2{ 0,1 }, ImVec2{ 1,0 });
+		ImGui::Image((void*)textureID, ImVec2{ m_ViewportSize.x, m_ViewportSize.y }, ImVec2{ 0, 1 }, ImVec2{ 1, 0 });
+
+		auto windowSize = ImGui::GetWindowSize();
+		ImVec2 minBound = ImGui::GetWindowPos();
+		minBound.x += viewportOffset.x;
+		minBound.y += viewportOffset.y;
+
+		ImVec2 maxBound = { minBound.x + windowSize.x, minBound.y + windowSize.y };
+		m_ViewportBounds[0] = { minBound.x, minBound.y };
+		m_ViewportBounds[1] = { maxBound.x, maxBound.y };
 
 		//	Gizmos
 		Entity selectedEntity = m_SHP.GetSelectedEntity();
@@ -257,6 +279,9 @@ namespace Pressia {
 
 		ImGui::End();
 		ImGui::PopStyleVar();
+
+		ImGui::End();
+
 	}
 
 	void EditorLayer::OnEvent(Event& e) {
