@@ -18,6 +18,7 @@ namespace Pressia {
 		virtual void OnEvent(Event& event) override;
 	private:
 		bool OnKeyPressed(KeyPressedEvent& e);
+		bool OnMouseButtonPressed(MouseButtonPressedEvent& e);
 
 		void NewScene();
 		void OpenScene();
@@ -37,6 +38,7 @@ namespace Pressia {
 		glm::vec2 m_ViewportBounds[2];
 		bool m_ViewportFocused = false;
 		bool m_ViewportHovered = false;
+		Entity m_HoveredEntity;
 
 		//	Panels
 		SceneHeirarchyPanel m_SHP;

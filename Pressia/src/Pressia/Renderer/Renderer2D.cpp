@@ -16,6 +16,9 @@ namespace Pressia {
 		glm::vec2 TexCoord;
 		float TexIndex;
 		float TilingFactor;
+
+		//	Editor only
+		int EntityID;
 	};
 
 	struct Renderer2DData {
@@ -55,11 +58,12 @@ namespace Pressia {
 
 		s_Data.QuadVB = VertexBuffer::Create(s_Data.MaxVertices * sizeof(QuadVertex));
 		s_Data.QuadVB->SetLayout({
-			{ ShaderDataType::Float3, "a_Position"		},
-			{ ShaderDataType::Float4, "a_Color"			},
-			{ ShaderDataType::Float2, "a_TexCoord"		},
-			{ ShaderDataType::Float, "a_TexIndex"		},
-			{ ShaderDataType::Float, "a_TilingFactor"	}
+			{ ShaderDataType::Float3,	"a_Position"		},
+			{ ShaderDataType::Float4,	"a_Color"			},
+			{ ShaderDataType::Float2,	"a_TexCoord"		},
+			{ ShaderDataType::Float,	"a_TexIndex"		},
+			{ ShaderDataType::Float,	"a_TilingFactor"	},
+			{ ShaderDataType::Int,		"a_EntityID"		}
 			});
 		s_Data.QuadVA->AddVertexBuffer(s_Data.QuadVB);
 
@@ -202,7 +206,7 @@ namespace Pressia {
 		DrawQuad(transform, color);
 	}
 
-	void Renderer2D::DrawQuad(const glm::mat4& transform, const glm::vec4& color) {	// Main draw function, takes calculated transform to draw
+	void Renderer2D::DrawQuad(const glm::mat4& transform, const glm::vec4& color, int entityID) {	// Main draw function, takes calculated transform to draw
 		PS_PROFILE_RENDERER_FUNCTION();
 
 		constexpr float textureIndex = 0.0f;	//White texture slot
@@ -223,6 +227,7 @@ namespace Pressia {
 			s_Data.QuadVertexBufferPtr->Color = color;
 			s_Data.QuadVertexBufferPtr->TexCoord = textureCoords[i];
 			s_Data.QuadVertexBufferPtr->TexIndex = textureIndex;
+			s_Data.QuadVertexBufferPtr->EntityID = entityID;
 			s_Data.QuadVertexBufferPtr++;
 		}
 
@@ -245,7 +250,7 @@ namespace Pressia {
 		s_Data.QuadVA->Bind();
 		RenderCommand::DrawIndexed(s_Data.QuadVA);
 		#endif
-		}
+	}
 
 	void Renderer2D::DrawQuad(const glm::vec2& position, const glm::vec2& size, const Ref<Texture2D>& texture, float tilingFactor, const glm::vec4 tintColor) {	// Draw quad with 2 coord position and provided texture
 		DrawQuad({ position.x, position.y, 0.0f }, size, texture, tilingFactor, tintColor);
@@ -269,7 +274,7 @@ namespace Pressia {
 		DrawQuad(transform, texture, tilingFactor, tintColor);
 	}
 
-	void Renderer2D::DrawQuad(const glm::mat4& transform, const Ref<Texture2D>& texture, float tilingFactor, const glm::vec4 tintColor) {	// Main draw function, takes calculated transform to draw
+	void Renderer2D::DrawQuad(const glm::mat4& transform, const Ref<Texture2D>& texture, float tilingFactor, const glm::vec4 tintColor, int entityID) {	// Main draw function, takes calculated transform to draw
 		PS_PROFILE_RENDERER_FUNCTION();
 
 		constexpr size_t quadVertexCount = 4;
@@ -299,6 +304,7 @@ namespace Pressia {
 			s_Data.QuadVertexBufferPtr->TexCoord = textureCoords[i];
 			s_Data.QuadVertexBufferPtr->TexIndex = textureIndex;
 			s_Data.QuadVertexBufferPtr->TilingFactor = tilingFactor;
+			s_Data.QuadVertexBufferPtr->EntityID = entityID;
 			s_Data.QuadVertexBufferPtr++;
 		}
 
@@ -322,7 +328,11 @@ namespace Pressia {
 		s_Data.QuadVA->Bind();
 		RenderCommand::DrawIndexed(s_Data.QuadVA);
 		#endif
-		}
+	}
+
+	void Renderer2D::DrawSprite(const glm::mat4& transform, SpriteRendererComponent& src, int entityID) {
+		DrawQuad(transform, src.Color, entityID);
+	}
 
 	Renderer2D::Statistics Renderer2D::GetStats() {
 		return s_Data.Stats;
@@ -332,4 +342,4 @@ namespace Pressia {
 		memset(&s_Data.Stats, 0, sizeof(Statistics));
 	}
 
-	}
+}

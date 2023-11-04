@@ -63,6 +63,23 @@ namespace Pressia {
 
 			return false;
 		}
+
+		static GLenum PressiaFBTextureFormatToGL(FramebufferTextureFormat format) {
+			switch (format) {
+				case FramebufferTextureFormat::RED_INTEGER:
+					return GL_RED_INTEGER;
+				case FramebufferTextureFormat::RGBA8:
+					return GL_RGBA8;
+				case FramebufferTextureFormat::DEPTH24STENCIL8:
+					return GL_DEPTH24_STENCIL8;
+				case FramebufferTextureFormat::None:
+					PS_CORE_WARN("FramebufferTextureFormat is not set");
+					return GL_NONE;
+			}
+
+			PS_CORE_ASSERT(false, "Unknown FramebufferTextureFormat");
+			return 0;
+		}
 	}
 
 	OpenGLFramebuffer::OpenGLFramebuffer(const FramebufferSpecification& specification) : m_Specification(specification) {
@@ -144,6 +161,9 @@ namespace Pressia {
 	void OpenGLFramebuffer::Bind() {
 		glBindFramebuffer(GL_FRAMEBUFFER, m_RendererID);
 		glViewport(0, 0, m_Specification.Width, m_Specification.Height);
+
+		int clearValue = -1;
+		glClearTexImage(m_ColorAttachments[1], 0, GL_RED_INTEGER, GL_INT, &clearValue);
 	}
 
 	void OpenGLFramebuffer::Unbind() {
@@ -169,5 +189,11 @@ namespace Pressia {
 		glReadPixels(x, y, 1, 1, GL_RED_INTEGER, GL_INT, &pixelData);
 
 		return pixelData;
+	}
+
+	void OpenGLFramebuffer::ClearColorAttachment(uint32_t attachmentIndex, int clearValue) {
+		PS_CORE_ASSERT(attachmentIndex < m_ColorAttachments.size(), "Indexed framebuffer color attachment doesn't exist");
+
+		glClearTexImage(m_ColorAttachments[attachmentIndex], 0, Utils::PressiaFBTextureFormatToGL(m_ColorAttachmentSpecs[attachmentIndex].TextureFormat), GL_INT, &clearValue);
 	}
 }

@@ -50,13 +50,17 @@ namespace Pressia {
 		const auto& layout = vertexBuffer->GetLayout();
 		uint32_t index = 0;
 		for (const auto& element : layout) {
-			glEnableVertexAttribArray(index);
-			glVertexAttribPointer(index,
-				element.GetComponentCount(),
-				ShaderDataTypeToOpenGLBaseType(element.Type),
-				element.Normalized ? GL_TRUE : GL_FALSE,
-				layout.GetStride(),
-				(const void*)element.Offset);
+			GLenum baseType = ShaderDataTypeToOpenGLBaseType(element.Type);
+
+			if (baseType == GL_INT) {
+				glEnableVertexAttribArray(index);
+				glVertexAttribIPointer(index, element.GetComponentCount(), baseType, layout.GetStride(), (const void*)element.Offset);
+			}
+			else {
+				glEnableVertexAttribArray(index);
+				glVertexAttribPointer(index, element.GetComponentCount(), baseType, element.Normalized ? GL_TRUE : GL_FALSE, layout.GetStride(), (const void*)element.Offset);
+			}
+
 			index++;
 		}
 
