@@ -7,7 +7,7 @@ namespace Pressia {
 	class OpenGLFramebuffer : public Framebuffer {
 	public:
 		OpenGLFramebuffer(const FramebufferSpecification& specification);
-		virtual ~OpenGLFramebuffer();
+		virtual ~OpenGLFramebuffer() override;
 
 		virtual void Invalidate() override;
 

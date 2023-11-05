@@ -13,6 +13,9 @@
 #include <unordered_map>
 #include <unordered_set>
 
+#include <filesystem>
+#include <fstream>
+
 #include <glm/glm.hpp>
 
 #include "Pressia/Core/CoreConfig.h"

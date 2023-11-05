@@ -13,7 +13,7 @@ namespace Pressia {
 
 	class PressiaChamber : public Application {
 	public:
-		PressiaChamber() : Application("Pressia Chamber") {
+		PressiaChamber(ApplicationCommandLineArgs args) : Application("Pressia Chamber", args) {
 			PressiaChamber::GetWindow().SetVSync(true);
 			PushLayer(new EditorLayer());
 		}
@@ -24,7 +24,7 @@ namespace Pressia {
 
 	};
 
-	Application* CreateApplication() {
-		return new PressiaChamber();
+	Application* CreateApplication(ApplicationCommandLineArgs args) {
+		return new PressiaChamber(args);
 	}
 }

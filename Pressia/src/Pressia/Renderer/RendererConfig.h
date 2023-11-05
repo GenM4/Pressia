@@ -4,6 +4,7 @@
 
 //	Engine config flags 
 #define PS_RECORD_RENDERER_STATS	1		//Record renderer statistics	1 - Enable, 0 - Disable
+#define PS_OPTIMIZE_SHADER_COMPILE	1		//Optimizes shaderc compilation 1 - Enable, 0 - Disable
 
 //	GPU-Based Config (will be set upon querying hardware)
 #define PS_MAX_BATCH_DRAW			10000	//Renderer batching				# of quads per batched draw call

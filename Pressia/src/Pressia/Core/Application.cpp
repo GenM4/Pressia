@@ -12,7 +12,7 @@ namespace Pressia {
 
 	Application* Application::s_Instance = nullptr;
 
-	Application::Application(const std::string& name) {
+	Application::Application(const std::string& name, ApplicationCommandLineArgs args) : m_CommandLineArgs(args) {
 		PS_PROFILE_FUNCTION();
 
 		PS_CORE_ASSERT(!s_Instance, "Application already exists!");

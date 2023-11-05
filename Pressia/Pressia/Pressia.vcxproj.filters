@@ -48,282 +48,282 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\Platform\OpenGL\OpenGLBuffer.h">
+    <ClInclude Include="..\src\Platform\OpenGL\OpenGLBuffer.h">
       <Filter>src\Platform\OpenGL</Filter>
     </ClInclude>
-    <ClInclude Include="src\Platform\OpenGL\OpenGLContext.h">
+    <ClInclude Include="..\src\Platform\OpenGL\OpenGLContext.h">
       <Filter>src\Platform\OpenGL</Filter>
     </ClInclude>
-    <ClInclude Include="src\Platform\OpenGL\OpenGLFramebuffer.h">
+    <ClInclude Include="..\src\Platform\OpenGL\OpenGLFramebuffer.h">
       <Filter>src\Platform\OpenGL</Filter>
     </ClInclude>
-    <ClInclude Include="src\Platform\OpenGL\OpenGLRendererAPI.h">
+    <ClInclude Include="..\src\Platform\OpenGL\OpenGLRendererAPI.h">
       <Filter>src\Platform\OpenGL</Filter>
     </ClInclude>
-    <ClInclude Include="src\Platform\OpenGL\OpenGLShader.h">
+    <ClInclude Include="..\src\Platform\OpenGL\OpenGLShader.h">
       <Filter>src\Platform\OpenGL</Filter>
     </ClInclude>
-    <ClInclude Include="src\Platform\OpenGL\OpenGLTexture.h">
+    <ClInclude Include="..\src\Platform\OpenGL\OpenGLTexture.h">
       <Filter>src\Platform\OpenGL</Filter>
     </ClInclude>
-    <ClInclude Include="src\Platform\OpenGL\OpenGLUniformBuffer.h">
+    <ClInclude Include="..\src\Platform\OpenGL\OpenGLUniformBuffer.h">
       <Filter>src\Platform\OpenGL</Filter>
     </ClInclude>
-    <ClInclude Include="src\Platform\OpenGL\OpenGLVertexArray.h">
+    <ClInclude Include="..\src\Platform\OpenGL\OpenGLVertexArray.h">
       <Filter>src\Platform\OpenGL</Filter>
     </ClInclude>
-    <ClInclude Include="src\Platform\Windows\WindowsWindow.h">
+    <ClInclude Include="..\src\Platform\Windows\WindowsWindow.h">
       <Filter>src\Platform\Windows</Filter>
     </ClInclude>
-    <ClInclude Include="src\Pressia.h">
+    <ClInclude Include="..\src\Pressia.h">
       <Filter>src</Filter>
     </ClInclude>
-    <ClInclude Include="src\Pressia\Core\Application.h">
+    <ClInclude Include="..\src\Pressia\Core\Application.h">
       <Filter>src\Pressia\Core</Filter>
     </ClInclude>
-    <ClInclude Include="src\Pressia\Core\Core.h">
+    <ClInclude Include="..\src\Pressia\Core\Core.h">
       <Filter>src\Pressia\Core</Filter>
     </ClInclude>
-    <ClInclude Include="src\Pressia\Core\CoreConfig.h">
+    <ClInclude Include="..\src\Pressia\Core\CoreConfig.h">
       <Filter>src\Pressia\Core</Filter>
     </ClInclude>
-    <ClInclude Include="src\Pressia\Core\EntryPoint.h">
+    <ClInclude Include="..\src\Pressia\Core\EntryPoint.h">
       <Filter>src\Pressia\Core</Filter>
     </ClInclude>
-    <ClInclude Include="src\Pressia\Core\Input.h">
+    <ClInclude Include="..\src\Pressia\Core\Input.h">
       <Filter>src\Pressia\Core</Filter>
     </ClInclude>
-    <ClInclude Include="src\Pressia\Core\KeyCodes.h">
+    <ClInclude Include="..\src\Pressia\Core\KeyCodes.h">
       <Filter>src\Pressia\Core</Filter>
     </ClInclude>
-    <ClInclude Include="src\Pressia\Core\Layer.h">
+    <ClInclude Include="..\src\Pressia\Core\Layer.h">
       <Filter>src\Pressia\Core</Filter>
     </ClInclude>
-    <ClInclude Include="src\Pressia\Core\LayerStack.h">
+    <ClInclude Include="..\src\Pressia\Core\LayerStack.h">
       <Filter>src\Pressia\Core</Filter>
     </ClInclude>
-    <ClInclude Include="src\Pressia\Core\Log.h">
+    <ClInclude Include="..\src\Pressia\Core\Log.h">
       <Filter>src\Pressia\Core</Filter>
     </ClInclude>
-    <ClInclude Include="src\Pressia\Core\MouseButtonCodes.h">
+    <ClInclude Include="..\src\Pressia\Core\MouseButtonCodes.h">
       <Filter>src\Pressia\Core</Filter>
     </ClInclude>
-    <ClInclude Include="src\Pressia\Core\TimeStep.h">
+    <ClInclude Include="..\src\Pressia\Core\TimeStep.h">
       <Filter>src\Pressia\Core</Filter>
     </ClInclude>
-    <ClInclude Include="src\Pressia\Core\Timer.h">
+    <ClInclude Include="..\src\Pressia\Core\Timer.h">
       <Filter>src\Pressia\Core</Filter>
     </ClInclude>
-    <ClInclude Include="src\Pressia\Core\Window.h">
+    <ClInclude Include="..\src\Pressia\Core\Window.h">
       <Filter>src\Pressia\Core</Filter>
     </ClInclude>
-    <ClInclude Include="src\Pressia\Debug\Instrumentor.h">
+    <ClInclude Include="..\src\Pressia\Debug\Instrumentor.h">
       <Filter>src\Pressia\Debug</Filter>
     </ClInclude>
-    <ClInclude Include="src\Pressia\Events\ApplicationEvent.h">
+    <ClInclude Include="..\src\Pressia\Events\ApplicationEvent.h">
       <Filter>src\Pressia\Events</Filter>
     </ClInclude>
-    <ClInclude Include="src\Pressia\Events\Event.h">
+    <ClInclude Include="..\src\Pressia\Events\Event.h">
       <Filter>src\Pressia\Events</Filter>
     </ClInclude>
-    <ClInclude Include="src\Pressia\Events\KeyEvent.h">
+    <ClInclude Include="..\src\Pressia\Events\KeyEvent.h">
       <Filter>src\Pressia\Events</Filter>
     </ClInclude>
-    <ClInclude Include="src\Pressia\Events\MouseEvent.h">
+    <ClInclude Include="..\src\Pressia\Events\MouseEvent.h">
       <Filter>src\Pressia\Events</Filter>
     </ClInclude>
-    <ClInclude Include="src\Pressia\ImGui\ImGuiLayer.h">
+    <ClInclude Include="..\src\Pressia\ImGui\ImGuiLayer.h">
       <Filter>src\Pressia\ImGui</Filter>
     </ClInclude>
-    <ClInclude Include="src\Pressia\Math\Math.h">
+    <ClInclude Include="..\src\Pressia\Math\Math.h">
       <Filter>src\Pressia\Math</Filter>
     </ClInclude>
-    <ClInclude Include="src\Pressia\OrthographicCameraController.h">
+    <ClInclude Include="..\src\Pressia\OrthographicCameraController.h">
       <Filter>src\Pressia</Filter>
     </ClInclude>
-    <ClInclude Include="src\Pressia\Renderer\Buffer.h">
+    <ClInclude Include="..\src\Pressia\Renderer\Buffer.h">
       <Filter>src\Pressia\Renderer</Filter>
     </ClInclude>
-    <ClInclude Include="src\Pressia\Renderer\Camera.h">
+    <ClInclude Include="..\src\Pressia\Renderer\Camera.h">
       <Filter>src\Pressia\Renderer</Filter>
     </ClInclude>
-    <ClInclude Include="src\Pressia\Renderer\EditorCamera.h">
+    <ClInclude Include="..\src\Pressia\Renderer\EditorCamera.h">
       <Filter>src\Pressia\Renderer</Filter>
     </ClInclude>
-    <ClInclude Include="src\Pressia\Renderer\Framebuffer.h">
+    <ClInclude Include="..\src\Pressia\Renderer\Framebuffer.h">
       <Filter>src\Pressia\Renderer</Filter>
     </ClInclude>
-    <ClInclude Include="src\Pressia\Renderer\GraphicsContext.h">
+    <ClInclude Include="..\src\Pressia\Renderer\GraphicsContext.h">
       <Filter>src\Pressia\Renderer</Filter>
     </ClInclude>
-    <ClInclude Include="src\Pressia\Renderer\OrthographicCamera.h">
+    <ClInclude Include="..\src\Pressia\Renderer\OrthographicCamera.h">
       <Filter>src\Pressia\Renderer</Filter>
     </ClInclude>
-    <ClInclude Include="src\Pressia\Renderer\RenderCommand.h">
+    <ClInclude Include="..\src\Pressia\Renderer\RenderCommand.h">
       <Filter>src\Pressia\Renderer</Filter>
     </ClInclude>
-    <ClInclude Include="src\Pressia\Renderer\Renderer.h">
+    <ClInclude Include="..\src\Pressia\Renderer\Renderer.h">
       <Filter>src\Pressia\Renderer</Filter>
     </ClInclude>
-    <ClInclude Include="src\Pressia\Renderer\Renderer2D.h">
+    <ClInclude Include="..\src\Pressia\Renderer\Renderer2D.h">
       <Filter>src\Pressia\Renderer</Filter>
     </ClInclude>
-    <ClInclude Include="src\Pressia\Renderer\RendererAPI.h">
+    <ClInclude Include="..\src\Pressia\Renderer\RendererAPI.h">
       <Filter>src\Pressia\Renderer</Filter>
     </ClInclude>
-    <ClInclude Include="src\Pressia\Renderer\RendererConfig.h">
+    <ClInclude Include="..\src\Pressia\Renderer\RendererConfig.h">
       <Filter>src\Pressia\Renderer</Filter>
     </ClInclude>
-    <ClInclude Include="src\Pressia\Renderer\Shader.h">
+    <ClInclude Include="..\src\Pressia\Renderer\Shader.h">
       <Filter>src\Pressia\Renderer</Filter>
     </ClInclude>
-    <ClInclude Include="src\Pressia\Renderer\Texture.h">
+    <ClInclude Include="..\src\Pressia\Renderer\Texture.h">
       <Filter>src\Pressia\Renderer</Filter>
     </ClInclude>
-    <ClInclude Include="src\Pressia\Renderer\UniformBuffer.h">
+    <ClInclude Include="..\src\Pressia\Renderer\UniformBuffer.h">
       <Filter>src\Pressia\Renderer</Filter>
     </ClInclude>
-    <ClInclude Include="src\Pressia\Renderer\VertexArray.h">
+    <ClInclude Include="..\src\Pressia\Renderer\VertexArray.h">
       <Filter>src\Pressia\Renderer</Filter>
     </ClInclude>
-    <ClInclude Include="src\Pressia\Scene\Components.h">
+    <ClInclude Include="..\src\Pressia\Scene\Components.h">
       <Filter>src\Pressia\Scene</Filter>
     </ClInclude>
-    <ClInclude Include="src\Pressia\Scene\Entity.h">
+    <ClInclude Include="..\src\Pressia\Scene\Entity.h">
       <Filter>src\Pressia\Scene</Filter>
     </ClInclude>
-    <ClInclude Include="src\Pressia\Scene\Scene.h">
+    <ClInclude Include="..\src\Pressia\Scene\Scene.h">
       <Filter>src\Pressia\Scene</Filter>
     </ClInclude>
-    <ClInclude Include="src\Pressia\Scene\SceneCamera.h">
+    <ClInclude Include="..\src\Pressia\Scene\SceneCamera.h">
       <Filter>src\Pressia\Scene</Filter>
     </ClInclude>
-    <ClInclude Include="src\Pressia\Scene\SceneSerializer.h">
+    <ClInclude Include="..\src\Pressia\Scene\SceneSerializer.h">
       <Filter>src\Pressia\Scene</Filter>
     </ClInclude>
-    <ClInclude Include="src\Pressia\Scene\ScriptableEntity.h">
+    <ClInclude Include="..\src\Pressia\Scene\ScriptableEntity.h">
       <Filter>src\Pressia\Scene</Filter>
     </ClInclude>
-    <ClInclude Include="src\Pressia\Utils\PlatformUtils.h">
+    <ClInclude Include="..\src\Pressia\Utils\PlatformUtils.h">
       <Filter>src\Pressia\Utils</Filter>
     </ClInclude>
-    <ClInclude Include="src\pspch.h">
+    <ClInclude Include="..\src\pspch.h">
       <Filter>src</Filter>
     </ClInclude>
-    <ClInclude Include="vendor\stb_image\stb_image.h">
+    <ClInclude Include="..\vendor\stb_image\stb_image.h">
       <Filter>vendor\stb_image</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\Platform\OpenGL\OpenGLBuffer.cpp">
+    <ClCompile Include="..\src\Platform\OpenGL\OpenGLBuffer.cpp">
       <Filter>src\Platform\OpenGL</Filter>
     </ClCompile>
-    <ClCompile Include="src\Platform\OpenGL\OpenGLContext.cpp">
+    <ClCompile Include="..\src\Platform\OpenGL\OpenGLContext.cpp">
       <Filter>src\Platform\OpenGL</Filter>
     </ClCompile>
-    <ClCompile Include="src\Platform\OpenGL\OpenGLFramebuffer.cpp">
+    <ClCompile Include="..\src\Platform\OpenGL\OpenGLFramebuffer.cpp">
       <Filter>src\Platform\OpenGL</Filter>
     </ClCompile>
-    <ClCompile Include="src\Platform\OpenGL\OpenGLRendererAPI.cpp">
+    <ClCompile Include="..\src\Platform\OpenGL\OpenGLRendererAPI.cpp">
       <Filter>src\Platform\OpenGL</Filter>
     </ClCompile>
-    <ClCompile Include="src\Platform\OpenGL\OpenGLShader.cpp">
+    <ClCompile Include="..\src\Platform\OpenGL\OpenGLShader.cpp">
       <Filter>src\Platform\OpenGL</Filter>
     </ClCompile>
-    <ClCompile Include="src\Platform\OpenGL\OpenGLTexture.cpp">
+    <ClCompile Include="..\src\Platform\OpenGL\OpenGLTexture.cpp">
       <Filter>src\Platform\OpenGL</Filter>
     </ClCompile>
-    <ClCompile Include="src\Platform\OpenGL\OpenGLUniformBuffer.cpp">
+    <ClCompile Include="..\src\Platform\OpenGL\OpenGLUniformBuffer.cpp">
       <Filter>src\Platform\OpenGL</Filter>
     </ClCompile>
-    <ClCompile Include="src\Platform\OpenGL\OpenGLVertexArray.cpp">
+    <ClCompile Include="..\src\Platform\OpenGL\OpenGLVertexArray.cpp">
       <Filter>src\Platform\OpenGL</Filter>
     </ClCompile>
-    <ClCompile Include="src\Platform\Windows\WindowsInput.cpp">
+    <ClCompile Include="..\src\Platform\Windows\WindowsInput.cpp">
       <Filter>src\Platform\Windows</Filter>
     </ClCompile>
-    <ClCompile Include="src\Platform\Windows\WindowsPlatformUtils.cpp">
+    <ClCompile Include="..\src\Platform\Windows\WindowsPlatformUtils.cpp">
       <Filter>src\Platform\Windows</Filter>
     </ClCompile>
-    <ClCompile Include="src\Platform\Windows\WindowsWindow.cpp">
+    <ClCompile Include="..\src\Platform\Windows\WindowsWindow.cpp">
       <Filter>src\Platform\Windows</Filter>
     </ClCompile>
-    <ClCompile Include="src\Pressia\Core\Application.cpp">
+    <ClCompile Include="..\src\Pressia\Core\Application.cpp">
       <Filter>src\Pressia\Core</Filter>
     </ClCompile>
-    <ClCompile Include="src\Pressia\Core\Layer.cpp">
+    <ClCompile Include="..\src\Pressia\Core\Layer.cpp">
       <Filter>src\Pressia\Core</Filter>
     </ClCompile>
-    <ClCompile Include="src\Pressia\Core\LayerStack.cpp">
+    <ClCompile Include="..\src\Pressia\Core\LayerStack.cpp">
       <Filter>src\Pressia\Core</Filter>
     </ClCompile>
-    <ClCompile Include="src\Pressia\Core\Log.cpp">
+    <ClCompile Include="..\src\Pressia\Core\Log.cpp">
       <Filter>src\Pressia\Core</Filter>
     </ClCompile>
-    <ClCompile Include="src\Pressia\ImGui\ImGuiBuild.cpp">
+    <ClCompile Include="..\src\Pressia\ImGui\ImGuiBuild.cpp">
       <Filter>src\Pressia\ImGui</Filter>
     </ClCompile>
-    <ClCompile Include="src\Pressia\ImGui\ImGuiLayer.cpp">
+    <ClCompile Include="..\src\Pressia\ImGui\ImGuiLayer.cpp">
       <Filter>src\Pressia\ImGui</Filter>
     </ClCompile>
-    <ClCompile Include="src\Pressia\Math\Math.cpp">
+    <ClCompile Include="..\src\Pressia\Math\Math.cpp">
       <Filter>src\Pressia\Math</Filter>
     </ClCompile>
-    <ClCompile Include="src\Pressia\OrthographicCameraController.cpp">
+    <ClCompile Include="..\src\Pressia\OrthographicCameraController.cpp">
       <Filter>src\Pressia</Filter>
     </ClCompile>
-    <ClCompile Include="src\Pressia\Renderer\Buffer.cpp">
+    <ClCompile Include="..\src\Pressia\Renderer\Buffer.cpp">
       <Filter>src\Pressia\Renderer</Filter>
     </ClCompile>
-    <ClCompile Include="src\Pressia\Renderer\EditorCamera.cpp">
+    <ClCompile Include="..\src\Pressia\Renderer\EditorCamera.cpp">
       <Filter>src\Pressia\Renderer</Filter>
     </ClCompile>
-    <ClCompile Include="src\Pressia\Renderer\Framebuffer.cpp">
+    <ClCompile Include="..\src\Pressia\Renderer\Framebuffer.cpp">
       <Filter>src\Pressia\Renderer</Filter>
     </ClCompile>
-    <ClCompile Include="src\Pressia\Renderer\OrthographicCamera.cpp">
+    <ClCompile Include="..\src\Pressia\Renderer\OrthographicCamera.cpp">
       <Filter>src\Pressia\Renderer</Filter>
     </ClCompile>
-    <ClCompile Include="src\Pressia\Renderer\RenderCommand.cpp">
+    <ClCompile Include="..\src\Pressia\Renderer\RenderCommand.cpp">
       <Filter>src\Pressia\Renderer</Filter>
     </ClCompile>
-    <ClCompile Include="src\Pressia\Renderer\Renderer.cpp">
+    <ClCompile Include="..\src\Pressia\Renderer\Renderer.cpp">
       <Filter>src\Pressia\Renderer</Filter>
     </ClCompile>
-    <ClCompile Include="src\Pressia\Renderer\Renderer2D.cpp">
+    <ClCompile Include="..\src\Pressia\Renderer\Renderer2D.cpp">
       <Filter>src\Pressia\Renderer</Filter>
     </ClCompile>
-    <ClCompile Include="src\Pressia\Renderer\RendererAPI.cpp">
+    <ClCompile Include="..\src\Pressia\Renderer\RendererAPI.cpp">
       <Filter>src\Pressia\Renderer</Filter>
     </ClCompile>
-    <ClCompile Include="src\Pressia\Renderer\Shader.cpp">
+    <ClCompile Include="..\src\Pressia\Renderer\Shader.cpp">
       <Filter>src\Pressia\Renderer</Filter>
     </ClCompile>
-    <ClCompile Include="src\Pressia\Renderer\Texture.cpp">
+    <ClCompile Include="..\src\Pressia\Renderer\Texture.cpp">
       <Filter>src\Pressia\Renderer</Filter>
     </ClCompile>
-    <ClCompile Include="src\Pressia\Renderer\UniformBuffer.cpp">
+    <ClCompile Include="..\src\Pressia\Renderer\UniformBuffer.cpp">
       <Filter>src\Pressia\Renderer</Filter>
     </ClCompile>
-    <ClCompile Include="src\Pressia\Renderer\VertexArray.cpp">
+    <ClCompile Include="..\src\Pressia\Renderer\VertexArray.cpp">
       <Filter>src\Pressia\Renderer</Filter>
     </ClCompile>
-    <ClCompile Include="src\Pressia\Scene\Entity.cpp">
+    <ClCompile Include="..\src\Pressia\Scene\Entity.cpp">
       <Filter>src\Pressia\Scene</Filter>
     </ClCompile>
-    <ClCompile Include="src\Pressia\Scene\Scene.cpp">
+    <ClCompile Include="..\src\Pressia\Scene\Scene.cpp">
       <Filter>src\Pressia\Scene</Filter>
     </ClCompile>
-    <ClCompile Include="src\Pressia\Scene\SceneCamera.cpp">
+    <ClCompile Include="..\src\Pressia\Scene\SceneCamera.cpp">
       <Filter>src\Pressia\Scene</Filter>
     </ClCompile>
-    <ClCompile Include="src\Pressia\Scene\SceneSerializer.cpp">
+    <ClCompile Include="..\src\Pressia\Scene\SceneSerializer.cpp">
       <Filter>src\Pressia\Scene</Filter>
     </ClCompile>
-    <ClCompile Include="src\pspch.cpp">
+    <ClCompile Include="..\src\pspch.cpp">
       <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="vendor\stb_image\stb_image.cpp">
+    <ClCompile Include="..\vendor\stb_image\stb_image.cpp">
       <Filter>vendor\stb_image</Filter>
     </ClCompile>
   </ItemGroup>

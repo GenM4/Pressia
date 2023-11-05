@@ -24,6 +24,13 @@ namespace Pressia {
 		fbspec.Height = 1080;
 		m_Framebuffer = Framebuffer::Create(fbspec);
 
+		auto commandLineArgs = Application::Get().GetCommandLineArgs();
+		if (commandLineArgs.Count > 1) {
+			auto sceneFilePath = commandLineArgs[1];
+			SceneSerializer serializer(m_ActiveScene);
+			serializer.DeserializeText(sceneFilePath);
+		}
+
 		/*
 		class CameraController : public ScriptableEntity {
 		public:
@@ -332,7 +339,7 @@ namespace Pressia {
 
 	bool EditorLayer::OnMouseButtonPressed(MouseButtonPressedEvent& e) {
 		if (e.GetMouseButton() == (int)PSMouseCode::PS_MOUSE_BUTTON_LEFT) {
-			if (m_ViewportHovered && !ImGuizmo::IsOver() && Input::IsKeyPressed(PSKeyCode::LEFT_CONTROL))	//	Implement CanPick() function with these checks
+			if (m_ViewportHovered && !ImGuizmo::IsOver() && !Input::IsKeyPressed(PSKeyCode::LEFT_CONTROL))	//	Implement CanPick() function with these checks
 				m_SHP.SetSelectedEntity(m_HoveredEntity);
 		}
 

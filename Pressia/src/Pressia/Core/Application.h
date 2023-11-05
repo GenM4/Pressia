@@ -18,9 +18,19 @@
 
 namespace Pressia {
 
+	struct ApplicationCommandLineArgs {
+		int Count = 0;
+		char** Args = nullptr;
+
+		const char* operator[](int index) const {
+			PS_CORE_ASSERT(index < Count, "Indexed non-existent cmd line argument");
+			return Args[index];
+		}
+	};
+
 	class PRESSIA_API Application {
 	public:
-		Application(const std::string& name = "Pressia App");
+		Application(const std::string& name = "Pressia App", ApplicationCommandLineArgs args = ApplicationCommandLineArgs());
 		virtual ~Application();
 
 		void Run();
@@ -36,11 +46,14 @@ namespace Pressia {
 		void Close();
 
 		ImGuiLayer* GetImGuiLayer() { return m_ImGuiLayer; }
+
+		ApplicationCommandLineArgs GetCommandLineArgs() const { return m_CommandLineArgs; }
 	private:
 		bool OnWindowClose(WindowCloseEvent& e);
 		bool OnWindowResize(WindowResizeEvent& e);
 
 	private:
+		ApplicationCommandLineArgs m_CommandLineArgs;
 		Scope<Window> m_Window;
 		ImGuiLayer* m_ImGuiLayer;
 		bool m_Running = true;
@@ -51,5 +64,5 @@ namespace Pressia {
 	};
 
 	// Defined by client
-	Application* CreateApplication();
+	Application* CreateApplication(ApplicationCommandLineArgs args);
 } // namespace Pressia
