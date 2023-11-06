@@ -2,6 +2,7 @@
 
 #include "Pressia.h"
 #include "Panels/SceneHeirarchyPanel.h"
+#include "Panels/ContentBrowserPanel.h"
 #include "Pressia/Renderer/EditorCamera.h"
 
 namespace Pressia {
@@ -42,6 +43,7 @@ namespace Pressia {
 
 		//	Panels
 		SceneHeirarchyPanel m_SHP;
+		ContentBrowserPanel m_CBP;
 
 		//	Gizmos
 		int m_GizmoType = -1;	//	-1 = no gizmo

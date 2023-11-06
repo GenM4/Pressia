@@ -164,6 +164,7 @@ namespace Pressia {
 			ImGui::DockSpace(dockspace_id, ImVec2(0.0f, 0.0f), dockspace_flags);
 		}
 
+
 		if (ImGui::BeginMenuBar()) {
 			if (ImGui::BeginMenu("File")) {
 				if (ImGui::MenuItem("New", "Ctrl+N")) {
@@ -184,7 +185,9 @@ namespace Pressia {
 			ImGui::EndMenuBar();
 		}
 
+
 		m_SHP.OnImGuiRender();
+		m_CBP.OnImGuiRender();
 
 
 		ImGui::Begin("Frame Rate");	//FPS Meter
