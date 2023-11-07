@@ -5,6 +5,7 @@ bin-int/
 Pressia/vendor/VulkanSDK/
 Sandbox/Assets/
 Pressia-Chamber/Assets/
+Pressia-Chamber/Resources/
 
 *.user
 *.json

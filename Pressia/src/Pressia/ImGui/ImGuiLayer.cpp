@@ -106,12 +106,12 @@ namespace Pressia {
 		colors[ImGuiCol_HeaderActive] = ImVec4{ 0.15f, 0.151f, 0.16f, 1.0f };
 
 		colors[ImGuiCol_Button] = ImVec4{ 0.21f, 0.401f, 0.51f, 1.0f };
-		colors[ImGuiCol_ButtonHovered] = ImVec4{ 0.51f, 0.601f, 0.41f, 1.0f };
-		colors[ImGuiCol_ButtonActive] = ImVec4{ 0.451f, 0.5501f, 0.351f, 1.0f };
+		colors[ImGuiCol_ButtonHovered] = ImVec4{ 0.41f, 0.51f, 0.601f, 1.0f };
+		colors[ImGuiCol_ButtonActive] = ImVec4{ 0.351f, 0.451f, 0.5501f, 1.0f };
 
 		colors[ImGuiCol_FrameBg] = ImVec4{ 0.21f, 0.401f, 0.51f, 1.0f };
-		colors[ImGuiCol_FrameBgHovered] = ImVec4{ 0.51f, 0.601f, 0.41f, 1.0f };
-		colors[ImGuiCol_FrameBgActive] = ImVec4{ 0.451f, 0.5501f, 0.351f, 1.0f };
+		colors[ImGuiCol_FrameBgHovered] = ImVec4{ 0.41f, 0.51f, 0.601f, 1.0f };
+		colors[ImGuiCol_FrameBgActive] = ImVec4{ 0.351f, 0.451f, 0.5501f, 1.0f };
 
 		colors[ImGuiCol_Tab] = ImVec4{ 0.17f, 0.171f, 0.171f, 1.0f };
 		colors[ImGuiCol_TabHovered] = ImVec4{ 0.21f, 0.301f, 0.41f, 1.0f };
@@ -121,7 +121,7 @@ namespace Pressia {
 
 		colors[ImGuiCol_TitleBg] = ImVec4{ 0.15f, 0.151f, 0.155f, 1.0f };
 		colors[ImGuiCol_TitleBgActive] = ImVec4{ 0.17f, 0.171f, 0.175f, 1.0f };
-		colors[ImGuiCol_TitleBgCollapsed] = ImVec4{ 0.61f, 0.601f, 0.651f, 1.0f };
+		colors[ImGuiCol_TitleBgCollapsed] = ImVec4{ 0.601f, 0.61f, 0.651f, 1.0f };
 
 
 

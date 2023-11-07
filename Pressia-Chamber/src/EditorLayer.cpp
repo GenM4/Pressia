@@ -12,6 +12,8 @@
 
 namespace Pressia {
 
+	extern const std::filesystem::path s_AssetPath;	//	TODO: Add project system
+
 	EditorLayer::EditorLayer() : Layer("Sandbox2D") {
 	}
 
@@ -229,6 +231,14 @@ namespace Pressia {
 		uint32_t textureID = m_Framebuffer->GetColorAttachmentRendererID(m_RenderTargetIndex);
 		ImGui::Image((void*)textureID, ImVec2{ m_ViewportSize.x, m_ViewportSize.y }, ImVec2{ 0, 1 }, ImVec2{ 1, 0 });
 
+		if (ImGui::BeginDragDropTarget()) {
+			if (const ImGuiPayload* payload = ImGui::AcceptDragDropPayload("ContentBrowser_Item")) {
+				const char* path = (const char*)payload->Data;
+				OpenScene(s_AssetPath / path);
+			}
+			ImGui::EndDragDropTarget();
+		}
+
 		auto viewportMinRegion = ImGui::GetWindowContentRegionMin();
 		auto viewportMaxRegion = ImGui::GetWindowContentRegionMax();
 		auto viewportOffset = ImGui::GetWindowPos();
@@ -360,16 +370,20 @@ namespace Pressia {
 	void EditorLayer::OpenScene() {
 		std::string filepath = FileDialogs::OpenFile("Pressia Scene (*.pss)\0*.pss\0");
 		if (!filepath.empty()) {
-			m_ActiveScene = CreateRef<Scene>();
-			m_ActiveScene->OnViewportResize((uint32_t)m_ViewportSize.x, (uint32_t)m_ViewportSize.y);
-			m_SHP.SetContext(m_ActiveScene);
-
-			SceneSerializer serializer(m_ActiveScene);
-			serializer.DeserializeText(filepath);
-
-			if (m_ActiveScene->GetCamera() == nullptr)
-				m_ActiveScene->CreateDefaultCamera();
+			OpenScene(filepath);
 		}
+	}
+
+	void EditorLayer::OpenScene(const std::filesystem::path path) {
+		m_ActiveScene = CreateRef<Scene>();
+		m_ActiveScene->OnViewportResize((uint32_t)m_ViewportSize.x, (uint32_t)m_ViewportSize.y);
+		m_SHP.SetContext(m_ActiveScene);
+
+		SceneSerializer serializer(m_ActiveScene);
+		serializer.DeserializeText(path.string());
+
+		if (m_ActiveScene->GetCamera() == nullptr)
+			m_ActiveScene->CreateDefaultCamera();
 	}
 
 	void EditorLayer::SaveSceneAs() {
