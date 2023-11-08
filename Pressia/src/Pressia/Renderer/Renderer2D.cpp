@@ -10,6 +10,8 @@
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
 
+#define PS_WHITE_TEXTURE_SLOT 0
+
 namespace Pressia {
 
 	struct QuadVertex {

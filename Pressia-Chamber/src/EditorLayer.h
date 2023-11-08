@@ -3,6 +3,7 @@
 #include "Pressia.h"
 #include "Panels/SceneHeirarchyPanel.h"
 #include "Panels/ContentBrowserPanel.h"
+#include "Panels/EngineInfoPanel.h"
 #include "Pressia/Renderer/EditorCamera.h"
 
 namespace Pressia {
@@ -21,6 +22,8 @@ namespace Pressia {
 		bool OnKeyPressed(KeyPressedEvent& e);
 		bool OnMouseButtonPressed(MouseButtonPressedEvent& e);
 
+		void RenderDockSpace();
+
 		void NewScene();
 		void OpenScene();
 		void OpenScene(const std::filesystem::path path);
@@ -30,8 +33,6 @@ namespace Pressia {
 
 		//	Temp
 		Ref<Framebuffer> m_Framebuffer;
-		bool m_ResetRenderStats = true;
-		float m_TPF = 0.0f;
 		int m_RenderTargetIndex = 0;
 
 		Ref<Scene> m_ActiveScene;
@@ -43,8 +44,10 @@ namespace Pressia {
 		Entity m_HoveredEntity;
 
 		//	Panels
+		bool m_FullscreenEditor = true;
 		SceneHeirarchyPanel m_SHP;
 		ContentBrowserPanel m_CBP;
+		EngineInfoPanel m_EIP;
 
 		//	Gizmos
 		int m_GizmoType = -1;	//	-1 = no gizmo

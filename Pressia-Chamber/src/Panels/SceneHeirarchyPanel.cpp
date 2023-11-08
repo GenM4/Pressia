@@ -1,5 +1,6 @@
 #include "SceneHeirarchyPanel.h"
 
+#include <entt/include/entt.hpp>
 #include <glm/gtc/type_ptr.hpp>
 #include <imgui/imgui.h>
 #include <imgui/imgui_internal.h>
@@ -64,6 +65,25 @@ namespace Pressia {
 		}
 
 		ImGui::End();
+	}
+
+	void SceneHeirarchyPanel::CopySelectedEntity() {
+		m_LastCopiedEntity = m_SelectionContext;
+	}
+
+	void SceneHeirarchyPanel::PasteCopiedEntity() {
+		std::string name = m_LastCopiedEntity.GetComponent<TagComponent>().Tag;
+
+		auto destinationEntity = m_Context->CreateEntity();
+		destinationEntity.RemoveComponent<TagComponent>();
+		destinationEntity.RemoveComponent<TransformComponent>();
+
+		for (auto&& currentComponent : m_Context->m_Registry.storage()) {
+			if (auto& storage = currentComponent.second; storage.contains(m_LastCopiedEntity))
+				storage.push(destinationEntity, storage.value(m_LastCopiedEntity));
+		}
+
+		m_SelectionContext = destinationEntity;
 	}
 
 	void SceneHeirarchyPanel::DrawEntityNode(Entity entity) {
@@ -227,7 +247,8 @@ namespace Pressia {
 		DrawComponent<SpriteRendererComponent>("Sprite Renderer", selectionContext, true, [](auto& component) {
 			ImGui::ColorEdit4("Color", glm::value_ptr(component.Color));
 
-			ImGui::Button("Texture", ImVec2(100.0f, 0.0f));
+			if (ImGui::Button("Texture", ImVec2(100.0f, 0.0f)))
+				component.Texture = nullptr;
 			if (ImGui::BeginDragDropTarget()) {
 				if (const ImGuiPayload* payload = ImGui::AcceptDragDropPayload("ContentBrowser_Item")) {
 					const char* path = (const char*)payload->Data;
