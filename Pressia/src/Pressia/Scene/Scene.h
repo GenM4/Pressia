@@ -16,6 +16,7 @@ namespace Pressia {
 		~Scene();
 
 		Entity CreateEntity(const std::string& name = std::string());
+		Entity DuplicateEntity(Entity src);
 		void DestroyEntity(Entity entity);
 
 		void OnViewportResize(uint32_t width, uint32_t height);

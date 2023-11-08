@@ -23,6 +23,20 @@ namespace Pressia {
 		return entity;
 	}
 
+	Entity Scene::DuplicateEntity(Entity srcEntity) {
+		std::string name = srcEntity.GetComponent<TagComponent>().Tag;
+
+		auto destinationEntity = CreateEntity();
+		destinationEntity.RemoveComponent<TagComponent>();
+		destinationEntity.RemoveComponent<TransformComponent>();
+
+		for (auto&& currentComponent : m_Registry.storage()) {
+			if (auto& storage = currentComponent.second; storage.contains(srcEntity))
+				storage.push(destinationEntity, storage.value(srcEntity));
+		}
+		return destinationEntity;
+	}
+
 	void Scene::DestroyEntity(Entity entity) {
 		m_Registry.destroy(entity);
 	}

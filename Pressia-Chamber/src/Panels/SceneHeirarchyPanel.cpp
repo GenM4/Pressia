@@ -72,18 +72,7 @@ namespace Pressia {
 	}
 
 	void SceneHeirarchyPanel::PasteCopiedEntity() {
-		std::string name = m_LastCopiedEntity.GetComponent<TagComponent>().Tag;
-
-		auto destinationEntity = m_Context->CreateEntity();
-		destinationEntity.RemoveComponent<TagComponent>();
-		destinationEntity.RemoveComponent<TransformComponent>();
-
-		for (auto&& currentComponent : m_Context->m_Registry.storage()) {
-			if (auto& storage = currentComponent.second; storage.contains(m_LastCopiedEntity))
-				storage.push(destinationEntity, storage.value(m_LastCopiedEntity));
-		}
-
-		m_SelectionContext = destinationEntity;
+		m_SelectionContext = m_Context->DuplicateEntity(m_LastCopiedEntity);
 	}
 
 	void SceneHeirarchyPanel::DrawEntityNode(Entity entity) {
