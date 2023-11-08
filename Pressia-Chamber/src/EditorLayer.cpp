@@ -12,7 +12,7 @@
 
 namespace Pressia {
 
-	extern const std::filesystem::path s_AssetPath;	//	TODO: Add project system
+	extern const std::filesystem::path g_AssetPath;	//	TODO: Add project system
 
 	EditorLayer::EditorLayer() : Layer("Sandbox2D") {
 	}
@@ -234,7 +234,7 @@ namespace Pressia {
 		if (ImGui::BeginDragDropTarget()) {
 			if (const ImGuiPayload* payload = ImGui::AcceptDragDropPayload("ContentBrowser_Item")) {
 				const char* path = (const char*)payload->Data;
-				OpenScene(s_AssetPath / path);
+				OpenScene(g_AssetPath / path);
 			}
 			ImGui::EndDragDropTarget();
 		}

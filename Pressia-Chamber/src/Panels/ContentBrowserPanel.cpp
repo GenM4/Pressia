@@ -5,9 +5,9 @@
 
 namespace Pressia {
 
-	extern const std::filesystem::path s_AssetPath = "Assets";	//	TODO: Make relative to project path once projects implemented
+	extern const std::filesystem::path g_AssetPath = "Assets";	//	TODO: Make relative to project path once projects implemented
 
-	ContentBrowserPanel::ContentBrowserPanel() : m_CurrentDirectory(s_AssetPath) {
+	ContentBrowserPanel::ContentBrowserPanel() : m_CurrentDirectory(g_AssetPath) {
 		m_FolderIcon = Texture2D::Create("Resources/Contentbrowser/icon_folder.png");
 		m_TextFileIcon = Texture2D::Create("Resources/Contentbrowser/icon_textfile.png");
 		m_ScriptFileIcon = Texture2D::Create("Resources/Contentbrowser/icon_script.png");
@@ -17,7 +17,7 @@ namespace Pressia {
 	void Pressia::ContentBrowserPanel::OnImGuiRender() {
 		ImGui::Begin("Content Browser Panel");
 
-		if (m_CurrentDirectory != s_AssetPath) {
+		if (m_CurrentDirectory != g_AssetPath) {
 			if (ImGui::Button("<-")) {
 				m_CurrentDirectory = m_CurrentDirectory.parent_path();
 			}
@@ -29,7 +29,7 @@ namespace Pressia {
 
 		ImGui::Columns(columnCount, 0, false);
 		for (auto& directoryEntry : std::filesystem::directory_iterator(m_CurrentDirectory)) {
-			auto relativePath = std::filesystem::relative(directoryEntry.path(), s_AssetPath).string();
+			auto relativePath = std::filesystem::relative(directoryEntry.path(), g_AssetPath).string();
 
 			const auto& filename = directoryEntry.path().filename();
 			ImGui::PushStyleColor(ImGuiCol_Button, ImVec4(0, 0, 0, 0));
@@ -38,7 +38,7 @@ namespace Pressia {
 
 			//	Drag and drop scenes into viewport
 			if (ImGui::BeginDragDropSource(ImGuiDragDropFlags_SourceAllowNullID)) {
-				ImGui::SetDragDropPayload("ContentBrowser_Item", relativePath.c_str(), relativePath.size(), ImGuiCond_Once);
+				ImGui::SetDragDropPayload("ContentBrowser_Item", relativePath.c_str(), relativePath.size() + 1, ImGuiCond_Once);
 				ImGui::EndDragDropSource();
 			}
 

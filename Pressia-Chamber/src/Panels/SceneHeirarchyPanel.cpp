@@ -6,6 +6,8 @@
 
 namespace Pressia {
 
+	extern const std::filesystem::path g_AssetPath;
+
 	SceneHeirarchyPanel::SceneHeirarchyPanel(const Ref<Scene>& context) {
 		SetContext(context);
 	}
@@ -224,6 +226,18 @@ namespace Pressia {
 
 		DrawComponent<SpriteRendererComponent>("Sprite Renderer", selectionContext, true, [](auto& component) {
 			ImGui::ColorEdit4("Color", glm::value_ptr(component.Color));
+
+			ImGui::Button("Texture", ImVec2(100.0f, 0.0f));
+			if (ImGui::BeginDragDropTarget()) {
+				if (const ImGuiPayload* payload = ImGui::AcceptDragDropPayload("ContentBrowser_Item")) {
+					const char* path = (const char*)payload->Data;
+					std::filesystem::path texturePath = g_AssetPath / path;
+					component.Texture = Texture2D::Create(texturePath.string());
+				}
+				ImGui::EndDragDropTarget();
+			}
+
+			ImGui::DragFloat("Tiling Factor", &component.TilingFactor, 0.2f, 0.0f, 100.0f);
 			});
 
 		DrawComponent<CameraComponent>("Camera", selectionContext, true, [&](auto& component) {
