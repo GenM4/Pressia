@@ -10,7 +10,6 @@
 #include "Pressia/Core/Input.h"
 #include "Pressia/Core/KeyCodes.h"
 #include "Pressia/Core/MouseButtonCodes.h"
-#include "Pressia/OrthographicCameraController.h"
 
 #include "Pressia/ImGui/ImGuiLayer.h"
 
@@ -24,8 +23,6 @@
 #include "Pressia/Renderer/Shader.h"
 #include "Pressia/Renderer/Texture.h"
 #include "Pressia/Renderer/VertexArray.h"
-
-#include "Pressia/Renderer/OrthographicCamera.h"
 
 #include "Pressia/Scene/Scene.h"
 #include "Pressia/Scene/Entity.h"

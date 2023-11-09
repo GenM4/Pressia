@@ -2,19 +2,12 @@
 
 #include "Pressia/Core/Core.h"
 
-#include "Window.h"
+#include "Pressia/Core/Window.h"
 #include "Pressia/Core/LayerStack.h"
 #include "Pressia/Events/Event.h"
 #include "Pressia/Events/ApplicationEvent.h"
 
-#include "Pressia/Core/TimeStep.h"
-
 #include "Pressia/ImGui/ImGuiLayer.h"
-
-#include "Pressia/Renderer/Buffer.h"
-#include "Pressia/Renderer/Shader.h"
-#include "Pressia/Renderer/VertexArray.h"
-#include "Pressia/Renderer/OrthographicCamera.h"
 
 namespace Pressia {
 
@@ -65,4 +58,4 @@ namespace Pressia {
 
 	// Defined by client
 	Application* CreateApplication(ApplicationCommandLineArgs args);
-} // namespace Pressia
+}

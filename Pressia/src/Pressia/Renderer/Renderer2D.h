@@ -2,7 +2,6 @@
 
 #include "Pressia/Renderer/Camera.h"
 #include "Pressia/Renderer/EditorCamera.h"
-#include "Pressia/Renderer/OrthographicCamera.h"
 #include "Pressia/Renderer/Texture.h"
 
 #include "Pressia/Scene/Components.h"
@@ -16,7 +15,6 @@ namespace Pressia {
 
 		static void BeginScene(const Camera& camera, const glm::mat4& cameraTransform);
 		static void BeginScene(const EditorCamera& camera);
-		static void BeginScene(const OrthographicCamera& camera);	//TODO: roll into camera.h or something
 
 		static void EndScene();
 		static void Flush();
@@ -55,6 +53,7 @@ namespace Pressia {
 		static void ResetStats();
 	private:
 		static void FlushAndReset();
+		static void StartNewBatch();
 	};
 }
 

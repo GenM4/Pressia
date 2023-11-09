@@ -138,9 +138,6 @@
     <ClInclude Include="src\Pressia\Math\Math.h">
       <Filter>src\Pressia\Math</Filter>
     </ClInclude>
-    <ClInclude Include="src\Pressia\OrthographicCameraController.h">
-      <Filter>src\Pressia</Filter>
-    </ClInclude>
     <ClInclude Include="src\Pressia\Renderer\Buffer.h">
       <Filter>src\Pressia\Renderer</Filter>
     </ClInclude>
@@ -154,9 +151,6 @@
       <Filter>src\Pressia\Renderer</Filter>
     </ClInclude>
     <ClInclude Include="src\Pressia\Renderer\GraphicsContext.h">
-      <Filter>src\Pressia\Renderer</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Pressia\Renderer\OrthographicCamera.h">
       <Filter>src\Pressia\Renderer</Filter>
     </ClInclude>
     <ClInclude Include="src\Pressia\Renderer\RenderCommand.h">
@@ -269,9 +263,6 @@
     <ClCompile Include="src\Pressia\Math\Math.cpp">
       <Filter>src\Pressia\Math</Filter>
     </ClCompile>
-    <ClCompile Include="src\Pressia\OrthographicCameraController.cpp">
-      <Filter>src\Pressia</Filter>
-    </ClCompile>
     <ClCompile Include="src\Pressia\Renderer\Buffer.cpp">
       <Filter>src\Pressia\Renderer</Filter>
     </ClCompile>
@@ -279,9 +270,6 @@
       <Filter>src\Pressia\Renderer</Filter>
     </ClCompile>
     <ClCompile Include="src\Pressia\Renderer\Framebuffer.cpp">
-      <Filter>src\Pressia\Renderer</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Pressia\Renderer\OrthographicCamera.cpp">
       <Filter>src\Pressia\Renderer</Filter>
     </ClCompile>
     <ClCompile Include="src\Pressia\Renderer\RenderCommand.cpp">

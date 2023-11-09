@@ -10,3 +10,12 @@
 #define PS_MAX_BATCH_DRAW			10000	//Renderer batching				# of quads per batched draw call
 #define PS_MAX_TEXTURE_SLOTS		31		//Max texture slots				# of slots - 1 (zero-indexed)
 #define PS_MAX_FRAMEBUFFER_SIZE		8192	//Max Framebuffer size			# in pixels
+
+
+
+
+
+//	2D Renderer Constants
+
+#define PS_WHITE_TEXTURE_SLOT		0
+#define PS_WHITE_TEXTURE_DATA		0xffffffff

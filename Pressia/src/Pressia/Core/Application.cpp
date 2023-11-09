@@ -2,8 +2,7 @@
 #include "Application.h"
 
 #include "Pressia/Core/Log.h"
-#include "Input.h"
-
+#include "Pressia/Core/Input.h"
 #include "Pressia/Renderer/Renderer.h"
 
 #include <GLFW/glfw3.h>

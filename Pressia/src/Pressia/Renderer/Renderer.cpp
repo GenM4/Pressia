@@ -5,8 +5,6 @@
 
 namespace Pressia {
 
-	Renderer::SceneData* Renderer::m_SceneData = new Renderer::SceneData;
-
 	void Renderer::Init() {
 		PS_PROFILE_RENDERER_FUNCTION();
 
@@ -24,10 +22,10 @@ namespace Pressia {
 		RenderCommand::SetViewport(0, 0, width, height);
 	}
 
-	void Renderer::BeginScene(OrthographicCamera& camera) {
+	void Renderer::BeginScene(Camera& camera) {
 		PS_PROFILE_RENDERER_FUNCTION();
 
-		m_SceneData->ViewProjectionMatrix = camera.GetViewProjectionMatrix();
+		//	Will call Renderer2D or Renderer3D
 	}
 
 	void Renderer::EndScene() {
@@ -37,12 +35,7 @@ namespace Pressia {
 	void Renderer::Submit(const Ref<Shader>& shader, const Ref<VertexArray>& vertexArray, const glm::mat4 transform) {
 		PS_PROFILE_RENDERER_FUNCTION();
 
-		shader->Bind();
-		shader->SetMat4("u_ViewProjection", m_SceneData->ViewProjectionMatrix);
-		shader->SetMat4("u_Transform", transform);
-
-		vertexArray->Bind();
-		RenderCommand::DrawIndexed(vertexArray);
+		//	Will submit renderer commands to render queue
 	}
 
 }

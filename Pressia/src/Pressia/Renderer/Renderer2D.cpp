@@ -10,8 +10,6 @@
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
 
-#define PS_WHITE_TEXTURE_SLOT 0
-
 namespace Pressia {
 
 	struct QuadVertex {
@@ -65,7 +63,6 @@ namespace Pressia {
 
 		s_Data.QuadVA = VertexArray::Create();
 
-
 		s_Data.QuadVB = VertexBuffer::Create(s_Data.MaxVertices * sizeof(QuadVertex));
 		s_Data.QuadVB->SetLayout({
 			{ ShaderDataType::Float3,	"a_Position"		},
@@ -101,19 +98,11 @@ namespace Pressia {
 		delete[] quadIndices;
 
 		s_Data.WhiteTexture = Texture2D::Create(1, 1);
-		uint32_t whiteTextureData = 0xffffffff;
+		uint32_t whiteTextureData = PS_WHITE_TEXTURE_DATA;
 		s_Data.WhiteTexture->SetData(&whiteTextureData, sizeof(whiteTextureData));
-
-		int32_t samplers[s_Data.MaxTextureSlots];
-		for (uint32_t i = 0; i < s_Data.MaxTextureSlots; i++) {
-			samplers[i] = i;
-		}
+		s_Data.TextureSlots[PS_WHITE_TEXTURE_SLOT] = s_Data.WhiteTexture;
 
 		s_Data.TextureShader = Shader::Create("Assets/Shaders/Texture.glsl");
-		s_Data.TextureShader->Bind();
-		s_Data.TextureShader->SetIntArray("u_Textures", samplers, s_Data.MaxTextureSlots);
-
-		s_Data.TextureSlots[0] = s_Data.WhiteTexture;
 
 		s_Data.CameraUniformBuffer = UniformBuffer::Create(sizeof(Renderer2DData::CameraData), 0);
 	}
@@ -129,10 +118,7 @@ namespace Pressia {
 		s_Data.CameraBuffer.ViewProjection = camera.GetProjection() * glm::inverse(cameraTransform);
 		s_Data.CameraUniformBuffer->SetData(&s_Data.CameraBuffer, sizeof(Renderer2DData::CameraData));
 
-		s_Data.QuadIndexCount = 0;
-		s_Data.QuadVertexBufferPtr = s_Data.QuadVertexBufferBase;
-
-		s_Data.TextureSlotIndex = 1;
+		StartNewBatch();
 	}
 
 	void Renderer2D::BeginScene(const EditorCamera& camera) {
@@ -141,22 +127,7 @@ namespace Pressia {
 		s_Data.CameraBuffer.ViewProjection = camera.GetViewProjection();
 		s_Data.CameraUniformBuffer->SetData(&s_Data.CameraBuffer, sizeof(Renderer2DData::CameraData));
 
-		s_Data.QuadIndexCount = 0;
-		s_Data.QuadVertexBufferPtr = s_Data.QuadVertexBufferBase;
-
-		s_Data.TextureSlotIndex = 1;
-	}
-
-	void Renderer2D::BeginScene(const OrthographicCamera& camera) {
-		PS_PROFILE_RENDERER_FUNCTION();
-
-		s_Data.CameraBuffer.ViewProjection = camera.GetViewProjectionMatrix();
-		s_Data.CameraUniformBuffer->SetData(&s_Data.CameraBuffer, sizeof(Renderer2DData::CameraData));
-
-		s_Data.QuadIndexCount = 0;
-		s_Data.QuadVertexBufferPtr = s_Data.QuadVertexBufferBase;
-
-		s_Data.TextureSlotIndex = 1;
+		StartNewBatch();
 	}
 
 	void Renderer2D::EndScene() {
@@ -179,6 +150,7 @@ namespace Pressia {
 		}
 
 		s_Data.TextureShader->Bind();
+
 		RenderCommand::DrawIndexed(s_Data.QuadVA, s_Data.QuadIndexCount);
 
 		#if PS_RECORD_RENDERER_STATS
@@ -189,6 +161,10 @@ namespace Pressia {
 	void Renderer2D::FlushAndReset() {
 		EndScene();
 
+		StartNewBatch();
+	}
+
+	void Renderer2D::StartNewBatch() {
 		s_Data.QuadIndexCount = 0;
 		s_Data.QuadVertexBufferPtr = s_Data.QuadVertexBufferBase;
 
