@@ -80,7 +80,8 @@ namespace Pressia {
 
 			auto& src = entity.GetComponent<SpriteRendererComponent>();
 			out << YAML::Key << "Color" << YAML::Value << src.Color;
-
+			//out << YAML::Key << "Texture" << YAML::Value << src.Texture->GetPath();	//	TODO: Asset management system
+			out << YAML::Key << "TilingFactor" << YAML::Value << src.TilingFactor;
 			out << YAML::EndMap;
 		}
 
@@ -179,6 +180,8 @@ namespace Pressia {
 				if (srcIn) {
 					auto& srcTarget = deserializedEntity.AddComponent<SpriteRendererComponent>();
 					srcTarget.Color = srcIn["Color"].as<glm::vec4>();
+					//srcTarget.Texture = Texture2D::Create(srcIn["Texture"].as<std::string>());	//	TODO: Asset management system
+					srcTarget.TilingFactor = srcIn["TilingFactor"].as<float>();
 				}
 			}
 		}

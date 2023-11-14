@@ -13,6 +13,9 @@ namespace Pressia {
 	public:
 		EditorCamera() = default;
 		EditorCamera(float fov, float aspectRatio, float nearClip, float farClip);
+		EditorCamera(EditorCamera& other);
+
+		EditorCamera operator=(EditorCamera& other);
 
 		void OnUpdate(Timestep ts);
 		void OnEvent(Event& e);

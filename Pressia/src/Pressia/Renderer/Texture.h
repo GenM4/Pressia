@@ -1,6 +1,8 @@
 #pragma once
 #include "Pressia/Core/Core.h"
 
+#include "Pressia/Memory/Asset.h"
+
 #include <glm/glm.hpp>
 #include <string>
 
@@ -21,6 +23,8 @@ namespace Pressia {
 		virtual void Bind(uint32_t slot = 0) const = 0;
 
 		virtual bool operator ==(const Texture& other) const = 0;
+
+		virtual std::string GetPath() = 0;
 	};
 
 	class Texture2D : public Texture {

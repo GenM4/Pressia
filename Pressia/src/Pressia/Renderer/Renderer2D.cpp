@@ -39,7 +39,7 @@ namespace Pressia {
 		QuadVertex* QuadVertexBufferPtr = nullptr;
 
 		std::array<Ref<Texture2D>, MaxTextureSlots> TextureSlots;
-		uint32_t TextureSlotIndex = 1;										// 0 = white texture
+		uint32_t TextureSlotIndex = 1;												// 0 = white texture
 
 		glm::vec4 QuadVertexPositions[4] = { { -0.5f, -0.5f, 0.0f, 1.0f },
 											 {  0.5f, -0.5f, 0.0f, 1.0f },
@@ -320,7 +320,8 @@ namespace Pressia {
 	void Renderer2D::DrawSprite(const glm::mat4& transform, SpriteRendererComponent& src, int entityID) {
 		if (src.Texture)
 			DrawQuad(transform, src.Texture, src.TilingFactor, src.Color, entityID);
-		DrawQuad(transform, src.Color, entityID);
+		else
+			DrawQuad(transform, src.Color, entityID);
 	}
 
 	Renderer2D::Statistics Renderer2D::GetStats() {

@@ -1,11 +1,13 @@
 #pragma once
 
 #include "Pressia/Core/Core.h"
-
 #include "Pressia/Core/Window.h"
 #include "Pressia/Core/LayerStack.h"
+
 #include "Pressia/Events/Event.h"
 #include "Pressia/Events/ApplicationEvent.h"
+
+#include "Pressia/Memory/Memory.h"
 
 #include "Pressia/ImGui/ImGuiLayer.h"
 

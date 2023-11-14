@@ -12,6 +12,15 @@ namespace Pressia {
 		UpdateView();
 	}
 
+	EditorCamera::EditorCamera(EditorCamera& other) : m_FOV(other.m_FOV), m_AspectRatio(other.m_AspectRatio), m_NearClip(other.m_NearClip), m_FarClip(other.m_FarClip) {
+		UpdateView();
+	}
+
+	EditorCamera EditorCamera::operator=(EditorCamera& other) {
+
+		return EditorCamera(other);
+	}
+
 	void EditorCamera::OnUpdate(Timestep ts) {
 		if (Input::IsKeyPressed(PSKeyCode::LEFT_CONTROL)) {
 			const glm::vec2& mouse{ Input::GetMouseX(), Input::GetMouseY() };

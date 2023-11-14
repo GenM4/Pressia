@@ -1,5 +1,7 @@
 #pragma once
 
+#include "Pressia/Memory/Asset.h"
+
 #include <string>
 #include <unordered_map>
 #include <glm/glm.hpp>

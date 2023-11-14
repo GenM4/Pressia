@@ -23,6 +23,10 @@ namespace Pressia {
 		bool OnMouseButtonPressed(MouseButtonPressedEvent& e);
 
 		void RenderDockSpace();
+		void UI_Toolbar();
+
+		void OnScenePlay();
+		void OnSceneStop();
 
 		void NewScene();
 		void OpenScene();
@@ -35,7 +39,13 @@ namespace Pressia {
 		Ref<Framebuffer> m_Framebuffer;
 		int m_RenderTargetIndex = 0;
 
+		//	Scene
 		Ref<Scene> m_ActiveScene;
+		enum class SceneState {
+			Edit = 0,
+			Play = 1
+		};
+		SceneState m_SceneState = SceneState::Edit;
 
 		glm::vec2 m_ViewportSize = { 0.0f, 0.0f };
 		glm::vec2 m_ViewportBounds[2];
@@ -51,5 +61,8 @@ namespace Pressia {
 
 		//	Gizmos
 		int m_GizmoType = -1;	//	-1 = no gizmo
+
+		//	Resources
+		Ref<Texture2D> m_IconPlay, m_IconStop;
 	};
 }

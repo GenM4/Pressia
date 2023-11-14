@@ -20,6 +20,10 @@ namespace Pressia {
 	void EditorLayer::OnAttach() {
 		PS_PROFILE_FUNCTION();
 
+		//	Resource Init
+		m_IconPlay = Texture2D::Create("Resources/SceneControls/icon_playbutton.png");
+		m_IconStop = Texture2D::Create("Resources/SceneControls/icon_stopbutton.png");
+
 		FramebufferSpecification fbspec;
 		fbspec.Attachments = { FramebufferTextureFormat::RGBA8, FramebufferTextureFormat::RED_INTEGER, FramebufferTextureFormat::Depth };
 		fbspec.Width = 1920;
@@ -81,21 +85,28 @@ namespace Pressia {
 			m_ActiveScene->OnViewportResize((uint32_t)m_ViewportSize.x, (uint32_t)m_ViewportSize.y);
 		}
 
-		//Update
-		if (m_ViewportFocused)
-			m_EditorCamera.OnUpdate(ts);
-
-		// Render
 		if (m_EIP.GetResetRenderStats())
 			Renderer2D::ResetStats();
 
+		// Render
 		m_Framebuffer->Bind();
 		RenderCommand::SetClearColor({ 0.1f, 0.105f, 0.11f, 1.0f });
 		RenderCommand::Clear();
 
 		m_Framebuffer->ClearColorAttachment(1, -1);	//	Clear EntityID attachment to -1
 
-		m_ActiveScene->OnUpdateEditor(ts, m_EditorCamera);	// Update Scene
+		switch (m_SceneState) {
+			case SceneState::Edit:
+				if (m_ViewportFocused)
+					m_EditorCamera.OnUpdate(ts);
+
+				m_ActiveScene->OnUpdateEditor(ts, m_EditorCamera);	//	Update Editor Scene
+
+				break;
+			case SceneState::Play:
+				m_ActiveScene->OnUpdateRuntime(ts);	//	Update Runtime Scene
+				break;
+		}
 
 		auto [mx, my] = ImGui::GetMousePos();
 		mx -= m_ViewportBounds[0].x;
@@ -204,8 +215,33 @@ namespace Pressia {
 		ImGui::End();
 		ImGui::PopStyleVar();
 
+		UI_Toolbar();
+
 		ImGui::End();
 
+	}
+
+	void EditorLayer::UI_Toolbar() {
+		ImGui::PushStyleVar(ImGuiStyleVar_WindowPadding, ImVec2(0, 2));
+		ImGui::PushStyleVar(ImGuiStyleVar_ItemInnerSpacing, ImVec2(0, 0));
+		ImGui::PushStyleColor(ImGuiCol_Button, ImVec4(0, 0, 0, 0));
+
+		ImGui::Begin("##UI_Toolbar", nullptr, ImGuiWindowFlags_NoDecoration | ImGuiWindowFlags_NoScrollbar | ImGuiWindowFlags_NoScrollWithMouse);
+		Ref<Texture2D> icon = m_SceneState == SceneState::Edit ? m_IconPlay : m_IconStop;
+		float size = ImGui::GetWindowHeight() - 10.0f;
+
+		ImGui::SameLine((ImGui::GetWindowContentRegionMax().x * 0.5f) - (size * 0.5f));
+		if (ImGui::ImageButton("SceneState Control", (ImTextureID)icon->GetRendererID(), ImVec2(size, size))) {
+			if (m_SceneState == SceneState::Edit) {
+				OnScenePlay();
+			}
+			else if (m_SceneState == SceneState::Play) {
+				OnSceneStop();
+			}
+		}
+		ImGui::PopStyleVar(2);
+		ImGui::PopStyleColor(1);
+		ImGui::End();
 	}
 
 	void EditorLayer::OnEvent(Event& e) {
@@ -224,39 +260,42 @@ namespace Pressia {
 
 		bool control = Input::IsKeyPressed(PSKeyCode::LEFT_CONTROL) || Input::IsKeyPressed(PSKeyCode::RIGHT_CONTROL);
 		bool shift = Input::IsKeyPressed(PSKeyCode::LEFT_SHIFT) || Input::IsKeyPressed(PSKeyCode::RIGHT_SHIFT);
-		switch (e.GetKeyCode()) {
-			case (int)PSKeyCode::N:
-				if (control)
-					NewScene();
-				break;
-			case (int)PSKeyCode::O:
-				if (control)
-					OpenScene();
-				break;
-			case (int)PSKeyCode::S:
-				if (control && shift)
-					SaveSceneAs();
-				break;
-			case (int)PSKeyCode::R:
-				if (!ImGuizmo::IsUsing())
-					m_GizmoType = ImGuizmo::ROTATE;
-				break;
-			case (int)PSKeyCode::T:
-				if (!ImGuizmo::IsUsing())
-					m_GizmoType = ImGuizmo::TRANSLATE;
-				break;
-			case (int)PSKeyCode::Y:
-				if (!ImGuizmo::IsUsing())
-					m_GizmoType = ImGuizmo::SCALE;
-				break;
-			case (int)PSKeyCode::C:
-				if (control)
-					m_SHP.CopySelectedEntity();
-				break;
-			case (int)PSKeyCode::V:
-				if (control)
-					m_SHP.PasteCopiedEntity();
-				break;
+
+		if (m_SceneState == SceneState::Edit) {
+			switch (e.GetKeyCode()) {
+				case (int)PSKeyCode::N:
+					if (control)
+						NewScene();
+					break;
+				case (int)PSKeyCode::O:
+					if (control)
+						OpenScene();
+					break;
+				case (int)PSKeyCode::S:
+					if (control && shift)
+						SaveSceneAs();
+					break;
+				case (int)PSKeyCode::R:
+					if (!ImGuizmo::IsUsing())
+						m_GizmoType = ImGuizmo::ROTATE;
+					break;
+				case (int)PSKeyCode::T:
+					if (!ImGuizmo::IsUsing())
+						m_GizmoType = ImGuizmo::TRANSLATE;
+					break;
+				case (int)PSKeyCode::Y:
+					if (!ImGuizmo::IsUsing())
+						m_GizmoType = ImGuizmo::SCALE;
+					break;
+				case (int)PSKeyCode::C:
+					if (control)
+						m_SHP.CopySelectedEntity();
+					break;
+				case (int)PSKeyCode::V:
+					if (control)
+						m_SHP.PasteCopiedEntity();
+					break;
+			}
 		}
 
 		return false;
@@ -324,6 +363,15 @@ namespace Pressia {
 
 			ImGui::EndMenuBar();
 		}
+	}
+
+	void EditorLayer::OnScenePlay() {
+		m_SceneState = SceneState::Play;
+		m_GizmoType = -1;
+	}
+
+	void EditorLayer::OnSceneStop() {
+		m_SceneState = SceneState::Edit;
 	}
 
 	void EditorLayer::NewScene() {

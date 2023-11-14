@@ -151,6 +151,8 @@
     </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="src\Pressia\Memory\AssetManager.h" />
+    <ClInclude Include="src\Pressia\Memory\Asset.h" />
     <ClInclude Include="src\Platform\OpenGL\OpenGLBuffer.h" />
     <ClInclude Include="src\Platform\OpenGL\OpenGLContext.h" />
     <ClInclude Include="src\Platform\OpenGL\OpenGLFramebuffer.h" />
@@ -181,6 +183,7 @@
     <ClInclude Include="src\Pressia\Events\MouseEvent.h" />
     <ClInclude Include="src\Pressia\ImGui\ImGuiLayer.h" />
     <ClInclude Include="src\Pressia\Math\Math.h" />
+    <ClInclude Include="src\Pressia\Memory\Memory.h" />
     <ClInclude Include="src\Pressia\Renderer\Buffer.h" />
     <ClInclude Include="src\Pressia\Renderer\Camera.h" />
     <ClInclude Include="src\Pressia\Renderer\EditorCamera.h" />
@@ -206,6 +209,8 @@
     <ClInclude Include="vendor\stb_image\stb_image.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\Pressia\Memory\Asset.cpp" />
+    <ClCompile Include="src\Pressia\Memory\AssetManager.cpp" />
     <ClCompile Include="src\Platform\OpenGL\OpenGLBuffer.cpp" />
     <ClCompile Include="src\Platform\OpenGL\OpenGLContext.cpp" />
     <ClCompile Include="src\Platform\OpenGL\OpenGLFramebuffer.cpp" />
